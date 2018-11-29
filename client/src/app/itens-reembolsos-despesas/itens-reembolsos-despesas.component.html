@@ -1,0 +1,42 @@
+<rz-content #content1 container="main">
+  <rz-heading #pageTitle size="H1" text="Itens Reembolsos Despesas">
+  </rz-heading>
+  <div class="row">
+    <div class="col-md-12">
+      <rz-grid #grid0 addText="Add" [allowAdd]="true" [allowDelete]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [count]="getItensReembolsosDespesasCount" [data]="getItensReembolsosDespesasResult" emptyText="No records to display." (add)="grid0Add($event)" (delete)="grid0Delete($event)" (loadData)="grid0LoadData($event)" (rowSelect)="grid0RowSelect($event)">
+        <rz-grid-column filterProperty="TiposItensReembolsosDespesa.Nome" property="Tipo" sortProperty="TiposItensReembolsosDespesa.Nome" title="Tipos Itens Reembolsos Despesa" type="string">
+          <ng-template let-data gridColumnTemplate>
+          {{data?.TiposItensReembolsosDespesa?.Nome}}
+          </ng-template>
+        </rz-grid-column>
+        <rz-grid-column format="date-time" property="Data" title="Data" type="string">
+          <ng-template let-data gridColumnTemplate>
+          {{data?.Data | utcDate}}
+          </ng-template>
+        </rz-grid-column>
+        <rz-grid-column property="Origem" title="Origem" type="string">
+        </rz-grid-column>
+        <rz-grid-column property="Destino" title="Destino" type="string">
+        </rz-grid-column>
+        <rz-grid-column format="date-time" property="Entrada" title="Entrada" type="string">
+          <ng-template let-data gridColumnTemplate>
+          {{data?.Entrada | utcDate}}
+          </ng-template>
+        </rz-grid-column>
+        <rz-grid-column format="date-time" property="Saida" title="Saida" type="string">
+          <ng-template let-data gridColumnTemplate>
+          {{data?.Saida | utcDate}}
+          </ng-template>
+        </rz-grid-column>
+        <rz-grid-column property="Referencia" title="Referencia" type="string">
+        </rz-grid-column>
+        <rz-grid-column property="Empresa" title="Empresa" type="string">
+        </rz-grid-column>
+        <rz-grid-column format="decimal" property="ValorGasto" title="Valor Gasto" type="number">
+        </rz-grid-column>
+        <rz-grid-column format="decimal" property="ValorConcedido" title="Valor Concedido" type="number">
+        </rz-grid-column>
+      </rz-grid>
+    </div>
+  </div>
+</rz-content>

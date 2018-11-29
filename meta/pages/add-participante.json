@@ -1,0 +1,136 @@
+{
+  "access": [
+    "Administrador",
+    "Super",
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "cancelText": "Cancelar",
+                  "data": "",
+                  "deleteText": "Excluir",
+                  "events": {
+                    "cancel": [
+                      {
+                        "type": "back"
+                      }
+                    ],
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new Participante!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "pnld.createParticipante",
+                        "parameters": [
+                          {
+                            "name": "Participante",
+                            "value": "${event}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "path": "participantes",
+                            "type": "navigate"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "fields": [
+                    {
+                      "maxLength": 100,
+                      "property": "Nome",
+                      "required": true,
+                      "requiredText": "is required",
+                      "title": "Nome",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 20,
+                      "placeholder": "",
+                      "property": "CPF",
+                      "required": true,
+                      "requiredText": "is required",
+                      "title": "CPF",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 150,
+                      "property": "Email",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "E-mail",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 20,
+                      "property": "Banco",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Banco",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 20,
+                      "property": "Agencia",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Agencia",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 20,
+                      "property": "Conta",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Conta",
+                      "type": "string"
+                    }
+                  ],
+                  "name": "form0",
+                  "submitText": "Salvar",
+                  "type": "form"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "Security.getUsers",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getUsersResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Participante"
+}

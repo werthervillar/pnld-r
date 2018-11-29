@@ -1,0 +1,28 @@
+<rz-content #content1 container="main">
+  <rz-heading #pageTitle size="H1" text="Novo Reembolso de Despesa">
+  </rz-heading>
+  <div class="row">
+    <div class="col-md-12">
+      <rz-form #form0 cancelText="Cancelar" [columns]="2" [data]="formData" deleteText="Delete" [style]="{'height':'431px'}" submitText="Salvar" [updateDataOnChange]="true" (cancel)="form0Cancel($event)" (change)="form0Change($event)" (loadData)="form0LoadData($event)" (submit)="form0Submit($event)">
+        <rz-lookuppopup-form-field [count]="getReuniosCount" [data]="getReuniosResult" [pageSize]="getReuniosPageSize" placeholder="Selecione" property="Reuniao" [required]="true" requiredText="is required" textProperty="Nome" title="Reunião" valueProperty="Reuniao" type="lookuppopup">
+        </rz-lookuppopup-form-field>
+        <rz-lookuppopup-form-field [count]="getParticipantesCount" [data]="getParticipantesResult" [pageSize]="getParticipantesPageSize" placeholder="Selecione" property="Colaborador" [required]="true" requiredText="is required" textProperty="Nome" title="Colaborador" valueProperty="Participante1" type="lookuppopup">
+        </rz-lookuppopup-form-field>
+        <rz-date-form-field dateFormat="dd/mm/yy" property="DataSaida" [required]="false" requiredText="is required" title="Data Saida" type="date">
+        </rz-date-form-field>
+        <rz-date-form-field dateFormat="dd/mm/yy" property="DataRetorno" [required]="false" requiredText="is required" title="Data Retorno" type="date">
+        </rz-date-form-field>
+        <rz-lookup-form-field [data]="getUsersResult" property="Responsavel" [required]="true" requiredText="is required" textProperty="UserName" title="Responsável" valueProperty="Id" type="lookup">
+        </rz-lookup-form-field>
+        <rz-lookup-form-field [data]="getStatusReembolsosDespesasResult" defaultValue="1" placeholder="Selecione" property="Status" [required]="true" requiredText="is required" textProperty="Nome" title="Status" valueProperty="StatusReembolsoDespesa" type="lookup">
+        </rz-lookup-form-field>
+        <rz-string-form-field [maxLength]="20" property="Banco" [required]="false" requiredText="is required" title="Banco" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="20" property="Agencia" [required]="false" requiredText="is required" title="Agencia" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="20" property="Conta" [required]="false" requiredText="is required" title="Conta" type="string">
+        </rz-string-form-field>
+      </rz-form>
+    </div>
+  </div>
+</rz-content>

@@ -1,0 +1,18 @@
+<rz-content #content1 container="main">
+  <rz-heading #pageTitle size="H1" text="Dados do Usuário">
+  </rz-heading>
+  <div class="row">
+    <div class="col-md-12">
+      <rz-form #form0 cancelText="Cancelar" submitText="Alterar Senha" (cancel)="form0Cancel($event)" (submit)="form0Submit($event)">
+        <rz-string-form-field [defaultValue]="security?.user?.name" [disabled]="true" [required]="false" requiredText="is required" title="Nome" type="string">
+        </rz-string-form-field>
+        <rz-password-form-field property="OldPassword" [required]="true" requiredText="is required" title="Senha atual" type="password">
+        </rz-password-form-field>
+        <rz-password-form-field property="NewPassword" [required]="true" requiredText="is required" title="Senha nova" type="password">
+        </rz-password-form-field>
+        <rz-password-form-field compare="NewPassword" [disabled]="false" property="ConfirmPassword" [required]="true" requiredText="is required" title="Confimar senha" type="password">
+        </rz-password-form-field>
+      </rz-form>
+    </div>
+  </div>
+</rz-content>

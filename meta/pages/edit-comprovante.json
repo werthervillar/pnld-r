@@ -1,0 +1,200 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-9",
+              "components": [
+                {
+                  "name": "closeLabel",
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Item no longer available.",
+                  "type": "label",
+                  "visible": "${!canEdit}"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            },
+            {
+              "class": "col-md-3",
+              "components": [
+                {
+                  "buttonStyle": "secondary",
+                  "events": {
+                    "click": [
+                      {
+                        "type": "back"
+                      }
+                    ]
+                  },
+                  "icon": "",
+                  "name": "closeButton",
+                  "style": {
+                    "marginBottom": "20px"
+                  },
+                  "text": "Close",
+                  "type": "button",
+                  "visible": "${!canEdit}"
+                }
+              ],
+              "name": "col1",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "style": {},
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "cancelText": "Cancelar",
+                  "data": "${comprovante}",
+                  "deleteText": "Delete",
+                  "events": {
+                    "cancel": [
+                      {
+                        "type": "back"
+                      }
+                    ],
+                    "loadData": [],
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "name": "canEdit",
+                            "type": "set",
+                            "value": "!(result.status == 400)"
+                          },
+                          {
+                            "detail": "Unable to update Comprovante",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "pnld.updateComprovante",
+                        "parameters": [
+                          {
+                            "name": "Comprovante1",
+                            "value": "${parameters.Comprovante1}"
+                          },
+                          {
+                            "name": "Comprovante",
+                            "value": "${event}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "back"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "fields": [
+                    {
+                      "data": "${getItensReembolsosDespesasResult}",
+                      "disabled": true,
+                      "placeholder": "Choose ItensReembolsosDespesa",
+                      "property": "ItemReembolsoDespesa",
+                      "required": false,
+                      "requiredText": "is required",
+                      "textProperty": "ItemReembolsoDespesa",
+                      "title": "Item",
+                      "type": "lookup",
+                      "valueProperty": "ItemReembolsoDespesa"
+                    },
+                    {
+                      "accept": "*/*",
+                      "property": "Anexo",
+                      "required": true,
+                      "requiredText": "is required",
+                      "title": "Anexo",
+                      "type": "file"
+                    },
+                    {
+                      "maxLength": 200,
+                      "property": "Nome",
+                      "required": true,
+                      "requiredText": "is required",
+                      "title": "Nome",
+                      "type": "string"
+                    }
+                  ],
+                  "name": "form0",
+                  "submitText": "Salvar",
+                  "type": "form",
+                  "visible": "${canEdit}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "canEdit",
+        "type": "set",
+        "value": "true"
+      },
+      {
+        "error": [
+          {
+            "name": "canEdit",
+            "type": "set",
+            "value": "!(result.status == 400)"
+          }
+        ],
+        "name": "pnld.getComprovanteByComprovante1",
+        "parameters": [
+          {
+            "name": "Comprovante1",
+            "value": "${parameters.Comprovante}"
+          }
+        ],
+        "then": [
+          {
+            "name": "comprovante",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "pnld.getItensReembolsosDespesas",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getItensReembolsosDespesasResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Edit Comprovante"
+}

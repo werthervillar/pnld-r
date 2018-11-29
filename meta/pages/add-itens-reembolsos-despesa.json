@@ -1,0 +1,635 @@
+{
+  "access": [
+    "Administrador",
+    "Colaborador",
+    "Controlador",
+    "Super"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ReembolsoDespesa",
+                              "style": {
+                                "display": "block",
+                                "visibility": "visible",
+                                "width": "100%"
+                              },
+                              "text": "Reembolso Despesa",
+                              "type": "label",
+                              "visible": false
+                            }
+                          ],
+                          "style": {
+                            "visibility": "hidden"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getReembolsosDespesasResult}",
+                              "disabled": false,
+                              "name": "ReembolsoDespesa",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "textProperty": "ReembolsoDespesa",
+                              "type": "dropdown",
+                              "value": "${parameters.ReembolsoDespesa}",
+                              "valueProperty": "ReembolsoDespesa",
+                              "visible": true
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem",
+                        "visibility": "visible"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Tipo",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Tipo",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getTiposItensReembolsosDespesasResult}",
+                              "events": {
+                                "change": [
+                                  {
+                                    "type": "execute"
+                                  }
+                                ]
+                              },
+                              "name": "Tipo",
+                              "placeholder": "Selecione",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "textProperty": "Nome",
+                              "type": "dropdown",
+                              "value": "",
+                              "valueProperty": "TipoItemReembolsoDespesa",
+                              "visible": true
+                            },
+                            {
+                              "component": "Tipo",
+                              "name": "TipoRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Tipo is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Data",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Data",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "dateFormat": "dd/mm/yy",
+                              "name": "Data",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "datepicker",
+                              "value": ""
+                            },
+                            {
+                              "component": "Data",
+                              "name": "DataRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Data is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Origem",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Origem",
+                              "type": "label",
+                              "visible": "${this.origemVisible}"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "Origem",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "",
+                              "visible": "${this.origemVisible}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Destino",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Destino",
+                              "type": "label",
+                              "visible": "${this.destinoVisible}"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "Destino",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "",
+                              "visible": "${this.destinoVisible}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Entrada",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Entrada",
+                              "type": "label",
+                              "visible": "${this.entradaVisible}"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "dateFormat": "dd/mm/yy",
+                              "name": "Entrada",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "datepicker",
+                              "value": "",
+                              "visible": "${this.entradaVisible}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Saida",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Saida",
+                              "type": "label",
+                              "visible": "${this.saidaVisible}"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "dateFormat": "dd/mm/yy",
+                              "name": "Saida",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "datepicker",
+                              "value": "",
+                              "visible": "${this.saidaVisible}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Referencia",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Referencia",
+                              "type": "label",
+                              "visible": "${this.referenciaVisible}"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 80,
+                              "name": "Referencia",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "",
+                              "visible": "${this.referenciaVisible}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Empresa",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Empresa",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 80,
+                              "name": "Empresa",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": ""
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ValorGasto",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Valor Gasto",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxText": "cannot be more than",
+                              "minText": "cannot be less than",
+                              "name": "ValorGasto",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "numeric",
+                              "value": ""
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ValorConcedido",
+                              "style": {
+                                "width": "215.25px"
+                              },
+                              "text": "Valor Concedido",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxText": "cannot be more than",
+                              "minText": "cannot be less than",
+                              "name": "ValorConcedido",
+                              "placeholder": "",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "numeric",
+                              "value": ""
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Salvar",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              },
+                              "text": "Cancelar",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new ItensReembolsosDespesa!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "pnld.createItensReembolsosDespesa",
+                        "parameters": [
+                          {
+                            "name": "ItensReembolsosDespesa",
+                            "value": "${event}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "path": "edit-reembolsos-despesa",
+                            "type": "navigate"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "name": "form0",
+                  "type": "template-form"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "getReembolsosDespesasPageSize",
+        "type": "set",
+        "value": "10"
+      },
+      {
+        "name": "pnld.getReembolsosDespesas",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "${getReembolsosDespesasPageSize}"
+          },
+          {
+            "name": "$skip",
+            "value": "0"
+          },
+          {
+            "name": "$count",
+            "value": "true"
+          }
+        ],
+        "then": [
+          {
+            "name": "getReembolsosDespesasResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getReembolsosDespesasCount",
+            "type": "set",
+            "value": "result['@odata.count']"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "getTiposItensReembolsosDespesasPageSize",
+        "type": "set",
+        "value": "10"
+      },
+      {
+        "name": "pnld.getTiposItensReembolsosDespesas",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "${getTiposItensReembolsosDespesasPageSize}"
+          },
+          {
+            "name": "$skip",
+            "value": "0"
+          },
+          {
+            "name": "$count",
+            "value": "true"
+          }
+        ],
+        "then": [
+          {
+            "name": "getTiposItensReembolsosDespesasResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getTiposItensReembolsosDespesasCount",
+            "type": "set",
+            "value": "result['@odata.count']"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "formData",
+        "type": "set",
+        "value": "{}"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Itens Reembolsos Despesa"
+}

@@ -1,0 +1,20 @@
+<rz-content #content1 container="main">
+  <rz-heading #pageTitle size="H1" text="Add Passagem">
+  </rz-heading>
+  <rz-form #form0 [allowDelete]="true" cancelText="Cancelar" deleteText="Excluir" [style]="{'height':'446px'}" [submitChangesOnly]="false" submitText="Salvar" [updateDataOnChange]="false" (cancel)="form0Cancel($event)" (submit)="form0Submit($event)">
+    <rz-lookup-form-field [data]="getTiposItensReembolsosDespesasResult" defaultValue="1" placeholder="Tipo" property="Tipo" [required]="true" requiredText="is required" textProperty="Nome" title="Tipo" valueProperty="ItensReembolsosDespesas" type="lookup">
+    </rz-lookup-form-field>
+    <rz-date-form-field dateFormat="dd/mm/yy" defaultValue="new Date()" property="Data" [required]="true" requiredText="is required" title="Data" [utc]="false" type="date">
+    </rz-date-form-field>
+    <rz-string-form-field property="Origem" [required]="false" requiredText="is required" title="Origem" type="string">
+    </rz-string-form-field>
+    <rz-string-form-field property="Destino" [required]="false" requiredText="is required" title="Destino" type="string">
+    </rz-string-form-field>
+    <rz-string-form-field property="Empresa" [required]="false" requiredText="is required" title="Empresa" type="string">
+    </rz-string-form-field>
+    <rz-number-form-field maxText="cannot be more than" minText="cannot be less than" property="ValorGasto" [required]="false" requiredText="is required" title="Valor Gasto" type="number">
+    </rz-number-form-field>
+    <rz-number-form-field maxText="cannot be more than" minText="cannot be less than" property="ValorConcedido" [required]="false" requiredText="is required" title="Valor Concedido" type="number">
+    </rz-number-form-field>
+  </rz-form>
+</rz-content>

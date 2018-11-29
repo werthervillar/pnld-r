@@ -1,0 +1,160 @@
+{
+  "access": [
+    "Administrador",
+    "Colaborador",
+    "Super"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Add Passagem",
+          "type": "heading"
+        },
+        {
+          "allowDelete": true,
+          "cancelText": "Cancelar",
+          "data": "",
+          "deleteText": "Excluir",
+          "events": {
+            "cancel": [
+              {
+                "result": "",
+                "type": "close-popup"
+              }
+            ],
+            "delete": [],
+            "loadData": [],
+            "submit": [
+              {
+                "error": [
+                  {
+                    "detail": "Unable to create new Passagem!",
+                    "summary": "Error",
+                    "type": "notify"
+                  }
+                ],
+                "name": "pnld.createItensReembolsosDespesa",
+                "parameters": [
+                  {
+                    "name": "ItensReembolsosDespesa",
+                    "value": "${event}"
+                  }
+                ],
+                "then": [
+                  {
+                    "type": "close-popup"
+                  },
+                  {
+                    "parameters": [
+                      {
+                        "name": "ReembolsoDespesa",
+                        "value": "${event.ReembolsoDespesa}"
+                      }
+                    ],
+                    "path": "edit-reembolsos-despesa",
+                    "type": "navigate"
+                  }
+                ],
+                "type": "invoke"
+              }
+            ]
+          },
+          "fields": [
+            {
+              "data": "${getTiposItensReembolsosDespesasResult}",
+              "defaultValue": "1",
+              "placeholder": "Tipo",
+              "property": "Tipo",
+              "required": true,
+              "requiredText": "is required",
+              "textProperty": "Nome",
+              "title": "Tipo",
+              "type": "lookup",
+              "valueProperty": "ItensReembolsosDespesas"
+            },
+            {
+              "dateFormat": "dd/mm/yy",
+              "defaultValue": "new Date()",
+              "property": "Data",
+              "required": true,
+              "requiredText": "is required",
+              "title": "Data",
+              "type": "date",
+              "utc": false
+            },
+            {
+              "property": "Origem",
+              "required": false,
+              "requiredText": "is required",
+              "title": "Origem",
+              "type": "string"
+            },
+            {
+              "property": "Destino",
+              "required": false,
+              "requiredText": "is required",
+              "title": "Destino",
+              "type": "string"
+            },
+            {
+              "property": "Empresa",
+              "required": false,
+              "requiredText": "is required",
+              "title": "Empresa",
+              "type": "string"
+            },
+            {
+              "maxText": "cannot be more than",
+              "minText": "cannot be less than",
+              "property": "ValorGasto",
+              "required": false,
+              "requiredText": "is required",
+              "title": "Valor Gasto",
+              "type": "number"
+            },
+            {
+              "maxText": "cannot be more than",
+              "minText": "cannot be less than",
+              "property": "ValorConcedido",
+              "required": false,
+              "requiredText": "is required",
+              "title": "Valor Concedido",
+              "type": "number"
+            }
+          ],
+          "name": "form0",
+          "style": {
+            "height": "446px"
+          },
+          "submitChangesOnly": false,
+          "submitText": "Salvar",
+          "type": "form",
+          "updateDataOnChange": false
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "pnld.getTiposItensReembolsosDespesas",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTiposItensReembolsosDespesasResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Passagem"
+}

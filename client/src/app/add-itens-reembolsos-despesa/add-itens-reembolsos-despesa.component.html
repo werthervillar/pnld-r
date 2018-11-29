@@ -1,0 +1,130 @@
+<rz-content #content1 container="main">
+  <div class="row">
+    <div class="col-md-12">
+      <rz-template-form #form0 (submit)="form0Submit($event)">
+        <div [ngStyle]="{'marginBottom':'1rem','visibility':'visible'}" class="row">
+          <div class="col-md-3" [ngStyle]="{'visibility':'hidden'}">
+            <rz-label #label1 component="ReembolsoDespesa" [style]="{'display':'block','visibility':'visible','width':'100%'}" text="Reembolso Despesa" *ngIf="false">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-dropdown #reembolsoDespesa [data]="getReembolsosDespesasResult" [disabled]="false" [style]="{'display':'block','width':'100%'}" textProperty="ReembolsoDespesa" [(ngModel)]="parameters && parameters.ReembolsoDespesa" valueProperty="ReembolsoDespesa" name="ReembolsoDespesa">
+            </rz-dropdown>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #label2 component="Tipo" [style]="{'width':'100%'}" text="Tipo">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-dropdown #tipo [data]="getTiposItensReembolsosDespesasResult" placeholder="Selecione" [style]="{'display':'block','width':'100%'}" textProperty="Nome" valueProperty="TipoItemReembolsoDespesa" name="Tipo" (change)="TipoChange($event)">
+            </rz-dropdown>
+            <rz-required-validator #tipoRequiredValidator [component]="tipo" [style]="{'position':'absolute'}" text="Tipo is required">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #label3 component="Data" [style]="{'width':'100%'}" text="Data">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-datepicker #data dateFormat="dd/mm/yy" [style]="{'display':'block','width':'100%'}" name="Data">
+            </rz-datepicker>
+            <rz-required-validator #dataRequiredValidator [component]="data" [style]="{'position':'absolute'}" text="Data is required">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #label4 component="Origem" [style]="{'width':'100%'}" text="Origem" *ngIf="origemVisible">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #origem [maxLength]="50" [style]="{'width':'100%'}" *ngIf="origemVisible" name="Origem">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #label5 component="Destino" [style]="{'width':'100%'}" text="Destino" *ngIf="destinoVisible">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #destino [maxLength]="50" [style]="{'width':'100%'}" *ngIf="destinoVisible" name="Destino">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #label6 component="Entrada" [style]="{'width':'100%'}" text="Entrada" *ngIf="entradaVisible">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-datepicker #entrada dateFormat="dd/mm/yy" [style]="{'width':'100%'}" *ngIf="entradaVisible" name="Entrada">
+            </rz-datepicker>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #label7 component="Saida" [style]="{'width':'100%'}" text="Saida" *ngIf="saidaVisible">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-datepicker #saida dateFormat="dd/mm/yy" [style]="{'width':'100%'}" *ngIf="saidaVisible" name="Saida">
+            </rz-datepicker>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #label8 component="Referencia" [style]="{'width':'100%'}" text="Referencia" *ngIf="referenciaVisible">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #referencia [maxLength]="80" [style]="{'width':'100%'}" *ngIf="referenciaVisible" name="Referencia">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #label9 component="Empresa" [style]="{'width':'100%'}" text="Empresa">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #empresa [maxLength]="80" [style]="{'width':'100%'}" name="Empresa">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #label10 component="ValorGasto" [style]="{'width':'100%'}" text="Valor Gasto">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-numeric #valorGasto maxText="cannot be more than" minText="cannot be less than" [style]="{'width':'100%'}" name="ValorGasto">
+            </rz-numeric>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #label11 component="ValorConcedido" [style]="{'width':'215.25px'}" text="Valor Concedido">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-numeric #valorConcedido maxText="cannot be more than" minText="cannot be less than" [style]="{'width':'100%'}" name="ValorConcedido">
+            </rz-numeric>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col offset-sm-3">
+            <rz-button #button1 buttonStyle="primary" buttonType="submit" icon="save" text="Salvar">
+            </rz-button>
+            <rz-button #button2 buttonStyle="light" text="Cancelar" (click)="button2Click($event)">
+            </rz-button>
+          </div>
+        </div>
+      </rz-template-form>
+    </div>
+  </div>
+</rz-content>

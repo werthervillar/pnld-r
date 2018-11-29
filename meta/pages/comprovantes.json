@@ -1,0 +1,199 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Comprovantes"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "name": "grid0",
+                  "allowDelete": true,
+                  "allowAdd": true,
+                  "allowFiltering": true,
+                  "allowMultiSorting": false,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "count": "${getComprovantesCount}",
+                  "data": "${getComprovantesResult}",
+                  "events": {
+                    "loadData": [
+                      {
+                        "name": "pnld.getComprovantes",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "event.top"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "event.skip"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": ""
+                          },
+                          {
+                            "name": "$count",
+                            "value": "event.top != null && event.skip != null"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getComprovantesResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getComprovantesCount",
+                            "type": "set",
+                            "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ],
+                    "delete": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to delete Comprovante",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "pnld.deleteComprovante",
+                        "parameters": [
+                          {
+                            "name": "Comprovante1",
+                            "value": "${event.Comprovante1}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "detail": "Comprovante deleted!",
+                            "severity": "success",
+                            "summary": "Success",
+                            "type": "notify"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ],
+                    "add": [
+                      {
+                        "path": "add-comprovante",
+                        "type": "popup"
+                      }
+                    ],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "Comprovante1",
+                            "value": "${event.Comprovante1}"
+                          }
+                        ],
+                        "path": "edit-comprovante",
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "Comprovante1",
+                      "title": "Comprovante",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "ItemReembolsoDespesa",
+                      "sortProperty": "ItensReembolsosDespesa.Origem",
+                      "filterProperty": "ItensReembolsosDespesa.Origem",
+                      "template": "${data.ItensReembolsosDespesa?.Origem}",
+                      "title": "Itens Reembolsos Despesa",
+                      "type": "string"
+                    },
+                    {
+                      "format": "binary",
+                      "property": "Anexo",
+                      "title": "Anexo",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Nome",
+                      "title": "Nome",
+                      "type": "string"
+                    }
+                  ],
+                  "type": "grid",
+                  "emptyText": "No records to display.",
+                  "addText": "Add"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "pnld.getComprovantes",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+          },
+          {
+            "name": "$skip",
+            "value": "this.grid0.allowPaging ? 0 : null"
+          },
+          {
+            "name": "$count",
+            "value": "this.grid0.allowPaging"
+          }
+        ],
+        "then": [
+          {
+            "name": "getComprovantesResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getComprovantesCount",
+            "type": "set",
+            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Comprovantes",
+  "access": [
+    "Authenticated"
+  ],
+  "layout": "Main"
+}

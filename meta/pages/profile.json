@@ -1,0 +1,110 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Dados do Usuário",
+          "type": "heading"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "cancelText": "Cancelar",
+                  "events": {
+                    "cancel": [
+                      {
+                        "type": "back"
+                      }
+                    ],
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "${result.error.message}",
+                            "severity": "error",
+                            "summary": "Cannot change password",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "Security.changePassword",
+                        "parameters": [
+                          {
+                            "name": "OldPassword",
+                            "value": "${event.OldPassword}"
+                          },
+                          {
+                            "name": "NewPassword",
+                            "value": "${event.NewPassword}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "detail": "Password has been changed.",
+                            "severity": "info",
+                            "summary": "Success",
+                            "type": "notify"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "fields": [
+                    {
+                      "defaultValue": "${security.user.name}",
+                      "disabled": true,
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Nome",
+                      "type": "string"
+                    },
+                    {
+                      "property": "OldPassword",
+                      "required": true,
+                      "requiredText": "is required",
+                      "title": "Senha atual",
+                      "type": "password"
+                    },
+                    {
+                      "property": "NewPassword",
+                      "required": true,
+                      "requiredText": "is required",
+                      "title": "Senha nova",
+                      "type": "password"
+                    },
+                    {
+                      "compare": "NewPassword",
+                      "disabled": false,
+                      "property": "ConfirmPassword",
+                      "required": true,
+                      "requiredText": "is required",
+                      "title": "Confimar senha",
+                      "type": "password"
+                    }
+                  ],
+                  "name": "form0",
+                  "submitText": "Alterar Senha",
+                  "type": "form"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "layout": "Main",
+  "name": "Profile"
+}

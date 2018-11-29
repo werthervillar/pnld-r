@@ -1,0 +1,67 @@
+{
+  "dataSources": [
+    "pnld"
+  ],
+  "generator": "@radzen/angular-generator",
+  "https": false,
+  "layouts": [
+    "Login",
+    "Main"
+  ],
+  "logo": "",
+  "name": "pnld",
+  "navigation": [
+    "Reunioes",
+    "Participantes",
+    "Add Passagem",
+    "Reembolsos Despesas",
+    "Itens Reembolsos Despesas",
+    "Comprovantes"
+  ],
+  "pages": [
+    "Acesso",
+    "Application Roles",
+    "Cadastrar Usuário",
+    "Add Application Role",
+    "Application Users",
+    "Editar Usuário",
+    "Profile",
+    "Unauthorized",
+    "Reunioes",
+    "Add Reunio",
+    "Edit Reunio",
+    "Participantes",
+    "Add Participante",
+    "Edit Participante",
+    "Add Passagem",
+    "Reembolsos Despesas",
+    "Add Reembolsos Despesa",
+    "Edit Reembolsos Despesa",
+    "Itens Reembolsos Despesas",
+    "Add Itens Reembolsos Despesa",
+    "Edit Itens Reembolsos Despesa",
+    "Comprovantes",
+    "Add Comprovante",
+    "Edit Comprovante"
+  ],
+  "security": {
+    "autoGeneratePages": true,
+    "dataSource": "pnld",
+    "duration": 20,
+    "emailConfirmation": false,
+    "layout": "Main",
+    "loginLayout": "Main",
+    "loginPage": "Acesso",
+    "provider": "default",
+    "smtpFrom": "",
+    "smtpPassword": "",
+    "smtpSSL": false,
+    "smtpServer": "",
+    "smtpUser": ""
+  },
+  "serverLang": "cs",
+  "serverProject": true,
+  "serverVersion": "2",
+  "startPage": "Reunioes",
+  "theme": "default"
+}

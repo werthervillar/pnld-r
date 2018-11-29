@@ -1,0 +1,22 @@
+<rz-content #content1 container="main">
+  <rz-heading #pageTitle size="H1" text="Reuniões">
+  </rz-heading>
+  <div class="row">
+    <div class="col-md-12">
+      <rz-grid #grid0 addText="Novo" [allowAdd]="true" [allowDelete]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [count]="getReuniosCount" [data]="getReuniosResult" emptyText="Sem registros." filterDateFormat="dd/MM/yyyy" (add)="grid0Add($event)" (delete)="grid0Delete($event)" (loadData)="grid0LoadData($event)" (rowSelect)="grid0RowSelect($event)">
+        <rz-grid-column property="Nome" title="Nome" type="string">
+        </rz-grid-column>
+        <rz-grid-column format="date-time" property="Inicio" title="Início" type="string">
+          <ng-template let-data gridColumnTemplate>
+          {{data?.Inicio | date:'dd/MM/yyyy'}}
+          </ng-template>
+        </rz-grid-column>
+        <rz-grid-column format="date-time" property="Fim" title="Fim" type="string">
+          <ng-template let-data gridColumnTemplate>
+          {{data?.Fim | date:'dd/MM/yyyy'}}
+          </ng-template>
+        </rz-grid-column>
+      </rz-grid>
+    </div>
+  </div>
+</rz-content>

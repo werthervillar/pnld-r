@@ -1,0 +1,472 @@
+{
+  "access": [
+    "Administrador",
+    "Colaborador",
+    "Controlador",
+    "Super"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Novo Reembolso de Despesa",
+          "type": "heading"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "cancelText": "Cancelar",
+                  "columns": 2,
+                  "data": "${formData}",
+                  "deleteText": "Delete",
+                  "events": {
+                    "cancel": [
+                      {
+                        "type": "back"
+                      }
+                    ],
+                    "change": [
+                      {
+                        "condition": "${event.property} == \"Reuniao\"",
+                        "name": "pnld.getReunioByReuniao",
+                        "parameters": [
+                          {
+                            "name": "Reuniao",
+                            "value": "${event.value}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "code": "this.form0.form.controls.DataSaida.setValue(new Date(${result.Inicio}));\nthis.form0.form.controls.DataRetorno.setValue(new Date(${result.Fim}));",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "invoke"
+                      },
+                      {
+                        "condition": "${event.property} == \"Colaborador\"",
+                        "name": "pnld.getParticipanteByParticipante1",
+                        "parameters": [
+                          {
+                            "name": "Participante1",
+                            "value": "${event.value}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "code": "this.form0.form.controls.Banco.setValue(${result.Banco});\nthis.form0.form.controls.Agencia.setValue(${result.Agencia});\nthis.form0.form.controls.Conta.setValue(${result.Conta});",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ],
+                    "loadData": [
+                      {
+                        "condition": "event.property == 'Status'",
+                        "name": "pnld.getStatusReembolsosDespesas",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "${event.top}"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "${event.skip}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter}"
+                          },
+                          {
+                            "name": "$count",
+                            "value": "true"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getStatusReembolsosDespesasResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getStatusReembolsosDespesasCount",
+                            "type": "set",
+                            "value": "result['@odata.count']"
+                          }
+                        ],
+                        "type": "invoke"
+                      },
+                      {
+                        "condition": "event.property == 'Reuniao'",
+                        "name": "pnld.getReunios",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "${event.top}"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "${event.skip}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter}"
+                          },
+                          {
+                            "name": "$count",
+                            "value": "true"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getReuniosResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getReuniosCount",
+                            "type": "set",
+                            "value": "result['@odata.count']"
+                          }
+                        ],
+                        "type": "invoke"
+                      },
+                      {
+                        "condition": "event.property == 'Colaborador'",
+                        "name": "pnld.getParticipantes",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "${event.top}"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "${event.skip}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter}"
+                          },
+                          {
+                            "name": "$count",
+                            "value": "true"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getParticipantesResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getParticipantesCount",
+                            "type": "set",
+                            "value": "result['@odata.count']"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ],
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new ReembolsosDespesa!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "pnld.createReembolsosDespesa",
+                        "parameters": [
+                          {
+                            "name": "ReembolsosDespesa",
+                            "value": "${event}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "path": "reembolsos-despesas",
+                            "type": "navigate"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "fields": [
+                    {
+                      "count": "${getReuniosCount}",
+                      "data": "${getReuniosResult}",
+                      "pageSize": "${getReuniosPageSize}",
+                      "placeholder": "Selecione",
+                      "property": "Reuniao",
+                      "required": true,
+                      "requiredText": "is required",
+                      "textProperty": "Nome",
+                      "title": "Reunião",
+                      "type": "lookuppopup",
+                      "valueProperty": "Reuniao"
+                    },
+                    {
+                      "count": "${getParticipantesCount}",
+                      "data": "${getParticipantesResult}",
+                      "pageSize": "${getParticipantesPageSize}",
+                      "placeholder": "Selecione",
+                      "property": "Colaborador",
+                      "required": true,
+                      "requiredText": "is required",
+                      "textProperty": "Nome",
+                      "title": "Colaborador",
+                      "type": "lookuppopup",
+                      "valueProperty": "Participante1"
+                    },
+                    {
+                      "dateFormat": "dd/mm/yy",
+                      "property": "DataSaida",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Data Saida",
+                      "type": "date"
+                    },
+                    {
+                      "dateFormat": "dd/mm/yy",
+                      "property": "DataRetorno",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Data Retorno",
+                      "type": "date"
+                    },
+                    {
+                      "data": "${getUsersResult}",
+                      "defaultValue": "",
+                      "placeholder": "",
+                      "property": "Responsavel",
+                      "required": true,
+                      "requiredText": "is required",
+                      "textProperty": "UserName",
+                      "title": "Responsável",
+                      "type": "lookup",
+                      "valueProperty": "Id"
+                    },
+                    {
+                      "data": "${getStatusReembolsosDespesasResult}",
+                      "defaultValue": "1",
+                      "placeholder": "Selecione",
+                      "property": "Status",
+                      "required": true,
+                      "requiredText": "is required",
+                      "textProperty": "Nome",
+                      "title": "Status",
+                      "type": "lookup",
+                      "valueProperty": "StatusReembolsoDespesa"
+                    },
+                    {
+                      "maxLength": 20,
+                      "property": "Banco",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Banco",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 20,
+                      "property": "Agencia",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Agencia",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 20,
+                      "property": "Conta",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Conta",
+                      "type": "string"
+                    }
+                  ],
+                  "name": "form0",
+                  "style": {
+                    "height": "431px"
+                  },
+                  "submitText": "Salvar",
+                  "type": "form",
+                  "updateDataOnChange": true
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "getStatusReembolsosDespesasPageSize",
+        "type": "set",
+        "value": "10"
+      },
+      {
+        "name": "pnld.getStatusReembolsosDespesas",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "${getStatusReembolsosDespesasPageSize}"
+          },
+          {
+            "name": "$skip",
+            "value": "0"
+          },
+          {
+            "name": "$count",
+            "value": "true"
+          }
+        ],
+        "then": [
+          {
+            "name": "getStatusReembolsosDespesasResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getStatusReembolsosDespesasCount",
+            "type": "set",
+            "value": "result['@odata.count']"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "getReuniosPageSize",
+        "type": "set",
+        "value": "10"
+      },
+      {
+        "name": "pnld.getReunios",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "${getReuniosPageSize}"
+          },
+          {
+            "name": "$skip",
+            "value": "0"
+          },
+          {
+            "name": "$count",
+            "value": "true"
+          }
+        ],
+        "then": [
+          {
+            "name": "getReuniosResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getReuniosCount",
+            "type": "set",
+            "value": "result['@odata.count']"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "getParticipantesPageSize",
+        "type": "set",
+        "value": "10"
+      },
+      {
+        "name": "pnld.getParticipantes",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "${getParticipantesPageSize}"
+          },
+          {
+            "name": "$skip",
+            "value": "0"
+          },
+          {
+            "name": "$count",
+            "value": "true"
+          }
+        ],
+        "then": [
+          {
+            "name": "getParticipantesResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getParticipantesCount",
+            "type": "set",
+            "value": "result['@odata.count']"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "Security.getUsers",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getUsersResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "formData",
+        "type": "set",
+        "value": "{}"
+      },
+      {
+        "condition": "this.form0.form.controls.Responsavel.value == null",
+        "name": "Security.getUsers",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "UserName eq '${security.user.name}'"
+          }
+        ],
+        "then": [
+          {
+            "code": "this.form0.form.controls.Responsavel.setValue(${result.value[0].Id})",
+            "type": "execute",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Reembolsos Despesa"
+}

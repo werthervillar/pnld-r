@@ -1,0 +1,14 @@
+<rz-content #content1 container="main">
+  <div class="row">
+    <div class="col-md-12">
+      <rz-form #form0 (cancel)="form0Cancel($event)" (submit)="form0Submit($event)">
+        <rz-lookup-form-field [data]="getItensReembolsosDespesasResult" [defaultValue]="parameters?.ItemReembolsoDespesa" [disabled]="true" placeholder="Choose ItensReembolsosDespesa" property="ItemReembolsoDespesa" [required]="false" requiredText="is required" textProperty="ItemReembolsoDespesa" title="Item" valueProperty="ItemReembolsoDespesa" type="lookup">
+        </rz-lookup-form-field>
+        <rz-file-form-field accept="*/*" property="Anexo" [required]="true" requiredText="is required" title="Anexo" type="file">
+        </rz-file-form-field>
+        <rz-string-form-field [maxLength]="200" property="Nome" [required]="true" requiredText="is required" title="Nome" type="string">
+        </rz-string-form-field>
+      </rz-form>
+    </div>
+  </div>
+</rz-content>

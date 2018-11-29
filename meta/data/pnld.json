@@ -1,0 +1,1653 @@
+{
+  "info": {
+    "title": "pnld",
+    "x-type": "odata",
+    "x-connector": "mssql",
+    "x-connector-version": 12
+  },
+  "definitions": {
+    "Comprovante": {
+      "x-table": "dbo.Comprovantes",
+      "resource": "Comprovantes",
+      "required": [
+        "Anexo",
+        "Nome"
+      ],
+      "properties": {
+        "Comprovante1": {
+          "x-key": true,
+          "x-original-name": "Comprovante",
+          "x-identity": true,
+          "type": "integer"
+        },
+        "ItemReembolsoDespesa": {
+          "x-key": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "ItensReembolsosDespesas",
+            "parentEntityType": "ItensReembolsosDespesa",
+            "type": "ItensReembolsosDespesa",
+            "principalKey": "ItemReembolsoDespesa",
+            "name": "ItensReembolsosDespesa",
+            "textProperty": "Origem",
+            "navigationProperty": "Comprovantes"
+          }
+        },
+        "Anexo": {
+          "x-key": false,
+          "type": "string"
+        },
+        "Nome": {
+          "x-key": false,
+          "type": "string",
+          "length": 200
+        }
+      }
+    },
+    "ItensReembolsosDespesa": {
+      "x-table": "dbo.ItensReembolsosDespesas",
+      "resource": "ItensReembolsosDespesas",
+      "required": [
+        "ReembolsoDespesa",
+        "Tipo",
+        "Data"
+      ],
+      "properties": {
+        "ItemReembolsoDespesa": {
+          "x-key": true,
+          "x-identity": true,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "ItensReembolsosDespesa",
+              "name": "Comprovantes",
+              "type": "Comprovante"
+            }
+          ]
+        },
+        "ReembolsoDespesa": {
+          "x-key": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "ReembolsosDespesas",
+            "parentEntityType": "ReembolsosDespesa",
+            "type": "ReembolsosDespesa",
+            "principalKey": "ReembolsoDespesa",
+            "name": "ReembolsosDespesa",
+            "textProperty": "Banco",
+            "navigationProperty": "ItensReembolsosDespesas"
+          }
+        },
+        "Tipo": {
+          "x-key": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "TiposItensReembolsosDespesas",
+            "parentEntityType": "TiposItensReembolsosDespesa",
+            "type": "TiposItensReembolsosDespesa",
+            "principalKey": "TipoItemReembolsoDespesa",
+            "name": "TiposItensReembolsosDespesa",
+            "textProperty": "Nome",
+            "navigationProperty": "ItensReembolsosDespesas"
+          }
+        },
+        "Data": {
+          "x-key": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "Origem": {
+          "x-key": false,
+          "type": "string",
+          "length": 50
+        },
+        "Destino": {
+          "x-key": false,
+          "type": "string",
+          "length": 50
+        },
+        "Entrada": {
+          "x-key": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "Saida": {
+          "x-key": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "Referencia": {
+          "x-key": false,
+          "type": "string",
+          "length": 80
+        },
+        "Empresa": {
+          "x-key": false,
+          "type": "string",
+          "length": 80
+        },
+        "ValorGasto": {
+          "x-key": false,
+          "x-default-sql": "((0))",
+          "type": "number",
+          "format": "decimal"
+        },
+        "ValorConcedido": {
+          "x-key": false,
+          "x-default-sql": "((0))",
+          "type": "number",
+          "format": "decimal"
+        },
+        "Comprovantes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Comprovante"
+          }
+        }
+      }
+    },
+    "Participante": {
+      "x-table": "dbo.Participantes",
+      "resource": "Participantes",
+      "required": [
+        "Nome",
+        "CPF"
+      ],
+      "properties": {
+        "Participante1": {
+          "x-key": true,
+          "x-original-name": "Participante",
+          "x-identity": true,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "Participante",
+              "name": "ReembolsosDespesas",
+              "type": "ReembolsosDespesa"
+            }
+          ]
+        },
+        "Nome": {
+          "x-key": false,
+          "type": "string",
+          "length": 100
+        },
+        "CPF": {
+          "x-key": false,
+          "type": "string",
+          "length": 20
+        },
+        "Banco": {
+          "x-key": false,
+          "type": "string",
+          "length": 20
+        },
+        "Agencia": {
+          "x-key": false,
+          "type": "string",
+          "length": 20
+        },
+        "Conta": {
+          "x-key": false,
+          "type": "string",
+          "length": 20
+        },
+        "Email": {
+          "x-key": false,
+          "type": "string",
+          "length": 150
+        },
+        "Usuario": {
+          "x-key": false,
+          "type": "string",
+          "length": 450
+        },
+        "ReembolsosDespesas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReembolsosDespesa"
+          }
+        }
+      }
+    },
+    "ReembolsosDespesa": {
+      "x-table": "dbo.ReembolsosDespesas",
+      "resource": "ReembolsosDespesas",
+      "required": [
+        "Status",
+        "Reuniao",
+        "Colaborador",
+        "Responsavel"
+      ],
+      "properties": {
+        "ReembolsoDespesa": {
+          "x-key": true,
+          "x-identity": true,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "ReembolsosDespesa",
+              "name": "ItensReembolsosDespesas",
+              "type": "ItensReembolsosDespesa"
+            }
+          ]
+        },
+        "Status": {
+          "x-key": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "StatusReembolsosDespesas",
+            "parentEntityType": "StatusReembolsosDespesa",
+            "type": "StatusReembolsosDespesa",
+            "principalKey": "StatusReembolsoDespesa",
+            "name": "StatusReembolsosDespesa",
+            "textProperty": "Nome",
+            "navigationProperty": "ReembolsosDespesas"
+          }
+        },
+        "Reuniao": {
+          "x-key": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "Reunioes",
+            "parentEntityType": "Reunio",
+            "type": "Reunio",
+            "principalKey": "Reuniao",
+            "name": "Reunio",
+            "textProperty": "Nome",
+            "navigationProperty": "ReembolsosDespesas"
+          }
+        },
+        "Colaborador": {
+          "x-key": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "Participantes",
+            "parentEntityType": "Participante",
+            "type": "Participante",
+            "principalKey": "Participante1",
+            "name": "Participante",
+            "textProperty": "Nome",
+            "navigationProperty": "ReembolsosDespesas"
+          }
+        },
+        "DataSaida": {
+          "x-key": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "DataRetorno": {
+          "x-key": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "ValorGasto": {
+          "x-key": false,
+          "x-default-sql": "((0))",
+          "type": "number",
+          "format": "decimal"
+        },
+        "ValorConcedido": {
+          "x-key": false,
+          "x-default-sql": "((0))",
+          "type": "number",
+          "format": "decimal"
+        },
+        "Banco": {
+          "x-key": false,
+          "type": "string",
+          "length": 20
+        },
+        "Agencia": {
+          "x-key": false,
+          "type": "string",
+          "length": 20
+        },
+        "Conta": {
+          "x-key": false,
+          "type": "string",
+          "length": 20
+        },
+        "Responsavel": {
+          "x-key": false,
+          "type": "string",
+          "length": 450
+        },
+        "ItensReembolsosDespesas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItensReembolsosDespesa"
+          }
+        }
+      }
+    },
+    "ReembolsosDespesasList": {
+      "x-view": true,
+      "x-table": "dbo.ReembolsosDespesasList",
+      "resource": "ReembolsosDespesasLists",
+      "required": [
+        "ReembolsoDespesa",
+        "Status",
+        "Reuniao",
+        "ColaboradorId",
+        "Colaborador"
+      ],
+      "properties": {
+        "ReembolsoDespesa": {
+          "x-key": true,
+          "type": "integer"
+        },
+        "Status": {
+          "x-key": false,
+          "type": "string",
+          "length": 50
+        },
+        "Reuniao": {
+          "x-key": false,
+          "type": "string",
+          "length": 100
+        },
+        "ColaboradorId": {
+          "x-key": false,
+          "type": "integer"
+        },
+        "Colaborador": {
+          "x-key": false,
+          "type": "string",
+          "length": 100
+        },
+        "Responsavel": {
+          "x-key": false,
+          "type": "string",
+          "length": 256
+        }
+      }
+    },
+    "Reunio": {
+      "x-table": "dbo.Reunioes",
+      "resource": "Reunios",
+      "required": [
+        "Nome"
+      ],
+      "properties": {
+        "Reuniao": {
+          "x-key": true,
+          "x-identity": true,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "Reunio",
+              "name": "ReembolsosDespesas",
+              "type": "ReembolsosDespesa"
+            }
+          ]
+        },
+        "Nome": {
+          "x-key": false,
+          "type": "string",
+          "length": 100
+        },
+        "Inicio": {
+          "x-key": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "Fim": {
+          "x-key": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "ReembolsosDespesas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReembolsosDespesa"
+          }
+        }
+      }
+    },
+    "StatusReembolsosDespesa": {
+      "x-table": "dbo.StatusReembolsosDespesas",
+      "resource": "StatusReembolsosDespesas",
+      "required": [
+        "Nome"
+      ],
+      "properties": {
+        "StatusReembolsoDespesa": {
+          "x-key": true,
+          "x-identity": true,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "StatusReembolsosDespesa",
+              "name": "ReembolsosDespesas",
+              "type": "ReembolsosDespesa"
+            }
+          ]
+        },
+        "Nome": {
+          "x-key": false,
+          "type": "string",
+          "length": 50
+        },
+        "ReembolsosDespesas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReembolsosDespesa"
+          }
+        }
+      }
+    },
+    "TiposItensReembolsosDespesa": {
+      "x-table": "dbo.TiposItensReembolsosDespesas",
+      "resource": "TiposItensReembolsosDespesas",
+      "required": [
+        "Nome"
+      ],
+      "properties": {
+        "TipoItemReembolsoDespesa": {
+          "x-key": true,
+          "x-identity": true,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "TiposItensReembolsosDespesa",
+              "name": "ItensReembolsosDespesas",
+              "type": "ItensReembolsosDespesa"
+            }
+          ]
+        },
+        "Nome": {
+          "x-key": false,
+          "type": "string",
+          "length": 50
+        },
+        "ItensReembolsosDespesas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItensReembolsosDespesa"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/Comprovantes": {
+      "get": {
+        "operationId": "getComprovantes",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Comprovante"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createComprovante",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Comprovante",
+            "schema": {
+              "$ref": "#/definitions/Comprovante"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Comprovante"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ItensReembolsosDespesas": {
+      "get": {
+        "operationId": "getItensReembolsosDespesas",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ItensReembolsosDespesa"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createItensReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ItensReembolsosDespesa",
+            "schema": {
+              "$ref": "#/definitions/ItensReembolsosDespesa"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/ItensReembolsosDespesa"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Participantes": {
+      "get": {
+        "operationId": "getParticipantes",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Participante"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createParticipante",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Participante",
+            "schema": {
+              "$ref": "#/definitions/Participante"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Participante"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ReembolsosDespesas": {
+      "get": {
+        "operationId": "getReembolsosDespesas",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ReembolsosDespesa"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ReembolsosDespesa",
+            "schema": {
+              "$ref": "#/definitions/ReembolsosDespesa"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/ReembolsosDespesa"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ReembolsosDespesasLists": {
+      "get": {
+        "operationId": "getReembolsosDespesasLists",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ReembolsosDespesasList"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Reunios": {
+      "get": {
+        "operationId": "getReunios",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Reunio"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createReunio",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Reunio",
+            "schema": {
+              "$ref": "#/definitions/Reunio"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Reunio"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/StatusReembolsosDespesas": {
+      "get": {
+        "operationId": "getStatusReembolsosDespesas",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/StatusReembolsosDespesa"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createStatusReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "StatusReembolsosDespesa",
+            "schema": {
+              "$ref": "#/definitions/StatusReembolsosDespesa"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/StatusReembolsosDespesa"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TiposItensReembolsosDespesas": {
+      "get": {
+        "operationId": "getTiposItensReembolsosDespesas",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TiposItensReembolsosDespesa"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTiposItensReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TiposItensReembolsosDespesa",
+            "schema": {
+              "$ref": "#/definitions/TiposItensReembolsosDespesa"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TiposItensReembolsosDespesa"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Comprovantes({Comprovante1})": {
+      "delete": {
+        "operationId": "deleteComprovante",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Comprovante1",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getComprovanteByComprovante1",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Comprovante1",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Comprovante"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateComprovante",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Comprovante1",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Comprovante",
+            "schema": {
+              "$ref": "#/definitions/Comprovante"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ItensReembolsosDespesas({ItemReembolsoDespesa})": {
+      "delete": {
+        "operationId": "deleteItensReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ItemReembolsoDespesa",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getItensReembolsosDespesaByItemReembolsoDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ItemReembolsoDespesa",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ItensReembolsosDespesa"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateItensReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ItemReembolsoDespesa",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "ItensReembolsosDespesa",
+            "schema": {
+              "$ref": "#/definitions/ItensReembolsosDespesa"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Participantes({Participante1})": {
+      "delete": {
+        "operationId": "deleteParticipante",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Participante1",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getParticipanteByParticipante1",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Participante1",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Participante"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateParticipante",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Participante1",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Participante",
+            "schema": {
+              "$ref": "#/definitions/Participante"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ReembolsosDespesas({ReembolsoDespesa})": {
+      "delete": {
+        "operationId": "deleteReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ReembolsoDespesa",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getReembolsosDespesaByReembolsoDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ReembolsoDespesa",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ReembolsosDespesa"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ReembolsoDespesa",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "ReembolsosDespesa",
+            "schema": {
+              "$ref": "#/definitions/ReembolsosDespesa"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Reunios({Reuniao})": {
+      "delete": {
+        "operationId": "deleteReunio",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Reuniao",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getReunioByReuniao",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Reuniao",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Reunio"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateReunio",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Reuniao",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Reunio",
+            "schema": {
+              "$ref": "#/definitions/Reunio"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/StatusReembolsosDespesas({StatusReembolsoDespesa})": {
+      "delete": {
+        "operationId": "deleteStatusReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "StatusReembolsoDespesa",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getStatusReembolsosDespesaByStatusReembolsoDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "StatusReembolsoDespesa",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/StatusReembolsosDespesa"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateStatusReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "StatusReembolsoDespesa",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "StatusReembolsosDespesa",
+            "schema": {
+              "$ref": "#/definitions/StatusReembolsosDespesa"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TiposItensReembolsosDespesas({TipoItemReembolsoDespesa})": {
+      "delete": {
+        "operationId": "deleteTiposItensReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TipoItemReembolsoDespesa",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTiposItensReembolsosDespesaByTipoItemReembolsoDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TipoItemReembolsoDespesa",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TiposItensReembolsosDespesa"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTiposItensReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TipoItemReembolsoDespesa",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "TiposItensReembolsosDespesa",
+            "schema": {
+              "$ref": "#/definitions/TiposItensReembolsosDespesa"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "basePath": "/odata/pnld",
+  "host": "localhost:5000",
+  "schemes": [
+    "http"
+  ]
+}

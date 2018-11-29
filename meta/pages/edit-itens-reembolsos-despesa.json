@@ -1,0 +1,964 @@
+{
+  "access": [
+    "Administrador",
+    "Colaborador",
+    "Controlador",
+    "Super"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-9",
+              "components": [
+                {
+                  "name": "closeLabel",
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Item no longer available.",
+                  "type": "label",
+                  "visible": "${!canEdit}"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            },
+            {
+              "class": "col-md-3",
+              "components": [
+                {
+                  "buttonStyle": "secondary",
+                  "events": {
+                    "click": [
+                      {
+                        "type": "back"
+                      }
+                    ]
+                  },
+                  "icon": "",
+                  "name": "closeButton",
+                  "style": {
+                    "marginBottom": "20px"
+                  },
+                  "text": "Close",
+                  "type": "button",
+                  "visible": "${!canEdit}"
+                }
+              ],
+              "name": "col1",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "style": {},
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ReembolsoDespesa",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Reembolso Despesa",
+                              "type": "label"
+                            }
+                          ],
+                          "style": {
+                            "visibility": "hidden"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "count": "${getReembolsosDespesasCount}",
+                              "data": "${getReembolsosDespesasResult}",
+                              "disabled": true,
+                              "events": {
+                                "loadData": [
+                                  {
+                                    "name": "pnld.getReembolsosDespesas",
+                                    "parameters": [
+                                      {
+                                        "name": "$top",
+                                        "value": "${event.top}"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "${event.skip}"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "${event.orderby}"
+                                      },
+                                      {
+                                        "name": "$filter",
+                                        "value": "${event.filter}"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "true"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "getReembolsosDespesasResult",
+                                        "type": "set",
+                                        "value": "${result.value}"
+                                      },
+                                      {
+                                        "name": "getReembolsosDespesasCount",
+                                        "type": "set",
+                                        "value": "result['@odata.count']"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              },
+                              "name": "ReembolsoDespesa",
+                              "pageSize": "${getReembolsosDespesasPageSize}",
+                              "placeholder": "Selecione",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "textProperty": "Banco",
+                              "type": "dropdown-datagrid",
+                              "value": "${itensreembolsosdespesa.ReembolsoDespesa}",
+                              "valueProperty": "ReembolsoDespesa",
+                              "visible": false
+                            },
+                            {
+                              "component": "ReembolsoDespesa",
+                              "name": "ReembolsoDespesaRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "ReembolsoDespesa is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Tipo",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Tipo",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "count": "${getTiposItensReembolsosDespesasCount}",
+                              "data": "${getTiposItensReembolsosDespesasResult}",
+                              "disabled": true,
+                              "events": {
+                                "loadData": [
+                                  {
+                                    "name": "pnld.getTiposItensReembolsosDespesas",
+                                    "parameters": [
+                                      {
+                                        "name": "$top",
+                                        "value": "${event.top}"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "${event.skip}"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "${event.orderby}"
+                                      },
+                                      {
+                                        "name": "$filter",
+                                        "value": "${event.filter}"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "true"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "getTiposItensReembolsosDespesasResult",
+                                        "type": "set",
+                                        "value": "${result.value}"
+                                      },
+                                      {
+                                        "name": "getTiposItensReembolsosDespesasCount",
+                                        "type": "set",
+                                        "value": "result['@odata.count']"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              },
+                              "name": "Tipo",
+                              "pageSize": "${getTiposItensReembolsosDespesasPageSize}",
+                              "placeholder": "Selecione",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "textProperty": "Nome",
+                              "type": "dropdown-datagrid",
+                              "value": "${itensreembolsosdespesa.Tipo}",
+                              "valueProperty": "TipoItemReembolsoDespesa"
+                            },
+                            {
+                              "component": "Tipo",
+                              "name": "TipoRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Tipo is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Data",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Data",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Data",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "datepicker",
+                              "value": "${itensreembolsosdespesa.Data}"
+                            },
+                            {
+                              "component": "Data",
+                              "name": "DataRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Data is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Origem",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Origem",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "Origem",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${itensreembolsosdespesa.Origem}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Destino",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Destino",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "Destino",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${itensreembolsosdespesa.Destino}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Entrada",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Entrada",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Entrada",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "datepicker",
+                              "value": "${itensreembolsosdespesa.Entrada}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Saida",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Saida",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Saida",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "datepicker",
+                              "value": "${itensreembolsosdespesa.Saida}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Referencia",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Referência",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 80,
+                              "name": "Referencia",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${itensreembolsosdespesa.Referencia}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Empresa",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Empresa",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 80,
+                              "name": "Empresa",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${itensreembolsosdespesa.Empresa}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ValorGasto",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Valor Gasto",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxText": "cannot be more than",
+                              "minText": "cannot be less than",
+                              "name": "ValorGasto",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "numeric",
+                              "value": "${itensreembolsosdespesa.ValorGasto}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ValorConcedido",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Valor Concedido",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxText": "cannot be more than",
+                              "minText": "cannot be less than",
+                              "name": "ValorConcedido",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "numeric",
+                              "value": "${itensreembolsosdespesa.ValorConcedido}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "name": "label0",
+                      "style": {
+                        "fontSize": "18px",
+                        "fontWeight": "bold",
+                        "height": "34px",
+                        "paddingBottom": "19px",
+                        "paddingLeft": "15px"
+                      },
+                      "text": "Comprovantes",
+                      "type": "label"
+                    },
+                    {
+                      "addText": "Add",
+                      "allowAdd": true,
+                      "allowDelete": true,
+                      "allowFiltering": true,
+                      "allowPaging": true,
+                      "allowSorting": true,
+                      "columns": [
+                        {
+                          "format": "base64",
+                          "property": "Anexo",
+                          "template": "<a [download]=\"data.Nome\" [href]=\"getSantizeUrl(data.Anexo)\">Download</a>",
+                          "title": "Anexo",
+                          "type": "string"
+                        },
+                        {
+                          "property": "Nome",
+                          "title": "Nome",
+                          "type": "string"
+                        },
+                        {
+                          "filterable": false,
+                          "format": "",
+                          "property": "Comprovante1",
+                          "sortProperty": "",
+                          "sortable": false,
+                          "title": "Comprovante 1",
+                          "type": "integer",
+                          "visible": false
+                        }
+                      ],
+                      "count": "${getComprovantesCount}",
+                      "data": "${getComprovantesResult}",
+                      "emptyText": "No records to display.",
+                      "events": {
+                        "add": [
+                          {
+                            "parameters": [
+                              {
+                                "name": "ItemReembolsoDespesa",
+                                "value": "${parameters.ItemReembolsoDespesa}"
+                              }
+                            ],
+                            "path": "add-comprovante",
+                            "title": "Cadastrar Comprovante",
+                            "type": "popup"
+                          }
+                        ],
+                        "delete": [
+                          {
+                            "error": [
+                              {
+                                "detail": "Erro ao excluir registro!",
+                                "severity": "error",
+                                "summary": "Erro",
+                                "type": "notify"
+                              }
+                            ],
+                            "name": "pnld.deleteComprovante",
+                            "parameters": [
+                              {
+                                "name": "Comprovante1",
+                                "value": "${event.Comprovante1}"
+                              }
+                            ],
+                            "then": [
+                              {
+                                "detail": "Registro excluido com sucesso!",
+                                "severity": "success",
+                                "summary": "Alerta",
+                                "type": "notify"
+                              }
+                            ],
+                            "type": "invoke"
+                          }
+                        ],
+                        "loadData": [
+                          {
+                            "name": "pnld.getComprovantes",
+                            "parameters": [
+                              {
+                                "name": "$top",
+                                "value": "event.top"
+                              },
+                              {
+                                "name": "$skip",
+                                "value": "event.skip"
+                              },
+                              {
+                                "name": "$expand",
+                                "value": ""
+                              },
+                              {
+                                "name": "$count",
+                                "value": "event.top != null && event.skip != null"
+                              },
+                              {
+                                "name": "$filter",
+                                "value": "${event.filter} && ItemReembolsoDespesa eq ${parameters.ItemReembolsoDespesa}"
+                              },
+                              {
+                                "name": "$orderby",
+                                "value": "${event.orderby}"
+                              }
+                            ],
+                            "then": [
+                              {
+                                "name": "getComprovantesResult",
+                                "type": "set",
+                                "value": "${result.value}"
+                              },
+                              {
+                                "name": "getComprovantesCount",
+                                "type": "set",
+                                "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                              }
+                            ],
+                            "type": "invoke"
+                          }
+                        ],
+                        "rowDoubleClick": []
+                      },
+                      "name": "grid0",
+                      "pageSize": 10,
+                      "type": "grid"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Salvar",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              },
+                              "text": "Cancelar",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "paddingTop": "19px"
+                      },
+                      "type": "row"
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "name": "canEdit",
+                            "type": "set",
+                            "value": "!(result.status == 400)"
+                          },
+                          {
+                            "detail": "Unable to update ItensReembolsosDespesa",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "pnld.updateItensReembolsosDespesa",
+                        "parameters": [
+                          {
+                            "name": "ItemReembolsoDespesa",
+                            "value": "${parameters.ItemReembolsoDespesa}"
+                          },
+                          {
+                            "name": "ItensReembolsosDespesa",
+                            "value": "${event}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "path": "edit-reembolsos-despesa",
+                            "type": "navigate"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "name": "form0",
+                  "type": "template-form"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "canEdit",
+        "type": "set",
+        "value": "true"
+      },
+      {
+        "error": [
+          {
+            "name": "canEdit",
+            "type": "set",
+            "value": "!(result.status == 400)"
+          }
+        ],
+        "name": "pnld.getItensReembolsosDespesaByItemReembolsoDespesa",
+        "parameters": [
+          {
+            "name": "ItemReembolsoDespesa",
+            "value": "${parameters.ItemReembolsoDespesa}"
+          }
+        ],
+        "then": [
+          {
+            "name": "itensreembolsosdespesa",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "getReembolsosDespesasPageSize",
+        "type": "set",
+        "value": "10"
+      },
+      {
+        "name": "pnld.getReembolsosDespesas",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "${getReembolsosDespesasPageSize}"
+          },
+          {
+            "name": "$skip",
+            "value": "0"
+          },
+          {
+            "name": "$count",
+            "value": "true"
+          }
+        ],
+        "then": [
+          {
+            "name": "getReembolsosDespesasResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getReembolsosDespesasCount",
+            "type": "set",
+            "value": "result['@odata.count']"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "getTiposItensReembolsosDespesasPageSize",
+        "type": "set",
+        "value": "10"
+      },
+      {
+        "name": "pnld.getTiposItensReembolsosDespesas",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "${getTiposItensReembolsosDespesasPageSize}"
+          },
+          {
+            "name": "$skip",
+            "value": "0"
+          },
+          {
+            "name": "$count",
+            "value": "true"
+          }
+        ],
+        "then": [
+          {
+            "name": "getTiposItensReembolsosDespesasResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getTiposItensReembolsosDespesasCount",
+            "type": "set",
+            "value": "result['@odata.count']"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "pnld.getComprovantes",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+          },
+          {
+            "name": "$skip",
+            "value": "this.grid0.allowPaging ? 0 : null"
+          },
+          {
+            "name": "$count",
+            "value": "this.grid0.allowPaging"
+          },
+          {
+            "name": "$filter",
+            "value": "ItemReembolsoDespesa eq ${parameters.ItemReembolsoDespesa}"
+          }
+        ],
+        "then": [
+          {
+            "name": "getComprovantesResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getComprovantesCount",
+            "type": "set",
+            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Edit Itens Reembolsos Despesa"
+}

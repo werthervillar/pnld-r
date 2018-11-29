@@ -1,0 +1,47 @@
+<rz-header #header0>
+  <div class="row justify-content-start align-items-center">
+    <div class="col-md-6 d-flex align-items-center">
+      <rz-sidebar-toggle #sidebarToggle0>
+      </rz-sidebar-toggle>
+      <rz-label #label0 text="pnld">
+      </rz-label>
+    </div>
+    <div class="col-md-6 text-lg-right">
+      <rz-profilemenu #profilemenu0 *ngIf="security?.isAuthenticated()" (click)="profilemenu0Click($event)">
+        <rz-profilemenu-item icon="settings" path="profile" text="Minha Conta" *ngIf="security?.isInRole(['Authenticated'])">
+        </rz-profilemenu-item>
+        <rz-profilemenu-item icon="person" path="application-users" text="Usuários" *ngIf="security?.isInRole(['Authenticated'])">
+        </rz-profilemenu-item>
+        <rz-profilemenu-item icon="security" path="application-roles" text="Perfis" *ngIf="security?.isInRole(['Authenticated'])">
+        </rz-profilemenu-item>
+        <rz-profilemenu-item icon="power_settings_new" path="acesso" text="Sair" *ngIf="security?.isInRole(['Everybody'])">
+        </rz-profilemenu-item>
+        <ng-template let-data profilemenuTemplate>
+          <rz-label #label1 [style]="{'paddingRight':'5px'}" text="Olá {{security?.user?.name}}">
+          </rz-label>
+          <rz-gravatar #gravatar0 [email]="security?.user?.name">
+          </rz-gravatar>
+        </ng-template>
+      </rz-profilemenu>
+    </div>
+  </div>
+</rz-header>
+<rz-body #body0>
+  <rz-content-container #main name="main">
+  </rz-content-container>
+</rz-body>
+<rz-sidebar #sidebar0>
+  <rz-panelmenu #panelmenu0 [style]="{'height':'100%'}">
+    <rz-panelmenu-item path="reunioes" text="Reuniões" *ngIf="security?.isInRole(['Administrador', 'Super'])">
+    </rz-panelmenu-item>
+    <rz-panelmenu-item path="participantes" text="Participantes" *ngIf="security?.isInRole(['Administrador', 'Super'])">
+    </rz-panelmenu-item>
+    <rz-panelmenu-item path="reembolsos-despesas" text="Reembolsos" *ngIf="security?.isInRole(['Administrador', 'Colaborador', 'Controlador', 'Super'])">
+    </rz-panelmenu-item>
+  </rz-panelmenu>
+</rz-sidebar>
+<rz-footer #footer0>
+  <rz-label #footerText text="pnld, Copyright &copy; 2018">
+  </rz-label>
+</rz-footer>
+<router-outlet></router-outlet>
