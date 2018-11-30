@@ -1,0 +1,8 @@
+<rz-content #content1 container="main">
+  <rz-heading #pageTitle size="H1" text="Relatorio Reembolso">
+  </rz-heading>
+  <rz-ssrsviewer #ssrsviewer0 reportName="plnd/ReembolsosDespesas" reportServer="http://cv2.corp.casavillar.com.br/reportserver" localServer="http://localhost:5000" [useProxy]="true">
+    <rz-ssrsviewer-parameter parameterName="Reuniao" [value]="parameters?.Reuniao">
+    </rz-ssrsviewer-parameter>
+  </rz-ssrsviewer>
+</rz-content>

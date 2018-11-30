@@ -1,0 +1,34 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Relatorio Reembolso",
+          "type": "heading"
+        },
+        {
+          "name": "ssrsviewer0",
+          "parameters": [
+            {
+              "parameterName": "Reuniao",
+              "value": "${parameters.Reuniao}"
+            }
+          ],
+          "reportName": "plnd/ReembolsosDespesas",
+          "reportServer": "http://cv2.corp.casavillar.com.br/reportserver",
+          "type": "ssrsviewer",
+          "useProxy": true
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "layout": "Main",
+  "name": "Relatorio Reembolso"
+}

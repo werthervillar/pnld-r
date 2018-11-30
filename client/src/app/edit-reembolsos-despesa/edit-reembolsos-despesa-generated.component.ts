@@ -11,16 +11,17 @@ import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dis
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
-import { LabelComponent } from '@radzen/angular/dist/label';
-import { ButtonComponent } from '@radzen/angular/dist/button';
+import { TabsComponent } from '@radzen/angular/dist/tabs';
 import { TemplateFormComponent } from '@radzen/angular/dist/template-form';
+import { LabelComponent } from '@radzen/angular/dist/label';
 import { DropDownDataGridComponent } from '@radzen/angular/dist/dropdown-datagrid';
 import { RequiredValidatorComponent } from '@radzen/angular/dist/required-validator';
 import { DatePickerComponent } from '@radzen/angular/dist/datepicker';
 import { DropDownComponent } from '@radzen/angular/dist/dropdown';
-import { GridComponent } from '@radzen/angular/dist/grid';
 import { NumericComponent } from '@radzen/angular/dist/numeric';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
+import { ButtonComponent } from '@radzen/angular/dist/button';
+import { GridComponent } from '@radzen/angular/dist/grid';
 import { AddItensReembolsosDespesaComponent } from '../add-itens-reembolsos-despesa/add-itens-reembolsos-despesa.component';
 import { EditItensReembolsosDespesaComponent } from '../edit-itens-reembolsos-despesa/edit-itens-reembolsos-despesa.component';
 
@@ -31,40 +32,39 @@ export class EditReembolsosDespesaGenerated implements AfterViewInit, OnInit, On
   // Components
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('pageTitle') pageTitle: HeadingComponent;
-  @ViewChild('closeLabel') closeLabel: LabelComponent;
-  @ViewChild('closeButton') closeButton: ButtonComponent;
+  @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('form0') form0: TemplateFormComponent;
-  @ViewChild('label2') label2: LabelComponent;
+  @ViewChild('label1') label1: LabelComponent;
   @ViewChild('Reuniao') reuniao: DropDownDataGridComponent;
   @ViewChild('ReuniaoRequiredValidator') reuniaoRequiredValidator: RequiredValidatorComponent;
-  @ViewChild('label3') label3: LabelComponent;
+  @ViewChild('label7') label7: LabelComponent;
   @ViewChild('Colaborador') colaborador: DropDownDataGridComponent;
   @ViewChild('ColaboradorRequiredValidator') colaboradorRequiredValidator: RequiredValidatorComponent;
-  @ViewChild('label4') label4: LabelComponent;
+  @ViewChild('label2') label2: LabelComponent;
   @ViewChild('DataSaida') dataSaida: DatePickerComponent;
-  @ViewChild('label5') label5: LabelComponent;
+  @ViewChild('label8') label8: LabelComponent;
   @ViewChild('DataRetorno') dataRetorno: DatePickerComponent;
-  @ViewChild('label6') label6: LabelComponent;
+  @ViewChild('label3') label3: LabelComponent;
   @ViewChild('Responsavel') responsavel: DropDownDataGridComponent;
   @ViewChild('ResponsavelRequiredValidator') responsavelRequiredValidator: RequiredValidatorComponent;
-  @ViewChild('label7') label7: LabelComponent;
+  @ViewChild('label9') label9: LabelComponent;
   @ViewChild('Status') status: DropDownComponent;
   @ViewChild('StatusRequiredValidator') statusRequiredValidator: RequiredValidatorComponent;
-  @ViewChild('label1') label1: LabelComponent;
-  @ViewChild('grid0') grid0: GridComponent;
-  @ViewChild('label9') label9: LabelComponent;
+  @ViewChild('label4') label4: LabelComponent;
   @ViewChild('ValorGasto') valorGasto: NumericComponent;
   @ViewChild('label10') label10: LabelComponent;
   @ViewChild('ValorConcedido') valorConcedido: NumericComponent;
-  @ViewChild('label11') label11: LabelComponent;
+  @ViewChild('label5') label5: LabelComponent;
   @ViewChild('Banco') banco: TextBoxComponent;
-  @ViewChild('label12') label12: LabelComponent;
+  @ViewChild('label11') label11: LabelComponent;
   @ViewChild('Agencia') agencia: TextBoxComponent;
-  @ViewChild('label13') label13: LabelComponent;
+  @ViewChild('label6') label6: LabelComponent;
   @ViewChild('Conta') conta: TextBoxComponent;
-  @ViewChild('button2') button2: ButtonComponent;
-  @ViewChild('button3') button3: ButtonComponent;
-  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('button0') button0: ButtonComponent;
+  @ViewChild('button1') button1: ButtonComponent;
+  @ViewChild('SaveButton') saveButton: ButtonComponent;
+  @ViewChild('CancelButton') cancelButton: ButtonComponent;
+  @ViewChild('grid0') grid0: GridComponent;
 
   router: Router;
 
@@ -223,14 +223,6 @@ export class EditReembolsosDespesaGenerated implements AfterViewInit, OnInit, On
     });
   }
 
-  closeButtonClick(event: any) {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    } else {
-      this._location.back();
-    }
-  }
-
   form0Submit(event: any) {
     this.pnld.updateReembolsosDespesa(this.parameters.ReembolsoDespesa, event)
     .subscribe((result: any) => {
@@ -266,6 +258,14 @@ export class EditReembolsosDespesaGenerated implements AfterViewInit, OnInit, On
     }, (result: any) => {
 
     });
+  }
+
+  CancelButtonClick(event: any) {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    } else {
+      this._location.back();
+    }
   }
 
   grid0Add(event: any) {
@@ -317,13 +317,5 @@ export class EditReembolsosDespesaGenerated implements AfterViewInit, OnInit, On
 
       });
     });
-  }
-
-  button3Click(event: any) {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    } else {
-      this._location.back();
-    }
   }
 }

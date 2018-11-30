@@ -25,6 +25,7 @@ import { GridModule } from '@radzen/angular/dist/grid';
 import { FormModule } from '@radzen/angular/dist/form';
 import { HtmlModule } from '@radzen/angular/dist/html';
 import { ButtonModule } from '@radzen/angular/dist/button';
+import { TabsModule } from '@radzen/angular/dist/tabs';
 import { TemplateFormModule } from '@radzen/angular/dist/template-form';
 import { DropDownDataGridModule } from '@radzen/angular/dist/dropdown-datagrid';
 import { RequiredValidatorModule } from '@radzen/angular/dist/required-validator';
@@ -32,6 +33,8 @@ import { DatePickerModule } from '@radzen/angular/dist/datepicker';
 import { DropDownModule } from '@radzen/angular/dist/dropdown';
 import { NumericModule } from '@radzen/angular/dist/numeric';
 import { TextBoxModule } from '@radzen/angular/dist/textbox';
+import { TextAreaModule } from '@radzen/angular/dist/textarea';
+import { SSRSViewerModule } from '@radzen/angular/dist/ssrsviewer';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
 import { DialogModule } from '@radzen/angular/dist/dialog';
@@ -65,6 +68,8 @@ import { EditItensReembolsosDespesaComponent } from './edit-itens-reembolsos-des
 import { ComprovantesComponent } from './comprovantes/comprovantes.component';
 import { AddComprovanteComponent } from './add-comprovante/add-comprovante.component';
 import { EditComprovanteComponent } from './edit-comprovante/edit-comprovante.component';
+import { EditPendenciasComponent } from './edit-pendencias/edit-pendencias.component';
+import { RelatorioReembolsoComponent } from './relatorio-reembolso/relatorio-reembolso.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -98,6 +103,8 @@ export const PageDeclarations = [
   ComprovantesComponent,
   AddComprovanteComponent,
   EditComprovanteComponent,
+  EditPendenciasComponent,
+  RelatorioReembolsoComponent,
 ];
 
 export const LayoutDeclarations = [
@@ -158,6 +165,7 @@ export const AppImports = [
   FormModule,
   HtmlModule,
   ButtonModule,
+  TabsModule,
   TemplateFormModule,
   DropDownDataGridModule,
   RequiredValidatorModule,
@@ -165,6 +173,8 @@ export const AppImports = [
   DropDownModule,
   NumericModule,
   TextBoxModule,
+  TextAreaModule,
+  SSRSViewerModule,
   SharedModule,
   NotificationModule,
   DialogModule,

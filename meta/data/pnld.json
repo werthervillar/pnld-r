@@ -313,6 +313,14 @@
           "type": "string",
           "length": 450
         },
+        "Observacoes": {
+          "x-key": false,
+          "type": "string"
+        },
+        "Respostas": {
+          "x-key": false,
+          "type": "string"
+        },
         "ItensReembolsosDespesas": {
           "type": "array",
           "items": {

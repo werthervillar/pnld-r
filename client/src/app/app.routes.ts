@@ -27,6 +27,8 @@ import { EditItensReembolsosDespesaComponent } from './edit-itens-reembolsos-des
 import { ComprovantesComponent } from './comprovantes/comprovantes.component';
 import { AddComprovanteComponent } from './add-comprovante/add-comprovante.component';
 import { EditComprovanteComponent } from './edit-comprovante/edit-comprovante.component';
+import { EditPendenciasComponent } from './edit-pendencias/edit-pendencias.component';
+import { RelatorioReembolsoComponent } from './relatorio-reembolso/relatorio-reembolso.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -231,6 +233,22 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: EditComprovanteComponent
+      },
+      {
+        path: 'edit-pendencias/:ReembolsoDespesa',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: EditPendenciasComponent
+      },
+      {
+        path: 'relatorio-reembolso/:Reuniao/:ReembolsoDespesa',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: RelatorioReembolsoComponent
       },
     ]
   },

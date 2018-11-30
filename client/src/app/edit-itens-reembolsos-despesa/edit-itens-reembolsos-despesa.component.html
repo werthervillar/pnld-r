@@ -1,20 +1,10 @@
 <rz-content #content1 container="main">
-  <div [ngStyle]="{}" class="row">
-    <div class="col-md-9">
-      <rz-label #closeLabel [style]="{'fontWeight':'bold'}" text="Item no longer available." *ngIf="!canEdit">
-      </rz-label>
-    </div>
-    <div class="col-md-3">
-      <rz-button #closeButton buttonStyle="secondary" [style]="{'marginBottom':'20px'}" text="Close" *ngIf="!canEdit" (click)="closeButtonClick($event)">
-      </rz-button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
+  <rz-tabs #tabs0>
+    <rz-tabs-item [selected]="true" text="Dados do Gerais">
       <rz-template-form #form0 (submit)="form0Submit($event)">
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3" [ngStyle]="{'visibility':'hidden'}">
-            <rz-label #label2 component="ReembolsoDespesa" [style]="{'width':'100%'}" text="Reembolso Despesa">
+            <rz-label #label0 component="ReembolsoDespesa" [style]="{'width':'100%'}" text="Reembolso Despesa">
             </rz-label>
           </div>
           <div class="col-md-9">
@@ -26,7 +16,7 @@
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label3 component="Tipo" [style]="{'width':'100%'}" text="Tipo">
+            <rz-label #label1 component="Tipo" [style]="{'width':'100%'}" text="Tipo">
             </rz-label>
           </div>
           <div class="col-md-9">
@@ -38,11 +28,11 @@
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label4 component="Data" [style]="{'width':'100%'}" text="Data">
+            <rz-label #label2 component="Data" [style]="{'width':'100%'}" text="Data">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-datepicker #data [style]="{'display':'block','width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Data" name="Data">
+            <rz-datepicker #data dateFormat="dd/mm/yy" [style]="{'display':'block','width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Data" name="Data">
             </rz-datepicker>
             <rz-required-validator #dataRequiredValidator [component]="data" [style]="{'position':'absolute'}" text="Data is required">
             </rz-required-validator>
@@ -50,7 +40,7 @@
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label5 component="Origem" [style]="{'width':'100%'}" text="Origem">
+            <rz-label #label3 component="Origem" [style]="{'width':'100%'}" text="Origem">
             </rz-label>
           </div>
           <div class="col-md-9">
@@ -60,7 +50,7 @@
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label6 component="Destino" [style]="{'width':'100%'}" text="Destino">
+            <rz-label #label4 component="Destino" [style]="{'width':'100%'}" text="Destino">
             </rz-label>
           </div>
           <div class="col-md-9">
@@ -70,7 +60,7 @@
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label7 component="Entrada" [style]="{'width':'100%'}" text="Entrada">
+            <rz-label #label5 component="Entrada" [style]="{'width':'100%'}" text="Entrada">
             </rz-label>
           </div>
           <div class="col-md-9">
@@ -80,7 +70,7 @@
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label8 component="Saida" [style]="{'width':'100%'}" text="Saida">
+            <rz-label #label6 component="Saida" [style]="{'width':'100%'}" text="Saida">
             </rz-label>
           </div>
           <div class="col-md-9">
@@ -90,7 +80,7 @@
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label9 component="Referencia" [style]="{'width':'100%'}" text="Referência">
+            <rz-label #label7 component="Referencia" [style]="{'width':'100%'}" text="Referência">
             </rz-label>
           </div>
           <div class="col-md-9">
@@ -100,7 +90,7 @@
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label10 component="Empresa" [style]="{'width':'100%'}" text="Empresa">
+            <rz-label #label8 component="Empresa" [style]="{'width':'100%'}" text="Empresa">
             </rz-label>
           </div>
           <div class="col-md-9">
@@ -108,19 +98,19 @@
             </rz-textbox>
           </div>
         </div>
-        <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
-          <div class="col-md-3">
-            <rz-label #label11 component="ValorGasto" [style]="{'width':'100%'}" text="Valor Gasto">
+        <div [ngStyle]="{'height':'45px','marginBottom':'1rem'}" class="row">
+          <div class="col-md-3" [ngStyle]="{'height':'23px','paddingLeft':'15px','paddingRight':'0px'}">
+            <rz-label #label9 component="ValorGasto" [style]="{'width':'122.25px'}" text="Valor Gasto">
             </rz-label>
           </div>
-          <div class="col-md-9">
+          <div class="col-md-9" [ngStyle]="{'height':'35px','paddingLeft':'15px','paddingRight':'15px'}">
             <rz-numeric #valorGasto maxText="cannot be more than" minText="cannot be less than" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.ValorGasto" name="ValorGasto">
             </rz-numeric>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label12 component="ValorConcedido" [style]="{'width':'100%'}" text="Valor Concedido">
+            <rz-label #leabl10 component="ValorConcedido" [style]="{'width':'184.75px'}" text="Valor Concedido">
             </rz-label>
           </div>
           <div class="col-md-9">
@@ -128,28 +118,28 @@
             </rz-numeric>
           </div>
         </div>
-        <rz-label #label0 [style]="{'fontSize':'18px','fontWeight':'bold','height':'34px','paddingBottom':'19px','paddingLeft':'15px'}" text="Comprovantes">
-        </rz-label>
-        <rz-grid #grid0 addText="Add" [allowAdd]="true" [allowDelete]="true" [allowFiltering]="true" [allowPaging]="true" [allowSorting]="true" [count]="getComprovantesCount" [data]="getComprovantesResult" emptyText="No records to display." [pageSize]="10" (add)="grid0Add($event)" (delete)="grid0Delete($event)" (loadData)="grid0LoadData($event)">
-          <rz-grid-column format="base64" property="Anexo" title="Anexo" type="string">
-            <ng-template let-data gridColumnTemplate>
-            <a [download]="data.Nome" [href]="getSantizeUrl(data.Anexo)">Download</a>
-            </ng-template>
-          </rz-grid-column>
-          <rz-grid-column property="Nome" title="Nome" type="string">
-          </rz-grid-column>
-          <rz-grid-column [filterable]="false" property="Comprovante1" [sortable]="false" title="Comprovante 1" *ngIf="false" type="integer">
-          </rz-grid-column>
-        </rz-grid>
         <div [ngStyle]="{'paddingTop':'19px'}" class="row">
           <div class="col offset-sm-3">
-            <rz-button #button2 buttonStyle="primary" buttonType="submit" icon="save" text="Salvar">
+            <rz-button #saveButton buttonStyle="primary" buttonType="submit" icon="save" text="Salvar">
             </rz-button>
-            <rz-button #button3 buttonStyle="light" text="Cancelar" (click)="button3Click($event)">
+            <rz-button #cancelbutton buttonStyle="light" text="Cancelar" (click)="CancelbuttonClick($event)">
             </rz-button>
           </div>
         </div>
       </rz-template-form>
-    </div>
-  </div>
+    </rz-tabs-item>
+    <rz-tabs-item [selected]="false" text="Comprovantes">
+      <rz-grid #grid0 addText="Add" [allowAdd]="true" [allowDelete]="true" [allowFiltering]="true" [allowPaging]="true" [allowSorting]="true" [count]="getComprovantesCount" [data]="getComprovantesResult" emptyText="No records to display." [pageSize]="10" (add)="grid0Add($event)" (delete)="grid0Delete($event)" (loadData)="grid0LoadData($event)">
+        <rz-grid-column format="base64" property="Anexo" title="Anexo" type="string">
+          <ng-template let-data gridColumnTemplate>
+          <a [download]="data.Nome" [href]="getSantizeUrl(data.Anexo)">Download</a>
+          </ng-template>
+        </rz-grid-column>
+        <rz-grid-column property="Nome" title="Nome" type="string">
+        </rz-grid-column>
+        <rz-grid-column [filterable]="false" property="Comprovante1" [sortable]="false" title="Comprovante 1" *ngIf="false" type="integer">
+        </rz-grid-column>
+      </rz-grid>
+    </rz-tabs-item>
+  </rz-tabs>
 </rz-content>

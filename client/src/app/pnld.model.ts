@@ -46,6 +46,8 @@ export interface ReembolsosDespesa {
   Agencia: string;
   Conta: string;
   Responsavel: string;
+  Observacoes: string;
+  Respostas: string;
   ItensReembolsosDespesas: Array<ItensReembolsosDespesa>;
 }
 

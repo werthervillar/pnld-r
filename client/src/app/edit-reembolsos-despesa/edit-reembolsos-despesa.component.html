@@ -1,22 +1,12 @@
 <rz-content #content1 container="main">
   <rz-heading #pageTitle size="H1" text="Reembolso de Despesa">
   </rz-heading>
-  <div [ngStyle]="{}" class="row">
-    <div class="col-md-9">
-      <rz-label #closeLabel [style]="{'fontWeight':'bold'}" text="Item no longer available." *ngIf="!canEdit">
-      </rz-label>
-    </div>
-    <div class="col-md-3">
-      <rz-button #closeButton buttonStyle="secondary" [style]="{'marginBottom':'20px'}" text="Close" *ngIf="!canEdit" (click)="closeButtonClick($event)">
-      </rz-button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
+  <rz-tabs #tabs0>
+    <rz-tabs-item [selected]="true" text="Dados do Reembolso">
       <rz-template-form #form0 (submit)="form0Submit($event)">
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-6">
-            <rz-label #label2 component="Reuniao" [style]="{'width':'100%'}" text="Reunião">
+            <rz-label #label1 component="Reuniao" [style]="{'width':'100%'}" text="Reunião">
             </rz-label>
             <rz-dropdown-datagrid #reuniao [count]="getReuniosCount" [data]="getReuniosResult" [disabled]="true" [pageSize]="getReuniosPageSize" placeholder="Choose Reunio" [style]="{'display':'block','width':'100%'}" textProperty="Nome" [(ngModel)]="reembolsosdespesa && reembolsosdespesa.Reuniao" valueProperty="Reuniao" name="Reuniao" (loadData)="ReuniaoLoadData($event)">
             </rz-dropdown-datagrid>
@@ -24,7 +14,7 @@
             </rz-required-validator>
           </div>
           <div class="col-md-6">
-            <rz-label #label3 component="Colaborador" [style]="{'width':'100%'}" text="Colaborador">
+            <rz-label #label7 component="Colaborador" [style]="{'width':'100%'}" text="Colaborador">
             </rz-label>
             <rz-dropdown-datagrid #colaborador [count]="getParticipantesCount" [data]="getParticipantesResult" [disabled]="true" [pageSize]="getParticipantesPageSize" placeholder="Choose Participante" [style]="{'display':'block','width':'100%'}" textProperty="Nome" [(ngModel)]="reembolsosdespesa && reembolsosdespesa.Colaborador" valueProperty="Participante1" name="Colaborador" (loadData)="ColaboradorLoadData($event)">
             </rz-dropdown-datagrid>
@@ -34,13 +24,13 @@
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-6">
-            <rz-label #label4 component="DataSaida" [style]="{'width':'100%'}" text="Data Saida">
+            <rz-label #label2 component="DataSaida" [style]="{'width':'100%'}" text="Data Saida">
             </rz-label>
             <rz-datepicker #dataSaida dateFormat="dd/mm/yy" [style]="{'width':'100%'}" [(ngModel)]="reembolsosdespesa && reembolsosdespesa.DataSaida" name="DataSaida">
             </rz-datepicker>
           </div>
           <div class="col-md-6">
-            <rz-label #label5 component="DataRetorno" [style]="{'width':'100%'}" text="Data Retorno">
+            <rz-label #label8 component="DataRetorno" [style]="{'width':'100%'}" text="Data Retorno">
             </rz-label>
             <rz-datepicker #dataRetorno dateFormat="dd/mm/yy" [style]="{'width':'100%'}" [(ngModel)]="reembolsosdespesa && reembolsosdespesa.DataRetorno" name="DataRetorno">
             </rz-datepicker>
@@ -48,7 +38,7 @@
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-6">
-            <rz-label #label6 component="Responsavel" [style]="{'width':'100%'}" text="Responsável">
+            <rz-label #label3 component="Responsavel" [style]="{'width':'100%'}" text="Responsável">
             </rz-label>
             <rz-dropdown-datagrid #responsavel [data]="getUsersResult" [disabled]="true" [style]="{'display':'block','width':'100%'}" textProperty="UserName" [(ngModel)]="reembolsosdespesa && reembolsosdespesa.Responsavel" valueProperty="Id" name="Responsavel">
             </rz-dropdown-datagrid>
@@ -56,7 +46,7 @@
             </rz-required-validator>
           </div>
           <div class="col-md-6">
-            <rz-label #label7 component="Status" [style]="{'width':'100%'}" text="Status">
+            <rz-label #label9 component="Status" [style]="{'width':'82.5px'}" text="Status">
             </rz-label>
             <rz-dropdown #status [data]="getStatusReembolsosDespesasResult" placeholder="Choose StatusReembolsosDespesa" [style]="{'display':'block','width':'100%'}" textProperty="Nome" [(ngModel)]="reembolsosdespesa && reembolsosdespesa.Status" valueProperty="StatusReembolsoDespesa" name="Status">
             </rz-dropdown>
@@ -64,36 +54,9 @@
             </rz-required-validator>
           </div>
         </div>
-        <rz-label #label1 [style]="{'fontSize':'24px','fontWeight':'bold','paddingLeft':'12px'}" text="Itens de Reembolso">
-        </rz-label>
-        <rz-grid #grid0 addText="Novo" [allowAdd]="true" [allowDelete]="true" [allowFiltering]="true" [allowPaging]="true" [allowSorting]="true" [count]="getItensReembolsosDespesasCount" [data]="getItensReembolsosDespesasResult" emptyText="No records to display." [pageSize]="10" (add)="grid0Add($event)" (delete)="grid0Delete($event)" (loadData)="grid0LoadData($event)" (rowSelect)="grid0RowSelect($event)">
-          <rz-grid-column filterProperty="TiposItensReembolsosDespesa.Nome" property="Tipo" sortProperty="TiposItensReembolsosDespesa.Nome" title="Tipo" type="string">
-            <ng-template let-data gridColumnTemplate>
-            {{data?.TiposItensReembolsosDespesa?.Nome}}
-            </ng-template>
-            <ng-template gridColumnFooterTemplate>
-            <b>Total</b>
-            </ng-template>
-          </rz-grid-column>
-          <rz-grid-column format="date-time" property="Data" title="Data" type="string">
-            <ng-template let-data gridColumnTemplate>
-            {{data?.Data | utcDate:'dd/MM/yyyy'}}
-            </ng-template>
-          </rz-grid-column>
-          <rz-grid-column format="decimal" property="ValorGasto" title="Valor Gasto" type="number">
-            <ng-template gridColumnFooterTemplate>
-            <b>{{TotalGasto | currency}}</b>
-            </ng-template>
-          </rz-grid-column>
-          <rz-grid-column format="decimal" property="ValorConcedido" title="Valor Concedido" type="number">
-            <ng-template gridColumnFooterTemplate>
-            <b>{{TotalConcedido | currency}}</b>
-            </ng-template>
-          </rz-grid-column>
-        </rz-grid>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-6">
-            <rz-label #label9 component="ValorGasto" [style]="{'width':'100%'}" text="Valor Gasto">
+            <rz-label #label4 component="ValorGasto" [style]="{'width':'100%'}" text="Valor Gasto">
             </rz-label>
             <rz-numeric #valorGasto [disabled]="true" maxText="cannot be more than" minText="cannot be less than" [style]="{'width':'100%'}" [(ngModel)]="reembolsosdespesa && reembolsosdespesa.ValorGasto" name="ValorGasto">
             </rz-numeric>
@@ -107,13 +70,13 @@
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-6">
-            <rz-label #label11 component="Banco" [style]="{'width':'100%'}" text="Banco">
+            <rz-label #label5 component="Banco" [style]="{'width':'100%'}" text="Banco">
             </rz-label>
             <rz-textbox #banco [maxLength]="20" [style]="{'width':'100%'}" [(ngModel)]="reembolsosdespesa && reembolsosdespesa.Banco" name="Banco">
             </rz-textbox>
           </div>
           <div class="col-md-6">
-            <rz-label #label12 component="Agencia" [style]="{'width':'100%'}" text="Agência">
+            <rz-label #label11 component="Agencia" [style]="{'width':'100%'}" text="Agência">
             </rz-label>
             <rz-textbox #agencia [maxLength]="20" [style]="{'width':'100%'}" [(ngModel)]="reembolsosdespesa && reembolsosdespesa.Agencia" name="Agencia">
             </rz-textbox>
@@ -121,23 +84,60 @@
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-6">
-            <rz-label #label13 component="Conta" [style]="{'width':'100%'}" text="Conta">
+            <rz-label #label6 component="Conta" [style]="{'width':'100%'}" text="Conta">
             </rz-label>
             <rz-textbox #conta [maxLength]="20" [style]="{'width':'100%'}" [(ngModel)]="reembolsosdespesa && reembolsosdespesa.Conta" name="Conta">
             </rz-textbox>
           </div>
-        </div>
-        <div [ngStyle]="{'height':'55px','paddingTop':'15px'}" class="row">
-          <div class="col offset-sm-3">
-            <rz-button #button2 buttonStyle="primary" buttonType="submit" icon="save" text="Salvar">
+          <div class="col-md-6  d-flex align-items-center justify-content-around" [ngStyle]="{'paddingTop':'16px'}">
+            <rz-button #button0 buttonStyle="warning" icon="change_history" size="sm" [style]="{'paddingRight':'22px'}" text="Histórico e Pendências">
             </rz-button>
-            <rz-button #button3 buttonStyle="light" text="Cancelar" (click)="button3Click($event)">
+            <rz-button #button1 buttonStyle="info" icon="receipt" size="sm" text="Relatório">
+            </rz-button>
+          </div>
+        </div>
+        <div class="row justify-content-start" [ngStyle]="{'display':'flex','float':'none','height':'55px','marginRight':'0px','paddingLeft':'0px','paddingRight':'0px','paddingTop':'10px','position':'static','textAlign':'left'}">
+          <div class="col offset-sm-3">
+            <rz-button #saveButton buttonStyle="primary" buttonType="submit" icon="save" [style]="{'paddingRight':'22px'}" text="Salvar">
+            </rz-button>
+            <rz-button #cancelButton buttonStyle="light" text="Cancelar" (click)="CancelButtonClick($event)">
             </rz-button>
           </div>
         </div>
       </rz-template-form>
-      <rz-label #label0 [style]="{'fontWeight':'bold'}" text="Item no longer available." *ngIf="!canEdit">
-      </rz-label>
-    </div>
-  </div>
+    </rz-tabs-item>
+    <rz-tabs-item [selected]="false" text="Itens do Reembolso">
+      <rz-grid #grid0 addText="Novo" [allowAdd]="true" [allowDelete]="true" [allowFiltering]="true" [allowPaging]="true" [allowSorting]="true" [count]="getItensReembolsosDespesasCount" [data]="getItensReembolsosDespesasResult" emptyText="No records to display." [pageSize]="10" (add)="grid0Add($event)" (delete)="grid0Delete($event)" (loadData)="grid0LoadData($event)" (rowSelect)="grid0RowSelect($event)">
+        <rz-grid-column filterProperty="TiposItensReembolsosDespesa.Nome" property="Tipo" sortProperty="TiposItensReembolsosDespesa.Nome" title="Tipo" type="string">
+          <ng-template let-data gridColumnTemplate>
+          {{data?.TiposItensReembolsosDespesa?.Nome}}
+          </ng-template>
+          <ng-template gridColumnFooterTemplate>
+          <b>Total</b>
+          </ng-template>
+        </rz-grid-column>
+        <rz-grid-column format="date-time" property="Data" title="Data" type="string">
+          <ng-template let-data gridColumnTemplate>
+          {{data?.Data | utcDate:'dd/MM/yyyy'}}
+          </ng-template>
+        </rz-grid-column>
+        <rz-grid-column [format]="0" property="ValorGasto" title="Valor Gasto" type="number">
+          <ng-template let-data gridColumnTemplate>
+          {{data?.ValorGasto | currency}}
+          </ng-template>
+          <ng-template gridColumnFooterTemplate>
+          <b>{{TotalGasto | currency}}</b>
+          </ng-template>
+        </rz-grid-column>
+        <rz-grid-column format="decimal" property="ValorConcedido" title="Valor Concedido" type="number">
+          <ng-template let-data gridColumnTemplate>
+          {{data?.ValorConcedido | currency}}
+          </ng-template>
+          <ng-template gridColumnFooterTemplate>
+          <b>{{TotalConcedido | currency}}</b>
+          </ng-template>
+        </rz-grid-column>
+      </rz-grid>
+    </rz-tabs-item>
+  </rz-tabs>
 </rz-content>

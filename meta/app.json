@@ -42,7 +42,9 @@
     "Edit Itens Reembolsos Despesa",
     "Comprovantes",
     "Add Comprovante",
-    "Edit Comprovante"
+    "Edit Comprovante",
+    "Edit Pendencias",
+    "Relatorio Reembolso"
   ],
   "security": {
     "autoGeneratePages": true,

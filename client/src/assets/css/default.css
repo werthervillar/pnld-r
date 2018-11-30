@@ -5200,10 +5200,17 @@ ul.profile-menu {
 .ui-steps .ui-menuitem-link {
   display: inline-flex;
   align-items: center;
-  color: #212529; }
+  color: #212529;
+  cursor: pointer; }
   .ui-steps .ui-menuitem-link:hover {
     text-decoration: none;
-    color: #479cc8; }
+    color: #479cc8 !important; }
+
+.ui-steps .ui-state-disabled .ui-menuitem-link {
+  color: rgba(33, 37, 41, 0.5);
+  cursor: default; }
+  .ui-steps .ui-state-disabled .ui-menuitem-link:hover {
+    color: rgba(33, 37, 41, 0.5) !important; }
 
 .ui-steps .ui-state-highlight .ui-steps-title {
   color: #479cc8; }

@@ -83,5 +83,15 @@ namespace Pnld.Models.Pnld
       get;
       set;
     }
+    public string Observacoes
+    {
+      get;
+      set;
+    }
+    public string Respostas
+    {
+      get;
+      set;
+    }
   }
 }

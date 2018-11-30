@@ -1,0 +1,186 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "class": "col-md-9",
+                  "components": [
+                    {
+                      "component": "Observacoes",
+                      "style": {
+                        "width": "100%"
+                      },
+                      "text": "Pendências",
+                      "type": "label"
+                    },
+                    {
+                      "cols": 20,
+                      "disabled": "${this.observacoesDisabled}",
+                      "name": "Observacoes",
+                      "rows": 5,
+                      "style": {
+                        "height": "149px",
+                        "width": "100%"
+                      },
+                      "type": "textarea",
+                      "visible": true
+                    }
+                  ],
+                  "style": {
+                    "height": "153px"
+                  },
+                  "type": "col"
+                }
+              ],
+              "style": {
+                "height": "184px",
+                "marginBottom": "1rem"
+              },
+              "type": "row"
+            },
+            {
+              "components": [
+                {
+                  "class": "col-md-9",
+                  "components": [
+                    {
+                      "component": "Respostas",
+                      "style": {
+                        "width": "100%"
+                      },
+                      "text": "Respostas do Colaborador",
+                      "type": "label"
+                    },
+                    {
+                      "cols": 20,
+                      "disabled": "${this.respostasDisabled}",
+                      "name": "Respostas",
+                      "rows": 5,
+                      "style": {
+                        "width": "100%"
+                      },
+                      "type": "textarea",
+                      "visible": true
+                    }
+                  ],
+                  "type": "col"
+                }
+              ],
+              "style": {
+                "marginBottom": "1rem"
+              },
+              "type": "row"
+            },
+            {
+              "components": [
+                {
+                  "class": "col offset-sm-3",
+                  "components": [
+                    {
+                      "buttonStyle": "primary",
+                      "buttonType": "submit",
+                      "icon": "save",
+                      "text": "Salvar",
+                      "type": "button"
+                    },
+                    {
+                      "buttonStyle": "light",
+                      "events": {
+                        "click": [
+                          {
+                            "type": "back"
+                          }
+                        ]
+                      },
+                      "text": "Cancelar",
+                      "type": "button"
+                    }
+                  ],
+                  "type": "col"
+                }
+              ],
+              "type": "row"
+            }
+          ],
+          "events": {
+            "submit": [
+              {
+                "error": [
+                  {
+                    "name": "canEdit",
+                    "type": "set",
+                    "value": "!(result.status == 400)"
+                  }
+                ],
+                "name": "pnld.updateReembolsosDespesa",
+                "parameters": [
+                  {
+                    "name": "ReembolsoDespesa",
+                    "value": "${parameters.ReembolsoDespesa}"
+                  },
+                  {
+                    "name": "ReembolsosDespesa",
+                    "value": "${event}"
+                  }
+                ],
+                "then": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "type": "invoke"
+              }
+            ]
+          },
+          "name": "form0",
+          "type": "template-form"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "canEdit",
+        "type": "set",
+        "value": "true"
+      },
+      {
+        "error": [
+          {
+            "name": "canEdit",
+            "type": "set",
+            "value": "!(result.status == 400)"
+          }
+        ],
+        "name": "pnld.getReembolsosDespesaByReembolsoDespesa",
+        "parameters": [
+          {
+            "name": "ReembolsoDespesa",
+            "value": "${parameters.ReembolsoDespesa}"
+          }
+        ],
+        "then": [
+          {
+            "condition": "",
+            "name": "reembolsosdespesa",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Edit Pendencias"
+}

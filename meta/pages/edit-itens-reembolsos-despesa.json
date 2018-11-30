@@ -9,57 +9,8 @@
     {
       "components": [
         {
-          "components": [
+          "items": [
             {
-              "class": "col-md-9",
-              "components": [
-                {
-                  "name": "closeLabel",
-                  "style": {
-                    "fontWeight": "bold"
-                  },
-                  "text": "Item no longer available.",
-                  "type": "label",
-                  "visible": "${!canEdit}"
-                }
-              ],
-              "name": "col0",
-              "type": "col"
-            },
-            {
-              "class": "col-md-3",
-              "components": [
-                {
-                  "buttonStyle": "secondary",
-                  "events": {
-                    "click": [
-                      {
-                        "type": "back"
-                      }
-                    ]
-                  },
-                  "icon": "",
-                  "name": "closeButton",
-                  "style": {
-                    "marginBottom": "20px"
-                  },
-                  "text": "Close",
-                  "type": "button",
-                  "visible": "${!canEdit}"
-                }
-              ],
-              "name": "col1",
-              "type": "col"
-            }
-          ],
-          "name": "row0",
-          "style": {},
-          "type": "row"
-        },
-        {
-          "components": [
-            {
-              "class": "col-md-12",
               "components": [
                 {
                   "components": [
@@ -74,7 +25,8 @@
                                 "width": "100%"
                               },
                               "text": "Reembolso Despesa",
-                              "type": "label"
+                              "type": "label",
+                              "visible": true
                             }
                           ],
                           "style": {
@@ -169,6 +121,7 @@
                           "components": [
                             {
                               "component": "Tipo",
+                              "name": "label1",
                               "style": {
                                 "width": "100%"
                               },
@@ -264,6 +217,7 @@
                           "components": [
                             {
                               "component": "Data",
+                              "name": "label2",
                               "style": {
                                 "width": "100%"
                               },
@@ -277,6 +231,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "dateFormat": "dd/mm/yy",
                               "name": "Data",
                               "style": {
                                 "display": "block",
@@ -310,6 +265,7 @@
                           "components": [
                             {
                               "component": "Origem",
+                              "name": "label3",
                               "style": {
                                 "width": "100%"
                               },
@@ -347,6 +303,7 @@
                           "components": [
                             {
                               "component": "Destino",
+                              "name": "label4",
                               "style": {
                                 "width": "100%"
                               },
@@ -384,6 +341,7 @@
                           "components": [
                             {
                               "component": "Entrada",
+                              "name": "label5",
                               "style": {
                                 "width": "100%"
                               },
@@ -420,6 +378,7 @@
                           "components": [
                             {
                               "component": "Saida",
+                              "name": "label6",
                               "style": {
                                 "width": "100%"
                               },
@@ -456,6 +415,7 @@
                           "components": [
                             {
                               "component": "Referencia",
+                              "name": "label7",
                               "style": {
                                 "width": "100%"
                               },
@@ -493,6 +453,7 @@
                           "components": [
                             {
                               "component": "Empresa",
+                              "name": "label8",
                               "style": {
                                 "width": "100%"
                               },
@@ -530,13 +491,19 @@
                           "components": [
                             {
                               "component": "ValorGasto",
+                              "name": "label9",
                               "style": {
-                                "width": "100%"
+                                "width": "122.25px"
                               },
                               "text": "Valor Gasto",
                               "type": "label"
                             }
                           ],
+                          "style": {
+                            "height": "23px",
+                            "paddingLeft": "15px",
+                            "paddingRight": "0px"
+                          },
                           "type": "col"
                         },
                         {
@@ -553,10 +520,17 @@
                               "value": "${itensreembolsosdespesa.ValorGasto}"
                             }
                           ],
+                          "name": "col0",
+                          "style": {
+                            "height": "35px",
+                            "paddingLeft": "15px",
+                            "paddingRight": "15px"
+                          },
                           "type": "col"
                         }
                       ],
                       "style": {
+                        "height": "45px",
                         "marginBottom": "1rem"
                       },
                       "type": "row"
@@ -568,8 +542,9 @@
                           "components": [
                             {
                               "component": "ValorConcedido",
+                              "name": "leabl10",
                               "style": {
-                                "width": "100%"
+                                "width": "184.75px"
                               },
                               "text": "Valor Concedido",
                               "type": "label"
@@ -600,144 +575,6 @@
                       "type": "row"
                     },
                     {
-                      "name": "label0",
-                      "style": {
-                        "fontSize": "18px",
-                        "fontWeight": "bold",
-                        "height": "34px",
-                        "paddingBottom": "19px",
-                        "paddingLeft": "15px"
-                      },
-                      "text": "Comprovantes",
-                      "type": "label"
-                    },
-                    {
-                      "addText": "Add",
-                      "allowAdd": true,
-                      "allowDelete": true,
-                      "allowFiltering": true,
-                      "allowPaging": true,
-                      "allowSorting": true,
-                      "columns": [
-                        {
-                          "format": "base64",
-                          "property": "Anexo",
-                          "template": "<a [download]=\"data.Nome\" [href]=\"getSantizeUrl(data.Anexo)\">Download</a>",
-                          "title": "Anexo",
-                          "type": "string"
-                        },
-                        {
-                          "property": "Nome",
-                          "title": "Nome",
-                          "type": "string"
-                        },
-                        {
-                          "filterable": false,
-                          "format": "",
-                          "property": "Comprovante1",
-                          "sortProperty": "",
-                          "sortable": false,
-                          "title": "Comprovante 1",
-                          "type": "integer",
-                          "visible": false
-                        }
-                      ],
-                      "count": "${getComprovantesCount}",
-                      "data": "${getComprovantesResult}",
-                      "emptyText": "No records to display.",
-                      "events": {
-                        "add": [
-                          {
-                            "parameters": [
-                              {
-                                "name": "ItemReembolsoDespesa",
-                                "value": "${parameters.ItemReembolsoDespesa}"
-                              }
-                            ],
-                            "path": "add-comprovante",
-                            "title": "Cadastrar Comprovante",
-                            "type": "popup"
-                          }
-                        ],
-                        "delete": [
-                          {
-                            "error": [
-                              {
-                                "detail": "Erro ao excluir registro!",
-                                "severity": "error",
-                                "summary": "Erro",
-                                "type": "notify"
-                              }
-                            ],
-                            "name": "pnld.deleteComprovante",
-                            "parameters": [
-                              {
-                                "name": "Comprovante1",
-                                "value": "${event.Comprovante1}"
-                              }
-                            ],
-                            "then": [
-                              {
-                                "detail": "Registro excluido com sucesso!",
-                                "severity": "success",
-                                "summary": "Alerta",
-                                "type": "notify"
-                              }
-                            ],
-                            "type": "invoke"
-                          }
-                        ],
-                        "loadData": [
-                          {
-                            "name": "pnld.getComprovantes",
-                            "parameters": [
-                              {
-                                "name": "$top",
-                                "value": "event.top"
-                              },
-                              {
-                                "name": "$skip",
-                                "value": "event.skip"
-                              },
-                              {
-                                "name": "$expand",
-                                "value": ""
-                              },
-                              {
-                                "name": "$count",
-                                "value": "event.top != null && event.skip != null"
-                              },
-                              {
-                                "name": "$filter",
-                                "value": "${event.filter} && ItemReembolsoDespesa eq ${parameters.ItemReembolsoDespesa}"
-                              },
-                              {
-                                "name": "$orderby",
-                                "value": "${event.orderby}"
-                              }
-                            ],
-                            "then": [
-                              {
-                                "name": "getComprovantesResult",
-                                "type": "set",
-                                "value": "${result.value}"
-                              },
-                              {
-                                "name": "getComprovantesCount",
-                                "type": "set",
-                                "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
-                              }
-                            ],
-                            "type": "invoke"
-                          }
-                        ],
-                        "rowDoubleClick": []
-                      },
-                      "name": "grid0",
-                      "pageSize": 10,
-                      "type": "grid"
-                    },
-                    {
                       "components": [
                         {
                           "class": "col offset-sm-3",
@@ -746,6 +583,7 @@
                               "buttonStyle": "primary",
                               "buttonType": "submit",
                               "icon": "save",
+                              "name": "SaveButton",
                               "text": "Salvar",
                               "type": "button"
                             },
@@ -758,6 +596,7 @@
                                   }
                                 ]
                               },
+                              "name": "Cancelbutton",
                               "text": "Cancelar",
                               "type": "button"
                             }
@@ -812,10 +651,144 @@
                   "type": "template-form"
                 }
               ],
-              "type": "col"
+              "selected": true,
+              "text": "Dados do Gerais"
+            },
+            {
+              "components": [
+                {
+                  "addText": "Add",
+                  "allowAdd": true,
+                  "allowDelete": true,
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "columns": [
+                    {
+                      "format": "base64",
+                      "property": "Anexo",
+                      "template": "<a [download]=\"data.Nome\" [href]=\"getSantizeUrl(data.Anexo)\">Download</a>",
+                      "title": "Anexo",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Nome",
+                      "title": "Nome",
+                      "type": "string"
+                    },
+                    {
+                      "filterable": false,
+                      "format": "",
+                      "property": "Comprovante1",
+                      "sortProperty": "",
+                      "sortable": false,
+                      "title": "Comprovante 1",
+                      "type": "integer",
+                      "visible": false
+                    }
+                  ],
+                  "count": "${getComprovantesCount}",
+                  "data": "${getComprovantesResult}",
+                  "emptyText": "No records to display.",
+                  "events": {
+                    "add": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "ItemReembolsoDespesa",
+                            "value": "${parameters.ItemReembolsoDespesa}"
+                          }
+                        ],
+                        "path": "add-comprovante",
+                        "title": "Cadastrar Comprovante",
+                        "type": "popup"
+                      }
+                    ],
+                    "delete": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Erro ao excluir registro!",
+                            "severity": "error",
+                            "summary": "Erro",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "pnld.deleteComprovante",
+                        "parameters": [
+                          {
+                            "name": "Comprovante1",
+                            "value": "${event.Comprovante1}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "detail": "Registro excluido com sucesso!",
+                            "severity": "success",
+                            "summary": "Alerta",
+                            "type": "notify"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ],
+                    "loadData": [
+                      {
+                        "name": "pnld.getComprovantes",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "event.top"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "event.skip"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": ""
+                          },
+                          {
+                            "name": "$count",
+                            "value": "event.top != null && event.skip != null"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter} && ItemReembolsoDespesa eq ${parameters.ItemReembolsoDespesa}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getComprovantesResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getComprovantesCount",
+                            "type": "set",
+                            "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ],
+                    "rowDoubleClick": []
+                  },
+                  "name": "grid0",
+                  "pageSize": 10,
+                  "type": "grid"
+                }
+              ],
+              "selected": false,
+              "text": "Comprovantes"
             }
           ],
-          "type": "row"
+          "name": "tabs0",
+          "type": "tabs"
         }
       ],
       "container": "main",

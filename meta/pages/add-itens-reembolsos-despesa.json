@@ -29,7 +29,7 @@
                               },
                               "text": "Reembolso Despesa",
                               "type": "label",
-                              "visible": false
+                              "visible": true
                             }
                           ],
                           "style": {
@@ -486,6 +486,9 @@
                             {
                               "buttonStyle": "primary",
                               "buttonType": "submit",
+                              "events": {
+                                "click": []
+                              },
                               "icon": "save",
                               "text": "Salvar",
                               "type": "button"

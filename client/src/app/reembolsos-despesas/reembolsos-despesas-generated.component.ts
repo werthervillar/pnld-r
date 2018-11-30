@@ -12,6 +12,9 @@ import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { GridComponent } from '@radzen/angular/dist/grid';
+import { ButtonComponent } from '@radzen/angular/dist/button';
+import { RelatorioReembolsoComponent } from '../relatorio-reembolso/relatorio-reembolso.component';
+import { EditPendenciasComponent } from '../edit-pendencias/edit-pendencias.component';
 
 import { PnldService } from '../pnld.service';
 import { SecurityService } from '../security.service';
@@ -152,5 +155,13 @@ export class ReembolsosDespesasGenerated implements AfterViewInit, OnInit, OnDes
       this.dialogRef.close();
     }
     this.router.navigate(['edit-reembolsos-despesa', event.ReembolsoDespesa]);
+  }
+
+  button0Click(event: any, data: any) {
+    this.dialogService.open(EditPendenciasComponent, { parameters: {ReembolsoDespesa: data.ReembolsoDespesa}, title: 'Pendências' });
+  }
+
+  button1Click(event: any, data: any) {
+    this.dialogService.open(RelatorioReembolsoComponent, { parameters: {Reuniao: data.Reuniao, ReembolsoDespesa: data.ReembolsoDespesa}, width: 900, height: 600, title: 'Relatório de Reembolso' });
   }
 }
