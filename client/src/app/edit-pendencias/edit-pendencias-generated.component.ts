@@ -51,7 +51,7 @@ export class EditPendenciasGenerated implements AfterViewInit, OnInit, OnDestroy
 
   canEdit: any;
 
-  reembolsosdespesa: any;
+  reembolsosdespesas: any;
 
   parameters: any;
 
@@ -99,7 +99,7 @@ export class EditPendenciasGenerated implements AfterViewInit, OnInit, OnDestroy
 
     this.pnld.getReembolsosDespesaByReembolsoDespesa(this.parameters.ReembolsoDespesa)
     .subscribe((result: any) => {
-      this.reembolsosdespesa = result;
+      this.reembolsosdespesas = result;
     }, (result: any) => {
       this.canEdit = !(result.status == 400);
     });

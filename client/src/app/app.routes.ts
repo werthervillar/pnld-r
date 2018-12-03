@@ -33,7 +33,7 @@ import { RelatorioReembolsoComponent } from './relatorio-reembolso/relatorio-ree
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
 export const routes: Routes = [
-  { path: '', redirectTo: '/reunioes', pathMatch: 'full' },
+  { path: '', redirectTo: '/reembolsos-despesas', pathMatch: 'full' },
   {
     path: '',
     component: LoginLayoutComponent,

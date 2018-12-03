@@ -22,6 +22,8 @@ import { NumericComponent } from '@radzen/angular/dist/numeric';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 import { GridComponent } from '@radzen/angular/dist/grid';
+import { RelatorioReembolsoComponent } from '../relatorio-reembolso/relatorio-reembolso.component';
+import { EditPendenciasComponent } from '../edit-pendencias/edit-pendencias.component';
 import { AddItensReembolsosDespesaComponent } from '../add-itens-reembolsos-despesa/add-itens-reembolsos-despesa.component';
 import { EditItensReembolsosDespesaComponent } from '../edit-itens-reembolsos-despesa/edit-itens-reembolsos-despesa.component';
 
@@ -60,10 +62,10 @@ export class EditReembolsosDespesaGenerated implements AfterViewInit, OnInit, On
   @ViewChild('Agencia') agencia: TextBoxComponent;
   @ViewChild('label6') label6: LabelComponent;
   @ViewChild('Conta') conta: TextBoxComponent;
-  @ViewChild('button0') button0: ButtonComponent;
-  @ViewChild('button1') button1: ButtonComponent;
   @ViewChild('SaveButton') saveButton: ButtonComponent;
   @ViewChild('CancelButton') cancelButton: ButtonComponent;
+  @ViewChild('button0') button0: ButtonComponent;
+  @ViewChild('button1') button1: ButtonComponent;
   @ViewChild('grid0') grid0: GridComponent;
 
   router: Router;
@@ -266,6 +268,14 @@ export class EditReembolsosDespesaGenerated implements AfterViewInit, OnInit, On
     } else {
       this._location.back();
     }
+  }
+
+  button0Click(event: any) {
+    this.dialogService.open(EditPendenciasComponent, { parameters: {ReembolsoDespesa: this.reembolsosdespesa.ReembolsoDespesa}, title: 'Edit Pendencias' });
+  }
+
+  button1Click(event: any) {
+    this.dialogService.open(RelatorioReembolsoComponent, { parameters: {Reuniao: this.reembolsosdespesa.Reuniao, ReembolsoDespesa: this.reembolsosdespesa.ReembolsoDespesa}, title: 'Relatório de Reembolso' });
   }
 
   grid0Add(event: any) {

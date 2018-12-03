@@ -90,10 +90,6 @@
             </rz-textbox>
           </div>
           <div class="col-md-6  d-flex align-items-center justify-content-around" [ngStyle]="{'paddingTop':'16px'}">
-            <rz-button #button0 buttonStyle="warning" icon="change_history" size="sm" [style]="{'paddingRight':'22px'}" text="Histórico e Pendências">
-            </rz-button>
-            <rz-button #button1 buttonStyle="info" icon="receipt" size="sm" text="Relatório">
-            </rz-button>
           </div>
         </div>
         <div class="row justify-content-start" [ngStyle]="{'display':'flex','float':'none','height':'55px','marginRight':'0px','paddingLeft':'0px','paddingRight':'0px','paddingTop':'10px','position':'static','textAlign':'left'}">
@@ -101,6 +97,10 @@
             <rz-button #saveButton buttonStyle="primary" buttonType="submit" icon="save" [style]="{'paddingRight':'22px'}" text="Salvar">
             </rz-button>
             <rz-button #cancelButton buttonStyle="light" text="Cancelar" (click)="CancelButtonClick($event)">
+            </rz-button>
+            <rz-button #button0 buttonStyle="warning" icon="change_history" size="md" [style]="{'paddingRight':'22px'}" text="Pendências" (click)="button0Click($event)">
+            </rz-button>
+            <rz-button #button1 buttonStyle="info" icon="receipt" size="md" text="Relatório" (click)="button1Click($event)">
             </rz-button>
           </div>
         </div>

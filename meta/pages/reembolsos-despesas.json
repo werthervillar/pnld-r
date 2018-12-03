@@ -35,9 +35,12 @@
                       "type": "string"
                     },
                     {
+                      "filterable": "not ${security.user.isInRole(\"Colaborador\")}",
                       "property": "Colaborador",
+                      "sortable": true,
                       "title": "Colaborador",
-                      "type": "string"
+                      "type": "string",
+                      "visible": true
                     },
                     {
                       "property": "Responsavel",
@@ -77,10 +80,12 @@
                           "type": "button"
                         }
                       ],
-                      "type": "string"
+                      "type": "string",
+                      "width": "120px"
                     },
                     {
                       "filterable": false,
+                      "footerTemplate": "",
                       "sortable": false,
                       "template": [
                         {
@@ -93,7 +98,7 @@
                                 "parameters": [
                                   {
                                     "name": "Reuniao",
-                                    "value": "${data.Reuniao}"
+                                    "value": "${data.ReuniaoId}"
                                   },
                                   {
                                     "name": "ReembolsoDespesa",
@@ -113,7 +118,8 @@
                           "text": "Relatório",
                           "type": "button"
                         }
-                      ]
+                      ],
+                      "width": "110px"
                     }
                   ],
                   "count": "${getReembolsosDespesasListsCount}",
@@ -202,6 +208,7 @@
                         "type": "invoke"
                       },
                       {
+                        "condition": "${security.user.isInRole(\"Colaborador\")} != true",
                         "name": "pnld.getReembolsosDespesasLists",
                         "parameters": [
                           {
@@ -242,6 +249,48 @@
                           }
                         ],
                         "type": "invoke"
+                      },
+                      {
+                        "condition": "${security.user.isInRole(\"Colaborador\")} == true",
+                        "name": "pnld.getReembolsosDespesasLists",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "event.top"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "event.skip"
+                          },
+                          {
+                            "name": "$expand"
+                          },
+                          {
+                            "name": "$count",
+                            "value": "event.top != null && event.skip != null"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter == '' ? '' : event.filter + ' and '} ColaboradorEmail eq '${security.user.name}'"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getReembolsosDespesasListsResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getReembolsosDespesasListsCount",
+                            "type": "set",
+                            "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                          }
+                        ],
+                        "type": "invoke"
                       }
                     ],
                     "rowSelect": [
@@ -259,6 +308,7 @@
                   },
                   "name": "grid0",
                   "pageSize": 10,
+                  "template": "",
                   "title": "",
                   "type": "grid"
                 }
@@ -276,6 +326,7 @@
   "events": {
     "load": [
       {
+        "error": [],
         "name": "pnld.getReembolsosDespesas",
         "parameters": [
           {
@@ -310,6 +361,7 @@
         "type": "invoke"
       },
       {
+        "condition": "${security.user.isInRole(\"Colaborador\")} != true",
         "name": "pnld.getReembolsosDespesasLists",
         "parameters": [
           {
@@ -323,6 +375,41 @@
           {
             "name": "$count",
             "value": "this.grid0.allowPaging"
+          }
+        ],
+        "then": [
+          {
+            "name": "getReembolsosDespesasListsResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getReembolsosDespesasListsCount",
+            "type": "set",
+            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "condition": "${security.user.isInRole(\"Colaborador\")} == true",
+        "name": "pnld.getReembolsosDespesasLists",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+          },
+          {
+            "name": "$skip",
+            "value": "this.grid0.allowPaging ? 0 : null"
+          },
+          {
+            "name": "$count",
+            "value": "this.grid0.allowPaging"
+          },
+          {
+            "name": "$filter",
+            "value": "ColaboradorEmail eq '${security.user.name}'"
           }
         ],
         "then": [

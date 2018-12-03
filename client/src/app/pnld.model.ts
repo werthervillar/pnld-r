@@ -55,8 +55,10 @@ export interface ReembolsosDespesasList {
   ReembolsoDespesa: number;
   Status: string;
   Reuniao: string;
+  ReuniaoId: number;
   ColaboradorId: number;
   Colaborador: string;
+  ColaboradorEmail: string;
   Responsavel: string;
 }
 

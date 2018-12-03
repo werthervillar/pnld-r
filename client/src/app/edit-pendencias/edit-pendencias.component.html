@@ -4,7 +4,7 @@
       <div class="col-md-9" [ngStyle]="{'height':'153px'}">
         <rz-label #label1 component="Observacoes" [style]="{'width':'100%'}" text="Pendências">
         </rz-label>
-        <rz-textarea #observacoes [cols]="20" [disabled]="observacoesDisabled" [rows]="5" [style]="{'height':'149px','width':'100%'}" name="Observacoes">
+        <rz-textarea #observacoes [cols]="20" [disabled]="observacoesDisabled" [rows]="5" [style]="{'height':'149px','width':'100%'}" [(ngModel)]="reembolsosdespesas && reembolsosdespesas.Observacoes" name="Observacoes">
         </rz-textarea>
       </div>
     </div>
@@ -12,7 +12,7 @@
       <div class="col-md-9">
         <rz-label #label2 component="Respostas" [style]="{'width':'100%'}" text="Respostas do Colaborador">
         </rz-label>
-        <rz-textarea #respostas [cols]="20" [disabled]="respostasDisabled" [rows]="5" [style]="{'width':'100%'}" name="Respostas">
+        <rz-textarea #respostas [cols]="20" [disabled]="respostasDisabled" [rows]="5" [style]="{'width':'100%'}" [(ngModel)]="reembolsosdespesas && reembolsosdespesas.Respostas" name="Respostas">
         </rz-textarea>
       </div>
     </div>

@@ -6,19 +6,19 @@
       <rz-grid #grid0 addText="Novo" [allowAdd]="true" [allowDelete]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [count]="getReembolsosDespesasListsCount" [data]="getReembolsosDespesasListsResult" emptyText="No records to display." [pageSize]="10" (add)="grid0Add($event)" (delete)="grid0Delete($event)" (loadData)="grid0LoadData($event)" (rowSelect)="grid0RowSelect($event)">
         <rz-grid-column property="Reuniao" title="Reunião" type="string">
         </rz-grid-column>
-        <rz-grid-column property="Colaborador" title="Colaborador" type="string">
+        <rz-grid-column filterable="not {{security?.user?.isInRole('Colaborador')}}" property="Colaborador" [sortable]="true" title="Colaborador" type="string">
         </rz-grid-column>
         <rz-grid-column property="Responsavel" title="Responsável" type="string">
         </rz-grid-column>
         <rz-grid-column property="Status" title="Status" type="string">
         </rz-grid-column>
-        <rz-grid-column [filterable]="false" [sortable]="false" type="string">
+        <rz-grid-column [filterable]="false" [sortable]="false" width="120px" type="string">
           <ng-template let-data gridColumnTemplate>
             <rz-button #button0 buttonStyle="warning" icon="change_history" size="sm" text="Pendências" (click)="button0Click($event, data)">
             </rz-button>
           </ng-template>
         </rz-grid-column>
-        <rz-grid-column [filterable]="false" [sortable]="false">
+        <rz-grid-column [filterable]="false" [sortable]="false" width="110px">
           <ng-template let-data gridColumnTemplate>
             <rz-button #button1 buttonStyle="info" icon="receipt" size="sm" text="Relatório" (click)="button1Click($event, data)">
             </rz-button>

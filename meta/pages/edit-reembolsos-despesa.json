@@ -478,27 +478,7 @@
                         },
                         {
                           "class": "col-md-6  d-flex align-items-center justify-content-around",
-                          "components": [
-                            {
-                              "buttonStyle": "warning",
-                              "icon": "change_history",
-                              "name": "button0",
-                              "size": "sm",
-                              "style": {
-                                "paddingRight": "22px"
-                              },
-                              "text": "Histórico e Pendências",
-                              "type": "button"
-                            },
-                            {
-                              "buttonStyle": "info",
-                              "icon": "receipt",
-                              "name": "button1",
-                              "size": "sm",
-                              "text": "Relatório",
-                              "type": "button"
-                            }
-                          ],
+                          "components": [],
                           "name": "col0",
                           "style": {
                             "paddingTop": "16px"
@@ -539,6 +519,58 @@
                               },
                               "name": "CancelButton",
                               "text": "Cancelar",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "warning",
+                              "events": {
+                                "click": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "ReembolsoDespesa",
+                                        "value": "${reembolsosdespesa.ReembolsoDespesa}"
+                                      }
+                                    ],
+                                    "path": "edit-pendencias",
+                                    "type": "popup"
+                                  }
+                                ]
+                              },
+                              "icon": "change_history",
+                              "name": "button0",
+                              "size": "md",
+                              "style": {
+                                "paddingRight": "22px"
+                              },
+                              "text": "Pendências",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "info",
+                              "events": {
+                                "click": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "Reuniao",
+                                        "value": "${reembolsosdespesa.Reuniao}"
+                                      },
+                                      {
+                                        "name": "ReembolsoDespesa",
+                                        "value": "${reembolsosdespesa.ReembolsoDespesa}"
+                                      }
+                                    ],
+                                    "path": "relatorio-reembolso",
+                                    "title": "Relatório de Reembolso",
+                                    "type": "popup"
+                                  }
+                                ]
+                              },
+                              "icon": "receipt",
+                              "name": "button1",
+                              "size": "md",
+                              "text": "Relatório",
                               "type": "button"
                             }
                           ],

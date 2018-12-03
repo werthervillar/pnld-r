@@ -30,6 +30,7 @@
                         "width": "100%"
                       },
                       "type": "textarea",
+                      "value": "${reembolsosdespesas.Observacoes}",
                       "visible": true
                     }
                   ],
@@ -67,6 +68,7 @@
                         "width": "100%"
                       },
                       "type": "textarea",
+                      "value": "${reembolsosdespesas.Respostas}",
                       "visible": true
                     }
                   ],
@@ -172,7 +174,7 @@
         "then": [
           {
             "condition": "",
-            "name": "reembolsosdespesa",
+            "name": "reembolsosdespesas",
             "type": "set",
             "value": "${result}"
           }

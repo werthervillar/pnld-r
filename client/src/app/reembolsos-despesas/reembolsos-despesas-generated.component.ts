@@ -104,14 +104,27 @@ export class ReembolsosDespesasGenerated implements AfterViewInit, OnInit, OnDes
 
     });
 
-    this.pnld.getReembolsosDespesasLists(null, this.grid0.allowPaging ? this.grid0.pageSize : null, this.grid0.allowPaging ? 0 : null, null, this.grid0.allowPaging, null, null, null)
-    .subscribe((result: any) => {
-      this.getReembolsosDespesasListsResult = result.value;
+    if (this.security.user.isInRole('Colaborador') != true) {
+          this.pnld.getReembolsosDespesasLists(null, this.grid0.allowPaging ? this.grid0.pageSize : null, this.grid0.allowPaging ? 0 : null, null, this.grid0.allowPaging, null, null, null)
+      .subscribe((result: any) => {
+          this.getReembolsosDespesasListsResult = result.value;
 
       this.getReembolsosDespesasListsCount = this.grid0.allowPaging ? result['@odata.count'] : result.value.length;
-    }, (result: any) => {
+      }, (result: any) => {
+    
+      });
+    }
 
-    });
+    if (this.security.user.isInRole('Colaborador') == true) {
+          this.pnld.getReembolsosDespesasLists(`ColaboradorEmail eq '${this.security.user.name}'`, this.grid0.allowPaging ? this.grid0.pageSize : null, this.grid0.allowPaging ? 0 : null, null, this.grid0.allowPaging, null, null, null)
+      .subscribe((result: any) => {
+          this.getReembolsosDespesasListsResult = result.value;
+
+      this.getReembolsosDespesasListsCount = this.grid0.allowPaging ? result['@odata.count'] : result.value.length;
+      }, (result: any) => {
+    
+      });
+    }
   }
 
   grid0Add(event: any) {
@@ -140,14 +153,27 @@ export class ReembolsosDespesasGenerated implements AfterViewInit, OnInit, OnDes
 
     });
 
-    this.pnld.getReembolsosDespesasLists(`${event.filter}`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, ``, null, null)
-    .subscribe((result: any) => {
-      this.getReembolsosDespesasListsResult = result.value;
+    if (this.security.user.isInRole('Colaborador') != true) {
+          this.pnld.getReembolsosDespesasLists(`${event.filter}`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, ``, null, null)
+      .subscribe((result: any) => {
+          this.getReembolsosDespesasListsResult = result.value;
 
       this.getReembolsosDespesasListsCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
-    }, (result: any) => {
+      }, (result: any) => {
+    
+      });
+    }
 
-    });
+    if (this.security.user.isInRole('Colaborador') == true) {
+          this.pnld.getReembolsosDespesasLists(`${event.filter == '' ? '' : event.filter + ' and '} ColaboradorEmail eq '${this.security.user.name}'`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, ``, null, null)
+      .subscribe((result: any) => {
+          this.getReembolsosDespesasListsResult = result.value;
+
+      this.getReembolsosDespesasListsCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+      }, (result: any) => {
+    
+      });
+    }
   }
 
   grid0RowSelect(event: any) {
@@ -162,6 +188,6 @@ export class ReembolsosDespesasGenerated implements AfterViewInit, OnInit, OnDes
   }
 
   button1Click(event: any, data: any) {
-    this.dialogService.open(RelatorioReembolsoComponent, { parameters: {Reuniao: data.Reuniao, ReembolsoDespesa: data.ReembolsoDespesa}, width: 900, height: 600, title: 'Relatório de Reembolso' });
+    this.dialogService.open(RelatorioReembolsoComponent, { parameters: {Reuniao: data.ReuniaoId, ReembolsoDespesa: data.ReembolsoDespesa}, width: 900, height: 600, title: 'Relatório de Reembolso' });
   }
 }

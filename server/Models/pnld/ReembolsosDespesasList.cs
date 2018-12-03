@@ -23,12 +23,22 @@ namespace Pnld.Models.Pnld
       get;
       set;
     }
+    public int ReuniaoId
+    {
+      get;
+      set;
+    }
     public int ColaboradorId
     {
       get;
       set;
     }
     public string Colaborador
+    {
+      get;
+      set;
+    }
+    public string ColaboradorEmail
     {
       get;
       set;

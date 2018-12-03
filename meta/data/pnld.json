@@ -337,6 +337,7 @@
         "ReembolsoDespesa",
         "Status",
         "Reuniao",
+        "ReuniaoId",
         "ColaboradorId",
         "Colaborador"
       ],
@@ -355,6 +356,10 @@
           "type": "string",
           "length": 100
         },
+        "ReuniaoId": {
+          "x-key": false,
+          "type": "integer"
+        },
         "ColaboradorId": {
           "x-key": false,
           "type": "integer"
@@ -363,6 +368,11 @@
           "x-key": false,
           "type": "string",
           "length": 100
+        },
+        "ColaboradorEmail": {
+          "x-key": false,
+          "type": "string",
+          "length": 150
         },
         "Responsavel": {
           "x-key": false,

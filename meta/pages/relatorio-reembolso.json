@@ -17,10 +17,17 @@
             {
               "parameterName": "Reuniao",
               "value": "${parameters.Reuniao}"
+            },
+            {
+              "parameterName": "ReembolsoDespesa",
+              "value": "${parameters.ReembolsoDespesa}"
             }
           ],
           "reportName": "plnd/ReembolsosDespesas",
           "reportServer": "http://cv2.corp.casavillar.com.br/reportserver",
+          "style": {
+            "height": "447px"
+          },
           "type": "ssrsviewer",
           "useProxy": true
         }
