@@ -35,6 +35,7 @@
                       "type": "string"
                     },
                     {
+                      "filterProperty": "",
                       "filterable": "not ${security.user.isInRole(\"Colaborador\")}",
                       "property": "Colaborador",
                       "sortable": true,
@@ -208,7 +209,7 @@
                         "type": "invoke"
                       },
                       {
-                        "condition": "${security.user.isInRole(\"Colaborador\")} != true",
+                        "condition": "",
                         "name": "pnld.getReembolsosDespesasLists",
                         "parameters": [
                           {
@@ -230,48 +231,6 @@
                           {
                             "name": "$filter",
                             "value": "${event.filter}"
-                          },
-                          {
-                            "name": "$orderby",
-                            "value": "${event.orderby}"
-                          }
-                        ],
-                        "then": [
-                          {
-                            "name": "getReembolsosDespesasListsResult",
-                            "type": "set",
-                            "value": "${result.value}"
-                          },
-                          {
-                            "name": "getReembolsosDespesasListsCount",
-                            "type": "set",
-                            "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
-                          }
-                        ],
-                        "type": "invoke"
-                      },
-                      {
-                        "condition": "${security.user.isInRole(\"Colaborador\")} == true",
-                        "name": "pnld.getReembolsosDespesasLists",
-                        "parameters": [
-                          {
-                            "name": "$top",
-                            "value": "event.top"
-                          },
-                          {
-                            "name": "$skip",
-                            "value": "event.skip"
-                          },
-                          {
-                            "name": "$expand"
-                          },
-                          {
-                            "name": "$count",
-                            "value": "event.top != null && event.skip != null"
-                          },
-                          {
-                            "name": "$filter",
-                            "value": "${event.filter == '' ? '' : event.filter + ' and '} ColaboradorEmail eq '${security.user.name}'"
                           },
                           {
                             "name": "$orderby",

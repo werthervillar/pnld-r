@@ -153,27 +153,14 @@ export class ReembolsosDespesasGenerated implements AfterViewInit, OnInit, OnDes
 
     });
 
-    if (this.security.user.isInRole('Colaborador') != true) {
-          this.pnld.getReembolsosDespesasLists(`${event.filter}`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, ``, null, null)
-      .subscribe((result: any) => {
-          this.getReembolsosDespesasListsResult = result.value;
+    this.pnld.getReembolsosDespesasLists(`${event.filter}`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, ``, null, null)
+    .subscribe((result: any) => {
+      this.getReembolsosDespesasListsResult = result.value;
 
       this.getReembolsosDespesasListsCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
-      }, (result: any) => {
-    
-      });
-    }
+    }, (result: any) => {
 
-    if (this.security.user.isInRole('Colaborador') == true) {
-          this.pnld.getReembolsosDespesasLists(`${event.filter == '' ? '' : event.filter + ' and '} ColaboradorEmail eq '${this.security.user.name}'`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, ``, null, null)
-      .subscribe((result: any) => {
-          this.getReembolsosDespesasListsResult = result.value;
-
-      this.getReembolsosDespesasListsCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
-      }, (result: any) => {
-    
-      });
-    }
+    });
   }
 
   grid0RowSelect(event: any) {
