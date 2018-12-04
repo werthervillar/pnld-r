@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dist/dialog';
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
-import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { SSRSViewerComponent } from '@radzen/angular/dist/ssrsviewer';
 
 import { SecurityService } from '../security.service';
@@ -18,7 +17,6 @@ import { SecurityService } from '../security.service';
 export class RelatorioReembolsoGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('pageTitle') pageTitle: HeadingComponent;
   @ViewChild('ssrsviewer0') ssrsviewer0: SSRSViewerComponent;
 
   router: Router;

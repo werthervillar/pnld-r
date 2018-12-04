@@ -533,7 +533,8 @@
                                       }
                                     ],
                                     "path": "edit-pendencias",
-                                    "type": "popup"
+                                    "type": "popup",
+                                    "width": 800
                                   }
                                 ]
                               },
@@ -563,7 +564,8 @@
                                     ],
                                     "path": "relatorio-reembolso",
                                     "title": "Relatório de Reembolso",
-                                    "type": "popup"
+                                    "type": "popup",
+                                    "width": 800
                                   }
                                 ]
                               },

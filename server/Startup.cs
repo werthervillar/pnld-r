@@ -156,6 +156,7 @@ namespace Pnld
           var oDataBuilder = new ODataConventionModelBuilder(provider);
 
           oDataBuilder.EntitySet<Pnld.Models.Pnld.Comprovante>("Comprovantes");
+          oDataBuilder.EntitySet<Pnld.Models.Pnld.HistoricosStatusReembolsosDespesa>("HistoricosStatusReembolsosDespesas");
           oDataBuilder.EntitySet<Pnld.Models.Pnld.ItensReembolsosDespesa>("ItensReembolsosDespesas");
           oDataBuilder.EntitySet<Pnld.Models.Pnld.Participante>("Participantes");
           oDataBuilder.EntitySet<Pnld.Models.Pnld.ReembolsosDespesa>("ReembolsosDespesas");

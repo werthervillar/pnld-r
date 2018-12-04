@@ -66,6 +66,7 @@ namespace Pnld.Controllers.Pnld
             var item = this.context.StatusReembolsosDespesas
                 .Where(i => i.StatusReembolsoDespesa == key)
                 .Include(i => i.ReembolsosDespesas)
+                .Include(i => i.HistoricosStatusReembolsosDespesas)
                 .FirstOrDefault();
 
             if (item == null)

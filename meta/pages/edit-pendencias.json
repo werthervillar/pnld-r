@@ -8,141 +8,244 @@
         {
           "components": [
             {
+              "class": "col-md-4",
               "components": [
                 {
-                  "class": "col-md-9",
-                  "components": [
+                  "addText": "Add",
+                  "allowFiltering": false,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "columns": [
                     {
-                      "component": "Observacoes",
-                      "style": {
-                        "width": "100%"
-                      },
-                      "text": "Pendências",
-                      "type": "label"
+                      "filterProperty": "StatusReembolsosDespesa.Nome",
+                      "property": "StatusReembolsoDespesa",
+                      "sortProperty": "StatusReembolsosDespesa.Nome",
+                      "template": "${data.StatusReembolsosDespesa?.Nome}",
+                      "title": "Status",
+                      "type": "string"
                     },
                     {
-                      "cols": 20,
-                      "disabled": "${this.observacoesDisabled}",
-                      "name": "Observacoes",
-                      "rows": 5,
-                      "style": {
-                        "height": "149px",
-                        "width": "100%"
-                      },
-                      "type": "textarea",
-                      "value": "${reembolsosdespesas.Observacoes}",
-                      "visible": true
+                      "format": "date-time",
+                      "property": "Data",
+                      "template": "${data.Data | date:\"dd/MM/yyyy HH:mm\"}",
+                      "title": "Data",
+                      "type": "string"
                     }
                   ],
-                  "style": {
-                    "height": "153px"
+                  "count": "${getHistoricosStatusReembolsosDespesasCount}",
+                  "data": "${getHistoricosStatusReembolsosDespesasResult}",
+                  "emptyText": "No records to display.",
+                  "events": {
+                    "loadData": [
+                      {
+                        "name": "pnld.getHistoricosStatusReembolsosDespesas",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "event.top"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "event.skip"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": ""
+                          },
+                          {
+                            "name": "$count",
+                            "value": "event.top != null && event.skip != null"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter} and ReembolsoDespesa eq ${parameters.ReembolsoDespesa}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getHistoricosStatusReembolsosDespesasResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getHistoricosStatusReembolsosDespesasCount",
+                            "type": "set",
+                            "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
-                  "type": "col"
+                  "name": "grid0",
+                  "pageSize": 10,
+                  "style": {
+                    "height": "448px"
+                  },
+                  "type": "grid"
                 }
               ],
-              "style": {
-                "height": "184px",
-                "marginBottom": "1rem"
-              },
-              "type": "row"
+              "name": "col0",
+              "type": "col"
             },
             {
+              "class": "col-md-8",
               "components": [
                 {
-                  "class": "col-md-9",
                   "components": [
                     {
-                      "component": "Respostas",
+                      "components": [
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "component": "Observacoes",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Pendências",
+                              "type": "label"
+                            },
+                            {
+                              "cols": 20,
+                              "disabled": "${this.observacoesDisabled}",
+                              "name": "Observacoes",
+                              "rows": 5,
+                              "style": {
+                                "height": "149px",
+                                "width": "100%"
+                              },
+                              "type": "textarea",
+                              "value": "${reembolsosdespesas.Observacoes}",
+                              "visible": true
+                            }
+                          ],
+                          "style": {
+                            "height": "153px"
+                          },
+                          "type": "col"
+                        }
+                      ],
                       "style": {
-                        "width": "100%"
+                        "height": "184px",
+                        "marginBottom": "1rem",
+                        "width": "438.65625px"
                       },
-                      "text": "Respostas do Colaborador",
-                      "type": "label"
+                      "type": "row"
                     },
                     {
-                      "cols": 20,
-                      "disabled": "${this.respostasDisabled}",
-                      "name": "Respostas",
-                      "rows": 5,
+                      "components": [
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "component": "Respostas",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Respostas do Colaborador",
+                              "type": "label"
+                            },
+                            {
+                              "cols": 20,
+                              "disabled": "${this.respostasDisabled}",
+                              "name": "Respostas",
+                              "rows": 5,
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textarea",
+                              "value": "${reembolsosdespesas.Respostas}",
+                              "visible": true
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
                       "style": {
-                        "width": "100%"
+                        "marginBottom": "1rem",
+                        "width": "440.65625px"
                       },
-                      "type": "textarea",
-                      "value": "${reembolsosdespesas.Respostas}",
-                      "visible": true
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Salvar",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              },
+                              "text": "Cancelar",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
                     }
                   ],
-                  "type": "col"
-                }
-              ],
-              "style": {
-                "marginBottom": "1rem"
-              },
-              "type": "row"
-            },
-            {
-              "components": [
-                {
-                  "class": "col offset-sm-3",
-                  "components": [
-                    {
-                      "buttonStyle": "primary",
-                      "buttonType": "submit",
-                      "icon": "save",
-                      "text": "Salvar",
-                      "type": "button"
-                    },
-                    {
-                      "buttonStyle": "light",
-                      "events": {
-                        "click": [
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "name": "canEdit",
+                            "type": "set",
+                            "value": "!(result.status == 400)"
+                          }
+                        ],
+                        "name": "pnld.updateReembolsosDespesa",
+                        "parameters": [
+                          {
+                            "name": "ReembolsoDespesa",
+                            "value": "${parameters.ReembolsoDespesa}"
+                          },
+                          {
+                            "name": "ReembolsosDespesa",
+                            "value": "${event}"
+                          }
+                        ],
+                        "then": [
                           {
                             "type": "back"
                           }
-                        ]
-                      },
-                      "text": "Cancelar",
-                      "type": "button"
-                    }
-                  ],
-                  "type": "col"
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "name": "form0",
+                  "style": {
+                    "width": "446.640625px"
+                  },
+                  "type": "template-form"
                 }
               ],
-              "type": "row"
+              "name": "col1",
+              "type": "col"
             }
           ],
-          "events": {
-            "submit": [
-              {
-                "error": [
-                  {
-                    "name": "canEdit",
-                    "type": "set",
-                    "value": "!(result.status == 400)"
-                  }
-                ],
-                "name": "pnld.updateReembolsosDespesa",
-                "parameters": [
-                  {
-                    "name": "ReembolsoDespesa",
-                    "value": "${parameters.ReembolsoDespesa}"
-                  },
-                  {
-                    "name": "ReembolsosDespesa",
-                    "value": "${event}"
-                  }
-                ],
-                "then": [
-                  {
-                    "type": "back"
-                  }
-                ],
-                "type": "invoke"
-              }
-            ]
-          },
-          "name": "form0",
-          "type": "template-form"
+          "name": "row0",
+          "type": "row"
         }
       ],
       "container": "main",
@@ -177,6 +280,48 @@
             "name": "reembolsosdespesas",
             "type": "set",
             "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "pnld.getHistoricosStatusReembolsosDespesaByHistoricoStatusReembolsoDespesas",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getHistoricosStatusReembolsosDespesaByHistoricoStatusReembolsoDespesasResult",
+            "type": "set",
+            "value": "${result.HistoricoStatusReembolsoDespesas}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "pnld.getHistoricosStatusReembolsosDespesas",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+          },
+          {
+            "name": "$skip",
+            "value": "this.grid0.allowPaging ? 0 : null"
+          },
+          {
+            "name": "$count",
+            "value": "this.grid0.allowPaging"
+          }
+        ],
+        "then": [
+          {
+            "name": "getHistoricosStatusReembolsosDespesasResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getHistoricosStatusReembolsosDespesasCount",
+            "type": "set",
+            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
           }
         ],
         "type": "invoke"

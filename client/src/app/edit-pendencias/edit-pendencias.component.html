@@ -1,28 +1,46 @@
 <rz-content #content1 container="main">
-  <rz-template-form #form0 (submit)="form0Submit($event)">
-    <div [ngStyle]="{'height':'184px','marginBottom':'1rem'}" class="row">
-      <div class="col-md-9" [ngStyle]="{'height':'153px'}">
-        <rz-label #label1 component="Observacoes" [style]="{'width':'100%'}" text="Pendências">
-        </rz-label>
-        <rz-textarea #observacoes [cols]="20" [disabled]="observacoesDisabled" [rows]="5" [style]="{'height':'149px','width':'100%'}" [(ngModel)]="reembolsosdespesas && reembolsosdespesas.Observacoes" name="Observacoes">
-        </rz-textarea>
-      </div>
+  <div class="row">
+    <div class="col-md-4">
+      <rz-grid #grid0 addText="Add" [allowFiltering]="false" [allowPaging]="true" [allowSorting]="true" [count]="getHistoricosStatusReembolsosDespesasCount" [data]="getHistoricosStatusReembolsosDespesasResult" emptyText="No records to display." [pageSize]="10" [style]="{'height':'448px'}" (loadData)="grid0LoadData($event)">
+        <rz-grid-column filterProperty="StatusReembolsosDespesa.Nome" property="StatusReembolsoDespesa" sortProperty="StatusReembolsosDespesa.Nome" title="Status" type="string">
+          <ng-template let-data gridColumnTemplate>
+          {{data?.StatusReembolsosDespesa?.Nome}}
+          </ng-template>
+        </rz-grid-column>
+        <rz-grid-column format="date-time" property="Data" title="Data" type="string">
+          <ng-template let-data gridColumnTemplate>
+          {{data?.Data | date:'dd/MM/yyyy HH:mm'}}
+          </ng-template>
+        </rz-grid-column>
+      </rz-grid>
     </div>
-    <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
-      <div class="col-md-9">
-        <rz-label #label2 component="Respostas" [style]="{'width':'100%'}" text="Respostas do Colaborador">
-        </rz-label>
-        <rz-textarea #respostas [cols]="20" [disabled]="respostasDisabled" [rows]="5" [style]="{'width':'100%'}" [(ngModel)]="reembolsosdespesas && reembolsosdespesas.Respostas" name="Respostas">
-        </rz-textarea>
-      </div>
+    <div class="col-md-8">
+      <rz-template-form #form0 [style]="{'width':'446.640625px'}" (submit)="form0Submit($event)">
+        <div [ngStyle]="{'height':'184px','marginBottom':'1rem','width':'438.65625px'}" class="row">
+          <div class="col-md-9" [ngStyle]="{'height':'153px'}">
+            <rz-label #label1 component="Observacoes" [style]="{'width':'100%'}" text="Pendências">
+            </rz-label>
+            <rz-textarea #observacoes [cols]="20" [disabled]="observacoesDisabled" [rows]="5" [style]="{'height':'149px','width':'100%'}" [(ngModel)]="reembolsosdespesas && reembolsosdespesas.Observacoes" name="Observacoes">
+            </rz-textarea>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom':'1rem','width':'440.65625px'}" class="row">
+          <div class="col-md-9">
+            <rz-label #label2 component="Respostas" [style]="{'width':'100%'}" text="Respostas do Colaborador">
+            </rz-label>
+            <rz-textarea #respostas [cols]="20" [disabled]="respostasDisabled" [rows]="5" [style]="{'width':'100%'}" [(ngModel)]="reembolsosdespesas && reembolsosdespesas.Respostas" name="Respostas">
+            </rz-textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col offset-sm-3">
+            <rz-button #button1 buttonStyle="primary" buttonType="submit" icon="save" text="Salvar">
+            </rz-button>
+            <rz-button #button2 buttonStyle="light" text="Cancelar" (click)="button2Click($event)">
+            </rz-button>
+          </div>
+        </div>
+      </rz-template-form>
     </div>
-    <div class="row">
-      <div class="col offset-sm-3">
-        <rz-button #button1 buttonStyle="primary" buttonType="submit" icon="save" text="Salvar">
-        </rz-button>
-        <rz-button #button2 buttonStyle="light" text="Cancelar" (click)="button2Click($event)">
-        </rz-button>
-      </div>
-    </div>
-  </rz-template-form>
+  </div>
 </rz-content>

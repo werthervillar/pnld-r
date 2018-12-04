@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AppImports, AppComponent, AppDeclarations, AppProviders } from './app.module-generated';
+import { RolesService } from './roles.service';
+import { StatusService } from './status.service';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { AppImports, AppComponent, AppDeclarations, AppProviders } from './app.m
     ...AppImports
   ],
   providers: [
-    ...AppProviders
+      ...AppProviders,
+      RolesService,
+      StatusService
   ],
   bootstrap: [AppComponent]
 })

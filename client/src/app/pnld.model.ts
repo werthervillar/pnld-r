@@ -5,6 +5,13 @@ export interface Comprovante {
   Nome: string;
 }
 
+export interface HistoricosStatusReembolsosDespesa {
+  HistoricoStatusReembolsoDespesas: number;
+  ReembolsoDespesa: number;
+  StatusReembolsoDespesa: number;
+  Data: string;
+}
+
 export interface ItensReembolsosDespesa {
   ItemReembolsoDespesa: number;
   ReembolsoDespesa: number;
@@ -48,6 +55,8 @@ export interface ReembolsosDespesa {
   Responsavel: string;
   Observacoes: string;
   Respostas: string;
+  OperacaoBancaria: string;
+  HistoricosStatusReembolsosDespesas: Array<HistoricosStatusReembolsosDespesa>;
   ItensReembolsosDespesas: Array<ItensReembolsosDespesa>;
 }
 

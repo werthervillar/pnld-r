@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dist/dialog';
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
+import { GridComponent } from '@radzen/angular/dist/grid';
 import { TemplateFormComponent } from '@radzen/angular/dist/template-form';
 import { LabelComponent } from '@radzen/angular/dist/label';
 import { TextAreaComponent } from '@radzen/angular/dist/textarea';
@@ -21,6 +22,7 @@ import { SecurityService } from '../security.service';
 export class EditPendenciasGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
+  @ViewChild('grid0') grid0: GridComponent;
   @ViewChild('form0') form0: TemplateFormComponent;
   @ViewChild('label1') label1: LabelComponent;
   @ViewChild('Observacoes') observacoes: TextAreaComponent;
@@ -52,6 +54,12 @@ export class EditPendenciasGenerated implements AfterViewInit, OnInit, OnDestroy
   canEdit: any;
 
   reembolsosdespesas: any;
+
+  getHistoricosStatusReembolsosDespesaByHistoricoStatusReembolsoDespesasResult: any;
+
+  getHistoricosStatusReembolsosDespesasResult: any;
+
+  getHistoricosStatusReembolsosDespesasCount: any;
 
   parameters: any;
 
@@ -102,6 +110,33 @@ export class EditPendenciasGenerated implements AfterViewInit, OnInit, OnDestroy
       this.reembolsosdespesas = result;
     }, (result: any) => {
       this.canEdit = !(result.status == 400);
+    });
+
+    this.pnld.getHistoricosStatusReembolsosDespesaByHistoricoStatusReembolsoDespesas(null)
+    .subscribe((result: any) => {
+      this.getHistoricosStatusReembolsosDespesaByHistoricoStatusReembolsoDespesasResult = result.HistoricoStatusReembolsoDespesas;
+    }, (result: any) => {
+
+    });
+
+    this.pnld.getHistoricosStatusReembolsosDespesas(null, this.grid0.allowPaging ? this.grid0.pageSize : null, this.grid0.allowPaging ? 0 : null, null, this.grid0.allowPaging, null, null, null)
+    .subscribe((result: any) => {
+      this.getHistoricosStatusReembolsosDespesasResult = result.value;
+
+      this.getHistoricosStatusReembolsosDespesasCount = this.grid0.allowPaging ? result['@odata.count'] : result.value.length;
+    }, (result: any) => {
+
+    });
+  }
+
+  grid0LoadData(event: any) {
+    this.pnld.getHistoricosStatusReembolsosDespesas(`${event.filter} and ReembolsoDespesa eq ${this.parameters.ReembolsoDespesa}`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, ``, null, null)
+    .subscribe((result: any) => {
+      this.getHistoricosStatusReembolsosDespesasResult = result.value;
+
+      this.getHistoricosStatusReembolsosDespesasCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+    }, (result: any) => {
+
     });
   }
 

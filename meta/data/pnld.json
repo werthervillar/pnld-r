@@ -44,6 +44,53 @@
         }
       }
     },
+    "HistoricosStatusReembolsosDespesa": {
+      "x-table": "dbo.HistoricosStatusReembolsosDespesas",
+      "resource": "HistoricosStatusReembolsosDespesas",
+      "required": [
+        "ReembolsoDespesa",
+        "StatusReembolsoDespesa",
+        "Data"
+      ],
+      "properties": {
+        "HistoricoStatusReembolsoDespesas": {
+          "x-key": true,
+          "x-identity": true,
+          "type": "integer"
+        },
+        "ReembolsoDespesa": {
+          "x-key": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "ReembolsosDespesas",
+            "parentEntityType": "ReembolsosDespesa",
+            "type": "ReembolsosDespesa",
+            "principalKey": "ReembolsoDespesa",
+            "name": "ReembolsosDespesa",
+            "textProperty": "Banco",
+            "navigationProperty": "HistoricosStatusReembolsosDespesas"
+          }
+        },
+        "StatusReembolsoDespesa": {
+          "x-key": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "StatusReembolsosDespesas",
+            "parentEntityType": "StatusReembolsosDespesa",
+            "type": "StatusReembolsosDespesa",
+            "principalKey": "StatusReembolsoDespesa",
+            "name": "StatusReembolsosDespesa",
+            "textProperty": "Nome",
+            "navigationProperty": "HistoricosStatusReembolsosDespesas"
+          }
+        },
+        "Data": {
+          "x-key": false,
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
     "ItensReembolsosDespesa": {
       "x-table": "dbo.ItensReembolsosDespesas",
       "resource": "ItensReembolsosDespesas",
@@ -227,6 +274,11 @@
           "x-navigation": [
             {
               "inversePropertyName": "ReembolsosDespesa",
+              "name": "HistoricosStatusReembolsosDespesas",
+              "type": "HistoricosStatusReembolsosDespesa"
+            },
+            {
+              "inversePropertyName": "ReembolsosDespesa",
               "name": "ItensReembolsosDespesas",
               "type": "ItensReembolsosDespesa"
             }
@@ -320,6 +372,17 @@
         "Respostas": {
           "x-key": false,
           "type": "string"
+        },
+        "OperacaoBancaria": {
+          "x-key": false,
+          "type": "string",
+          "length": 100
+        },
+        "HistoricosStatusReembolsosDespesas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HistoricosStatusReembolsosDespesa"
+          }
         },
         "ItensReembolsosDespesas": {
           "type": "array",
@@ -439,6 +502,11 @@
               "inversePropertyName": "StatusReembolsosDespesa",
               "name": "ReembolsosDespesas",
               "type": "ReembolsosDespesa"
+            },
+            {
+              "inversePropertyName": "StatusReembolsosDespesa",
+              "name": "HistoricosStatusReembolsosDespesas",
+              "type": "HistoricosStatusReembolsosDespesa"
             }
           ]
         },
@@ -570,6 +638,97 @@
           "201": {
             "schema": {
               "$ref": "#/definitions/Comprovante"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/HistoricosStatusReembolsosDespesas": {
+      "get": {
+        "operationId": "getHistoricosStatusReembolsosDespesas",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/HistoricosStatusReembolsosDespesa"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createHistoricosStatusReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "HistoricosStatusReembolsosDespesa",
+            "schema": {
+              "$ref": "#/definitions/HistoricosStatusReembolsosDespesa"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/HistoricosStatusReembolsosDespesa"
             }
           },
           "default": {
@@ -1247,6 +1406,73 @@
             "name": "Comprovante",
             "schema": {
               "$ref": "#/definitions/Comprovante"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/HistoricosStatusReembolsosDespesas({HistoricoStatusReembolsoDespesas})": {
+      "delete": {
+        "operationId": "deleteHistoricosStatusReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "HistoricoStatusReembolsoDespesas",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getHistoricosStatusReembolsosDespesaByHistoricoStatusReembolsoDespesas",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "HistoricoStatusReembolsoDespesas",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/HistoricosStatusReembolsosDespesa"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateHistoricosStatusReembolsosDespesa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "HistoricoStatusReembolsoDespesas",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "HistoricosStatusReembolsosDespesa",
+            "schema": {
+              "$ref": "#/definitions/HistoricosStatusReembolsosDespesa"
             }
           }
         ],

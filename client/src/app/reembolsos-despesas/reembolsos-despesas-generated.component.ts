@@ -171,7 +171,7 @@ export class ReembolsosDespesasGenerated implements AfterViewInit, OnInit, OnDes
   }
 
   button0Click(event: any, data: any) {
-    this.dialogService.open(EditPendenciasComponent, { parameters: {ReembolsoDespesa: data.ReembolsoDespesa}, title: 'Pendências' });
+    this.dialogService.open(EditPendenciasComponent, { parameters: {ReembolsoDespesa: data.ReembolsoDespesa}, width: 800, title: 'Pendências' });
   }
 
   button1Click(event: any, data: any) {

@@ -36,6 +36,26 @@ export class PnldService {
     return this.odata.patch(`/Comprovantes(${comprovante1})`, comprovante, item => item.Comprovante1 == comprovante1);
   }
 
+  getHistoricosStatusReembolsosDespesas(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) {
+    return this.odata.get(`/HistoricosStatusReembolsosDespesas`, { filter, top, skip, orderby, count, expand, format, select });
+  }
+
+  createHistoricosStatusReembolsosDespesa(historicosStatusReembolsosDespesa: models.HistoricosStatusReembolsosDespesa | null) {
+    return this.odata.post(`/HistoricosStatusReembolsosDespesas`, historicosStatusReembolsosDespesa);
+  }
+
+  deleteHistoricosStatusReembolsosDespesa(historicoStatusReembolsoDespesas: number | null) {
+    return this.odata.delete(`/HistoricosStatusReembolsosDespesas(${historicoStatusReembolsoDespesas})`, item => !(item.HistoricoStatusReembolsoDespesas == historicoStatusReembolsoDespesas));
+  }
+
+  getHistoricosStatusReembolsosDespesaByHistoricoStatusReembolsoDespesas(historicoStatusReembolsoDespesas: number | null) {
+    return this.odata.get(`/HistoricosStatusReembolsosDespesas(${historicoStatusReembolsoDespesas})`);
+  }
+
+  updateHistoricosStatusReembolsosDespesa(historicoStatusReembolsoDespesas: number | null, historicosStatusReembolsosDespesa: models.HistoricosStatusReembolsosDespesa | null) {
+    return this.odata.patch(`/HistoricosStatusReembolsosDespesas(${historicoStatusReembolsoDespesas})`, historicosStatusReembolsosDespesa, item => item.HistoricoStatusReembolsoDespesas == historicoStatusReembolsoDespesas);
+  }
+
   getItensReembolsosDespesas(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) {
     return this.odata.get(`/ItensReembolsosDespesas`, { filter, top, skip, orderby, count, expand, format, select });
   }

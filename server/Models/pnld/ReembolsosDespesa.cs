@@ -18,6 +18,9 @@ namespace Pnld.Models.Pnld
 
 
     [InverseProperty("ReembolsosDespesa")]
+    public ICollection<HistoricosStatusReembolsosDespesa> HistoricosStatusReembolsosDespesas { get; set; }
+
+    [InverseProperty("ReembolsosDespesa")]
     public ICollection<ItensReembolsosDespesa> ItensReembolsosDespesas { get; set; }
     public int Status
     {
@@ -89,6 +92,11 @@ namespace Pnld.Models.Pnld
       set;
     }
     public string Respostas
+    {
+      get;
+      set;
+    }
+    public string OperacaoBancaria
     {
       get;
       set;

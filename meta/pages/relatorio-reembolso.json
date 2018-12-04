@@ -6,12 +6,6 @@
     {
       "components": [
         {
-          "name": "pageTitle",
-          "size": "H1",
-          "text": "Relatorio Reembolso",
-          "type": "heading"
-        },
-        {
           "name": "ssrsviewer0",
           "parameters": [
             {

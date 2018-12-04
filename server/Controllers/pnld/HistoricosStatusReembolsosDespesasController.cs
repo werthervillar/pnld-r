@@ -20,40 +20,40 @@ namespace Pnld.Controllers.Pnld
   using Data;
   using Models.Pnld;
 
-  [ODataRoutePrefix("odata/pnld/ReembolsosDespesas")]
-  [Route("mvc/odata/pnld/ReembolsosDespesas")]
-  public partial class ReembolsosDespesasController : ODataController
+  [ODataRoutePrefix("odata/pnld/HistoricosStatusReembolsosDespesas")]
+  [Route("mvc/odata/pnld/HistoricosStatusReembolsosDespesas")]
+  public partial class HistoricosStatusReembolsosDespesasController : ODataController
   {
     private Data.PnldContext context;
 
-    public ReembolsosDespesasController(Data.PnldContext context)
+    public HistoricosStatusReembolsosDespesasController(Data.PnldContext context)
     {
       this.context = context;
     }
-    // GET /odata/Pnld/ReembolsosDespesas
+    // GET /odata/Pnld/HistoricosStatusReembolsosDespesas
     [EnableQuery(MaxExpansionDepth=10,MaxNodeCount=1000)]
     [HttpGet]
-    public IEnumerable<Models.Pnld.ReembolsosDespesa> GetReembolsosDespesas()
+    public IEnumerable<Models.Pnld.HistoricosStatusReembolsosDespesa> GetHistoricosStatusReembolsosDespesas()
     {
-      var items = this.context.ReembolsosDespesas.AsQueryable<Models.Pnld.ReembolsosDespesa>();
-      this.OnReembolsosDespesasRead(ref items);
+      var items = this.context.HistoricosStatusReembolsosDespesas.AsQueryable<Models.Pnld.HistoricosStatusReembolsosDespesa>();
+      this.OnHistoricosStatusReembolsosDespesasRead(ref items);
 
       return items;
     }
 
-    partial void OnReembolsosDespesasRead(ref IQueryable<Models.Pnld.ReembolsosDespesa> items);
+    partial void OnHistoricosStatusReembolsosDespesasRead(ref IQueryable<Models.Pnld.HistoricosStatusReembolsosDespesa> items);
 
     [EnableQuery(MaxExpansionDepth=10,MaxNodeCount=1000)]
-    [HttpGet("{ReembolsoDespesa}")]
-    public SingleResult<ReembolsosDespesa> GetReembolsosDespesa(int key)
+    [HttpGet("{HistoricoStatusReembolsoDespesas}")]
+    public SingleResult<HistoricosStatusReembolsosDespesa> GetHistoricosStatusReembolsosDespesa(int key)
     {
-        var items = this.context.ReembolsosDespesas.Where(i=>i.ReembolsoDespesa == key);
+        var items = this.context.HistoricosStatusReembolsosDespesas.Where(i=>i.HistoricoStatusReembolsoDespesas == key);
         return SingleResult.Create(items);
     }
-    partial void OnReembolsosDespesaDeleted(Models.Pnld.ReembolsosDespesa item);
+    partial void OnHistoricosStatusReembolsosDespesaDeleted(Models.Pnld.HistoricosStatusReembolsosDespesa item);
 
-    [HttpDelete("{ReembolsoDespesa}")]
-    public IActionResult DeleteReembolsosDespesa(int key) 
+    [HttpDelete("{HistoricoStatusReembolsoDespesas}")]
+    public IActionResult DeleteHistoricosStatusReembolsosDespesa(int key) 
     {
         try
         {
@@ -63,10 +63,8 @@ namespace Pnld.Controllers.Pnld
             }
 
 
-            var item = this.context.ReembolsosDespesas
-                .Where(i => i.ReembolsoDespesa == key)
-                .Include(i => i.HistoricosStatusReembolsosDespesas)
-                .Include(i => i.ItensReembolsosDespesas)
+            var item = this.context.HistoricosStatusReembolsosDespesas
+                .Where(i => i.HistoricoStatusReembolsoDespesas == key)
                 .FirstOrDefault();
 
             if (item == null)
@@ -74,8 +72,8 @@ namespace Pnld.Controllers.Pnld
                 return BadRequest();
             }                
 
-            this.OnReembolsosDespesaDeleted(item);
-            this.context.ReembolsosDespesas.Remove(item);
+            this.OnHistoricosStatusReembolsosDespesaDeleted(item);
+            this.context.HistoricosStatusReembolsosDespesas.Remove(item);
             this.context.SaveChanges();
 
             return new NoContentResult();
@@ -87,10 +85,10 @@ namespace Pnld.Controllers.Pnld
         }
     }
 
-    partial void OnReembolsosDespesaUpdated(Models.Pnld.ReembolsosDespesa item);
+    partial void OnHistoricosStatusReembolsosDespesaUpdated(Models.Pnld.HistoricosStatusReembolsosDespesa item);
 
-    [HttpPut("{ReembolsoDespesa}")]
-    public IActionResult PutReembolsosDespesa(int key, [FromBody]Models.Pnld.ReembolsosDespesa newItem)
+    [HttpPut("{HistoricoStatusReembolsoDespesas}")]
+    public IActionResult PutHistoricosStatusReembolsosDespesa(int key, [FromBody]Models.Pnld.HistoricosStatusReembolsosDespesa newItem)
     {
         try
         {
@@ -99,20 +97,19 @@ namespace Pnld.Controllers.Pnld
                 return BadRequest(ModelState);
             }
 
-            if (newItem == null || (newItem.ReembolsoDespesa != key))
+            if (newItem == null || (newItem.HistoricoStatusReembolsoDespesas != key))
             {
                 return BadRequest();
             }
 
-            this.OnReembolsosDespesaUpdated(newItem);
-            this.context.ReembolsosDespesas.Update(newItem);
+            this.OnHistoricosStatusReembolsosDespesaUpdated(newItem);
+            this.context.HistoricosStatusReembolsosDespesas.Update(newItem);
             this.context.SaveChanges();
 
-            var itemToReturn = this.context.ReembolsosDespesas
-                .Where(i => i.ReembolsoDespesa == key)
+            var itemToReturn = this.context.HistoricosStatusReembolsosDespesas
+                .Where(i => i.HistoricoStatusReembolsoDespesas == key)
+                .Include(i => i.ReembolsosDespesa)
                 .Include(i => i.StatusReembolsosDespesa)
-                .Include(i => i.Reunio)
-                .Include(i => i.Participante)
                 .FirstOrDefault();
 
             return new JsonResult(itemToReturn, new Newtonsoft.Json.JsonSerializerSettings
@@ -131,8 +128,8 @@ namespace Pnld.Controllers.Pnld
         }
     }
 
-    [HttpPatch("{ReembolsoDespesa}")]
-    public IActionResult PatchReembolsosDespesa(int key, [FromBody]Delta<Models.Pnld.ReembolsosDespesa> patch)
+    [HttpPatch("{HistoricoStatusReembolsoDespesas}")]
+    public IActionResult PatchHistoricosStatusReembolsosDespesa(int key, [FromBody]Delta<Models.Pnld.HistoricosStatusReembolsosDespesa> patch)
     {
         try
         {
@@ -141,7 +138,7 @@ namespace Pnld.Controllers.Pnld
                 return BadRequest(ModelState);
             }
 
-            var item = this.context.ReembolsosDespesas.Where(i=>i.ReembolsoDespesa == key).FirstOrDefault();
+            var item = this.context.HistoricosStatusReembolsosDespesas.Where(i=>i.HistoricoStatusReembolsoDespesas == key).FirstOrDefault();
             
             if (item == null)
             {
@@ -150,15 +147,14 @@ namespace Pnld.Controllers.Pnld
 
             patch.Patch(item);
 
-            this.OnReembolsosDespesaUpdated(item);
-            this.context.ReembolsosDespesas.Update(item);
+            this.OnHistoricosStatusReembolsosDespesaUpdated(item);
+            this.context.HistoricosStatusReembolsosDespesas.Update(item);
             this.context.SaveChanges();
 
-            var itemToReturn = this.context.ReembolsosDespesas
-                .Where(i => i.ReembolsoDespesa == key)
+            var itemToReturn = this.context.HistoricosStatusReembolsosDespesas
+                .Where(i => i.HistoricoStatusReembolsoDespesas == key)
+                .Include(i => i.ReembolsosDespesa)
                 .Include(i => i.StatusReembolsosDespesa)
-                .Include(i => i.Reunio)
-                .Include(i => i.Participante)
                 .FirstOrDefault();
 
             return new JsonResult(itemToReturn, new Newtonsoft.Json.JsonSerializerSettings
@@ -177,10 +173,10 @@ namespace Pnld.Controllers.Pnld
         }
     }
 
-    partial void OnReembolsosDespesaCreated(Models.Pnld.ReembolsosDespesa item);
+    partial void OnHistoricosStatusReembolsosDespesaCreated(Models.Pnld.HistoricosStatusReembolsosDespesa item);
 
     [HttpPost]
-    public IActionResult Post([FromBody] Models.Pnld.ReembolsosDespesa item)
+    public IActionResult Post([FromBody] Models.Pnld.HistoricosStatusReembolsosDespesa item)
     {
         try
         {
@@ -194,16 +190,15 @@ namespace Pnld.Controllers.Pnld
                 return BadRequest();
             }
 
-            this.OnReembolsosDespesaCreated(item);
-            this.context.ReembolsosDespesas.Add(item);
+            this.OnHistoricosStatusReembolsosDespesaCreated(item);
+            this.context.HistoricosStatusReembolsosDespesas.Add(item);
             this.context.SaveChanges();
 
-            var key = item.ReembolsoDespesa;
-            var itemToReturn = this.context.ReembolsosDespesas
-                .Where(i => i.ReembolsoDespesa == key)
+            var key = item.HistoricoStatusReembolsoDespesas;
+            var itemToReturn = this.context.HistoricosStatusReembolsosDespesas
+                .Where(i => i.HistoricoStatusReembolsoDespesas == key)
+                .Include(i => i.ReembolsosDespesa)
                 .Include(i => i.StatusReembolsosDespesa)
-                .Include(i => i.Reunio)
-                .Include(i => i.Participante)
                 .FirstOrDefault();
 
             return new JsonResult(itemToReturn, new Newtonsoft.Json.JsonSerializerSettings

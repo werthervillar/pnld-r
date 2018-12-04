@@ -21,7 +21,7 @@
               "components": [
                 {
                   "addText": "Novo",
-                  "allowAdd": true,
+                  "allowAdd": "${security.user.isInRole(\"Colaborador\") == false}",
                   "allowDelete": true,
                   "allowFiltering": true,
                   "allowMultiSorting": false,
@@ -70,7 +70,8 @@
                                 ],
                                 "path": "edit-pendencias",
                                 "title": "Pendências",
-                                "type": "popup"
+                                "type": "popup",
+                                "width": 800
                               }
                             ]
                           },

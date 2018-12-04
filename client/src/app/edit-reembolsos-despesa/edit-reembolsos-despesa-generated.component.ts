@@ -271,11 +271,11 @@ export class EditReembolsosDespesaGenerated implements AfterViewInit, OnInit, On
   }
 
   button0Click(event: any) {
-    this.dialogService.open(EditPendenciasComponent, { parameters: {ReembolsoDespesa: this.reembolsosdespesa.ReembolsoDespesa}, title: 'Edit Pendencias' });
+    this.dialogService.open(EditPendenciasComponent, { parameters: {ReembolsoDespesa: this.reembolsosdespesa.ReembolsoDespesa}, width: 800, title: 'Edit Pendencias' });
   }
 
   button1Click(event: any) {
-    this.dialogService.open(RelatorioReembolsoComponent, { parameters: {Reuniao: this.reembolsosdespesa.Reuniao, ReembolsoDespesa: this.reembolsosdespesa.ReembolsoDespesa}, title: 'Relatório de Reembolso' });
+    this.dialogService.open(RelatorioReembolsoComponent, { parameters: {Reuniao: this.reembolsosdespesa.Reuniao, ReembolsoDespesa: this.reembolsosdespesa.ReembolsoDespesa}, width: 800, title: 'Relatório de Reembolso' });
   }
 
   grid0Add(event: any) {

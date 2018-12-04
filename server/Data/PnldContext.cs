@@ -30,6 +30,16 @@ namespace Pnld.Data
               .WithMany(i => i.Comprovantes)
               .HasForeignKey(i => i.ItemReembolsoDespesa)
               .HasPrincipalKey(i => i.ItemReembolsoDespesa);
+        builder.Entity<Pnld.Models.Pnld.HistoricosStatusReembolsosDespesa>()
+              .HasOne(i => i.ReembolsosDespesa)
+              .WithMany(i => i.HistoricosStatusReembolsosDespesas)
+              .HasForeignKey(i => i.ReembolsoDespesa)
+              .HasPrincipalKey(i => i.ReembolsoDespesa);
+        builder.Entity<Pnld.Models.Pnld.HistoricosStatusReembolsosDespesa>()
+              .HasOne(i => i.StatusReembolsosDespesa)
+              .WithMany(i => i.HistoricosStatusReembolsosDespesas)
+              .HasForeignKey(i => i.StatusReembolsoDespesa)
+              .HasPrincipalKey(i => i.StatusReembolsoDespesa);
         builder.Entity<Pnld.Models.Pnld.ItensReembolsosDespesa>()
               .HasOne(i => i.ReembolsosDespesa)
               .WithMany(i => i.ItensReembolsosDespesas)
@@ -77,6 +87,12 @@ namespace Pnld.Data
 
 
     public DbSet<Pnld.Models.Pnld.Comprovante> Comprovantes
+    {
+      get;
+      set;
+    }
+
+    public DbSet<Pnld.Models.Pnld.HistoricosStatusReembolsosDespesa> HistoricosStatusReembolsosDespesas
     {
       get;
       set;
