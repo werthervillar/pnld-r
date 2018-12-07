@@ -16,11 +16,27 @@
           "type": "heading"
         },
         {
+          "barPadding": 20,
+          "categoryProperty": "Status",
+          "chartType": "Column",
+          "colors": [],
+          "data": "${getReembolsosChartListsResult}",
+          "legend": true,
+          "name": "chart0",
+          "style": {
+            "height": "297px",
+            "width": "100%"
+          },
+          "type": "chart",
+          "valueProperty": "Reembolsos"
+        },
+        {
           "addText": "Add",
           "allowPaging": true,
           "allowSorting": true,
           "columns": [
             {
+              "footerTemplate": "<b>Total</b>",
               "property": "Reembolsos",
               "title": "Reembolsos",
               "type": "integer"
@@ -31,14 +47,18 @@
               "type": "string"
             },
             {
+              "footerTemplate": "<b>${TotalGasto | currency}</b>",
               "format": "decimal",
               "property": "ValorGasto",
+              "template": "${data.ValorGasto | currency}",
               "title": "Valor Gasto",
               "type": "number"
             },
             {
+              "footerTemplate": "<b>${TotalConcedido | currency}</b>",
               "format": "decimal",
               "property": "ValorConcedido",
+              "template": "${data.ValorConcedido | currency}",
               "title": "Valor Concedido",
               "type": "number"
             }
@@ -89,6 +109,9 @@
             "rowSelect": []
           },
           "name": "grid0",
+          "style": {
+            "height": "415px"
+          },
           "type": "grid",
           "value": ""
         }
@@ -112,6 +135,16 @@
             "name": "getReembolsosChartListsResult",
             "type": "set",
             "value": "${result.value}"
+          },
+          {
+            "name": "TotalGasto",
+            "type": "set",
+            "value": "${result.value.map(p=>p.ValorGasto).reduce((a, b) => a + b)}"
+          },
+          {
+            "name": "TotalConcedido",
+            "type": "set",
+            "value": "${result.value.map(p=>p.ValorConcedido).reduce((a, b) => a + b)}"
           }
         ],
         "type": "invoke"

@@ -35,6 +35,7 @@ import { NumericModule } from '@radzen/angular/dist/numeric';
 import { TextBoxModule } from '@radzen/angular/dist/textbox';
 import { TextAreaModule } from '@radzen/angular/dist/textarea';
 import { SSRSViewerModule } from '@radzen/angular/dist/ssrsviewer';
+import { ChartModule } from '@radzen/angular/dist/chart';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
 import { DialogModule } from '@radzen/angular/dist/dialog';
@@ -177,6 +178,7 @@ export const AppImports = [
   TextBoxModule,
   TextAreaModule,
   SSRSViewerModule,
+  ChartModule,
   SharedModule,
   NotificationModule,
   DialogModule,

@@ -1,14 +1,31 @@
 <rz-content #content1 container="main">
   <rz-heading #pageTitle size="H1" text="Home">
   </rz-heading>
-  <rz-grid #grid0 addText="Add" [allowPaging]="true" [allowSorting]="true" [data]="getReembolsosChartListsResult" emptyText="No records to display." (loadData)="grid0LoadData($event)">
+  <rz-chart #chart0 [barPadding]="20" categoryProperty="Status" chartType="Column" [data]="getReembolsosChartListsResult" [legend]="true" [style]="{'height':'297px','width':'100%'}" valueProperty="Reembolsos">
+  </rz-chart>
+  <rz-grid #grid0 addText="Add" [allowPaging]="true" [allowSorting]="true" [data]="getReembolsosChartListsResult" emptyText="No records to display." [style]="{'height':'415px'}" (loadData)="grid0LoadData($event)">
     <rz-grid-column property="Reembolsos" title="Reembolsos" type="integer">
+      <ng-template gridColumnFooterTemplate>
+      <b>Total</b>
+      </ng-template>
     </rz-grid-column>
     <rz-grid-column property="Status" title="Status" type="string">
     </rz-grid-column>
     <rz-grid-column format="decimal" property="ValorGasto" title="Valor Gasto" type="number">
+      <ng-template let-data gridColumnTemplate>
+      {{data?.ValorGasto | currency}}
+      </ng-template>
+      <ng-template gridColumnFooterTemplate>
+      <b>{{TotalGasto | currency}}</b>
+      </ng-template>
     </rz-grid-column>
     <rz-grid-column format="decimal" property="ValorConcedido" title="Valor Concedido" type="number">
+      <ng-template let-data gridColumnTemplate>
+      {{data?.ValorConcedido | currency}}
+      </ng-template>
+      <ng-template gridColumnFooterTemplate>
+      <b>{{TotalConcedido | currency}}</b>
+      </ng-template>
     </rz-grid-column>
   </rz-grid>
 </rz-content>

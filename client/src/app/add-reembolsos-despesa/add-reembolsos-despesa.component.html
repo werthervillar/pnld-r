@@ -1,6 +1,4 @@
 <rz-content #content1 container="main">
-  <rz-heading #pageTitle size="H1" text="Novo Reembolso de Despesa">
-  </rz-heading>
   <div class="row">
     <div class="col-md-12">
       <rz-form #form0 cancelText="Cancelar" [columns]="2" [data]="formData" deleteText="Delete" [style]="{'height':'431px'}" submitText="Salvar" [updateDataOnChange]="true" (cancel)="form0Cancel($event)" (change)="form0Change($event)" (loadData)="form0LoadData($event)" (submit)="form0Submit($event)">

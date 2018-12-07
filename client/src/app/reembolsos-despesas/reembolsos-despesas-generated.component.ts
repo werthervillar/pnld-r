@@ -13,6 +13,7 @@ import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { GridComponent } from '@radzen/angular/dist/grid';
 import { ButtonComponent } from '@radzen/angular/dist/button';
+import { AddReembolsosDespesaComponent } from '../add-reembolsos-despesa/add-reembolsos-despesa.component';
 import { EditReembolsosDespesaComponent } from '../edit-reembolsos-despesa/edit-reembolsos-despesa.component';
 import { RelatorioReembolsoComponent } from '../relatorio-reembolso/relatorio-reembolso.component';
 import { EditPendenciasComponent } from '../edit-pendencias/edit-pendencias.component';
@@ -129,15 +130,38 @@ export class ReembolsosDespesasGenerated implements AfterViewInit, OnInit, OnDes
   }
 
   grid0Add(event: any) {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    }
-    this.router.navigate(['add-reembolsos-despesa']);
+    this.dialogService.open(AddReembolsosDespesaComponent, { parameters: {}, title: 'Cadastrar Reembolso de Despesa' })
+        .afterClosed().subscribe(result => {
+              if (this.security.user.isInRole('Colaborador') == true) {
+              this.pnld.getReembolsosDespesasLists(`ColaboradorEmail eq '${this.security.user.name}'`, null, null, null, null, null, null, null)
+        .subscribe((result: any) => {
+              this.getReembolsosDespesasListsResult = result.value;
+        }, (result: any) => {
+      
+        });
+      }
+
+      if (this.security.user.isInRole('Colaborador') != true) {
+              this.pnld.getReembolsosDespesasLists(null, null, null, null, null, null, null, null)
+        .subscribe((result: any) => {
+              this.getReembolsosDespesasListsResult = result.value;
+        }, (result: any) => {
+      
+        });
+      }
+    });
   }
 
   grid0Delete(event: any) {
     this.pnld.deleteReembolsosDespesa(event.ReembolsoDespesa)
     .subscribe((result: any) => {
+      this.pnld.getReembolsosDespesasLists(null, null, null, null, null, null, null, null)
+      .subscribe((result: any) => {
+        this.getReembolsosDespesasListsResult = result.value;
+      }, (result: any) => {
+
+      });
+
       this.notificationService.notify({ severity: "success", summary: `Success`, detail: `ReembolsosDespesa deleted!` });
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Unable to delete ReembolsosDespesa` });
@@ -165,7 +189,26 @@ export class ReembolsosDespesasGenerated implements AfterViewInit, OnInit, OnDes
   }
 
   grid0RowSelect(event: any) {
-    this.dialogService.open(EditReembolsosDespesaComponent, { parameters: {ReembolsoDespesa: event.ReembolsoDespesa}, width: 900, title: 'Reembolso de Despesa' });
+    this.dialogService.open(EditReembolsosDespesaComponent, { parameters: {ReembolsoDespesa: event.ReembolsoDespesa}, width: 900, title: 'Reembolso de Despesa' })
+        .afterClosed().subscribe(result => {
+              if (this.security.user.isInRole('Colaborador') == true) {
+              this.pnld.getReembolsosDespesasLists(`ColaboradorEmail eq '${this.security.user.name}'`, null, null, null, null, null, null, null)
+        .subscribe((result: any) => {
+              this.getReembolsosDespesasListsResult = result.value;
+        }, (result: any) => {
+      
+        });
+      }
+
+      if (this.security.user.isInRole('Colaborador') != true) {
+              this.pnld.getReembolsosDespesasLists(null, null, null, null, null, null, null, null)
+        .subscribe((result: any) => {
+              this.getReembolsosDespesasListsResult = result.value;
+        }, (result: any) => {
+      
+        });
+      }
+    });
   }
 
   button0Click(event: any, data: any) {

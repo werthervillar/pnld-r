@@ -27,10 +27,16 @@
             }
           ],
           "name": "row0",
+          "style": {
+            "backgroundColor": "rgba(0, 0, 0, 0)"
+          },
           "type": "row"
         }
       ],
       "name": "body0",
+      "style": {
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      },
       "type": "body"
     }
   ],

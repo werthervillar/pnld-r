@@ -17,7 +17,7 @@
               "value": "${parameters.ReembolsoDespesa}"
             }
           ],
-          "reportName": "plnd/ReembolsosDespesas",
+          "reportName": "plnd-r/ReembolsosDespesas",
           "reportServer": "http://cv2.corp.casavillar.com.br/reportserver",
           "style": {
             "height": "447px"

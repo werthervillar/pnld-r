@@ -11,6 +11,7 @@ import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dis
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
+import { ChartComponent } from '@radzen/angular/dist/chart';
 import { GridComponent } from '@radzen/angular/dist/grid';
 
 import { PnldService } from '../pnld.service';
@@ -20,6 +21,7 @@ export class HomeGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('pageTitle') pageTitle: HeadingComponent;
+  @ViewChild('chart0') chart0: ChartComponent;
   @ViewChild('grid0') grid0: GridComponent;
 
   router: Router;
@@ -43,6 +45,10 @@ export class HomeGenerated implements AfterViewInit, OnInit, OnDestroy {
   security: SecurityService;
 
   getReembolsosChartListsResult: any;
+
+  TotalGasto: any;
+
+  TotalConcedido: any;
 
   parameters: any;
 
@@ -89,6 +95,10 @@ export class HomeGenerated implements AfterViewInit, OnInit, OnDestroy {
     this.pnld.getReembolsosChartLists(`ColaboradorEmail eq '${this.security.user.name}'`, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.getReembolsosChartListsResult = result.value;
+
+      this.TotalGasto = result.value.map(p => p.ValorGasto).reduce((a, b) => a + b);
+
+      this.TotalConcedido = result.value.map(p => p.ValorConcedido).reduce((a, b) => a + b);
     }, (result: any) => {
 
     });

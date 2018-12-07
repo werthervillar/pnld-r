@@ -22,7 +22,7 @@
                 {
                   "addText": "Novo",
                   "allowAdd": "${security.user.isInRole(\"Colaborador\") == false}",
-                  "allowDelete": true,
+                  "allowDelete": "${security.user.isInRole(\"Colaborador\") == false}",
                   "allowFiltering": true,
                   "allowMultiSorting": false,
                   "allowPaging": true,
@@ -131,7 +131,40 @@
                     "add": [
                       {
                         "path": "add-reembolsos-despesa",
-                        "type": "navigate"
+                        "then": [
+                          {
+                            "condition": "${security.user.isInRole(\"Colaborador\")} == true",
+                            "name": "pnld.getReembolsosDespesasLists",
+                            "parameters": [
+                              {
+                                "name": "$filter",
+                                "value": "ColaboradorEmail eq '${security.user.name}'"
+                              }
+                            ],
+                            "then": [
+                              {
+                                "name": "getReembolsosDespesasListsResult",
+                                "type": "set",
+                                "value": "${result.value}"
+                              }
+                            ],
+                            "type": "invoke"
+                          },
+                          {
+                            "condition": "${security.user.isInRole(\"Colaborador\")} != true",
+                            "name": "pnld.getReembolsosDespesasLists",
+                            "then": [
+                              {
+                                "name": "getReembolsosDespesasListsResult",
+                                "type": "set",
+                                "value": "${result.value}"
+                              }
+                            ],
+                            "type": "invoke"
+                          }
+                        ],
+                        "title": "Cadastrar Reembolso de Despesa",
+                        "type": "popup"
                       }
                     ],
                     "delete": [
@@ -152,6 +185,17 @@
                           }
                         ],
                         "then": [
+                          {
+                            "name": "pnld.getReembolsosDespesasLists",
+                            "then": [
+                              {
+                                "name": "getReembolsosDespesasListsResult",
+                                "type": "set",
+                                "value": "${result.value}"
+                              }
+                            ],
+                            "type": "invoke"
+                          },
                           {
                             "detail": "ReembolsosDespesa deleted!",
                             "severity": "success",
@@ -262,6 +306,39 @@
                           }
                         ],
                         "path": "edit-reembolsos-despesa",
+                        "then": [
+                          {
+                            "condition": "${security.user.isInRole(\"Colaborador\")} == true",
+                            "name": "pnld.getReembolsosDespesasLists",
+                            "parameters": [
+                              {
+                                "name": "$filter",
+                                "value": "ColaboradorEmail eq '${security.user.name}'"
+                              }
+                            ],
+                            "then": [
+                              {
+                                "condition": "",
+                                "name": "getReembolsosDespesasListsResult",
+                                "type": "set",
+                                "value": "${result.value}"
+                              }
+                            ],
+                            "type": "invoke"
+                          },
+                          {
+                            "condition": "${security.user.isInRole(\"Colaborador\")} != true",
+                            "name": "pnld.getReembolsosDespesasLists",
+                            "then": [
+                              {
+                                "name": "getReembolsosDespesasListsResult",
+                                "type": "set",
+                                "value": "${result.value}"
+                              }
+                            ],
+                            "type": "invoke"
+                          }
+                        ],
                         "title": "Reembolso de Despesa",
                         "type": "popup",
                         "width": 900
@@ -270,6 +347,7 @@
                   },
                   "name": "grid0",
                   "pageSize": 10,
+                  "pageSizeOptions": [],
                   "template": "",
                   "title": "",
                   "type": "grid"

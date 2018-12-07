@@ -53,6 +53,7 @@
                     "add": [
                       {
                         "path": "add-reunio",
+                        "title": "Cadastrar Reunião",
                         "type": "popup"
                       }
                     ],
@@ -137,6 +138,7 @@
                           }
                         ],
                         "path": "edit-reunio",
+                        "title": "Reunião",
                         "type": "popup"
                       }
                     ]

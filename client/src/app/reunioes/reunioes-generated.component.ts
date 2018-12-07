@@ -101,7 +101,7 @@ export class ReunioesGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   grid0Add(event: any) {
-    this.dialogService.open(AddReunioComponent, { parameters: {}, title: 'Add Reunio' });
+    this.dialogService.open(AddReunioComponent, { parameters: {}, title: 'Cadastrar Reunião' });
   }
 
   grid0Delete(event: any) {
@@ -125,6 +125,6 @@ export class ReunioesGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   grid0RowSelect(event: any) {
-    this.dialogService.open(EditReunioComponent, { parameters: {Reuniao: event.Reuniao}, title: 'Edit Reunio' });
+    this.dialogService.open(EditReunioComponent, { parameters: {Reuniao: event.Reuniao}, title: 'Reunião' });
   }
 }

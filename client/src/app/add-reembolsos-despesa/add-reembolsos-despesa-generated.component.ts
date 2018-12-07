@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dist/dialog';
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
-import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { FormComponent } from '@radzen/angular/dist/form';
 
 import { PnldService } from '../pnld.service';
@@ -19,7 +18,6 @@ import { SecurityService } from '../security.service';
 export class AddReembolsosDespesaGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('pageTitle') pageTitle: HeadingComponent;
   @ViewChild('form0') form0: FormComponent;
 
   router: Router;
