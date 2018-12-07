@@ -9,12 +9,6 @@
     {
       "components": [
         {
-          "name": "pageTitle",
-          "size": "H1",
-          "text": "Reembolso de Despesa",
-          "type": "heading"
-        },
-        {
           "items": [
             {
               "components": [
@@ -492,10 +486,9 @@
                       "type": "row"
                     },
                     {
-                      "class": "justify-content-start",
                       "components": [
                         {
-                          "class": "col offset-sm-3",
+                          "class": "col-md-12",
                           "components": [
                             {
                               "buttonStyle": "primary",
@@ -506,19 +499,6 @@
                                 "paddingRight": "22px"
                               },
                               "text": "Salvar",
-                              "type": "button"
-                            },
-                            {
-                              "buttonStyle": "light",
-                              "events": {
-                                "click": [
-                                  {
-                                    "type": "back"
-                                  }
-                                ]
-                              },
-                              "name": "CancelButton",
-                              "text": "Cancelar",
                               "type": "button"
                             },
                             {
@@ -574,22 +554,29 @@
                               "size": "md",
                               "text": "Relatório",
                               "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              },
+                              "name": "CancelButton",
+                              "text": "Cancelar",
+                              "type": "button"
                             }
                           ],
+                          "name": "col1",
+                          "style": {
+                            "textAlign": "center"
+                          },
                           "type": "col"
                         }
                       ],
-                      "style": {
-                        "display": "flex",
-                        "float": "none",
-                        "height": "55px",
-                        "marginRight": "0px",
-                        "paddingLeft": "0px",
-                        "paddingRight": "0px",
-                        "paddingTop": "10px",
-                        "position": "static",
-                        "textAlign": "left"
-                      },
+                      "name": "row0",
                       "type": "row"
                     }
                   ],
@@ -633,7 +620,7 @@
                   "type": "template-form"
                 }
               ],
-              "selected": true,
+              "selected": false,
               "text": "Dados do Reembolso"
             },
             {
@@ -647,24 +634,15 @@
                   "allowSorting": true,
                   "columns": [
                     {
-                      "filterProperty": "TiposItensReembolsosDespesa.Nome",
                       "footerTemplate": "<b>Total</b>",
-                      "property": "Tipo",
-                      "sortProperty": "TiposItensReembolsosDespesa.Nome",
-                      "template": "${data.TiposItensReembolsosDespesa?.Nome}",
+                      "property": "TipoNome",
+                      "template": "",
                       "title": "Tipo",
                       "type": "string"
                     },
                     {
-                      "format": "date-time",
-                      "property": "Data",
-                      "template": "${data.Data | utcDate:'dd/MM/yyyy'}",
-                      "title": "Data",
-                      "type": "string"
-                    },
-                    {
                       "footerTemplate": "<b>${TotalGasto | currency}</b>",
-                      "format": 0,
+                      "format": "decimal",
                       "property": "ValorGasto",
                       "template": "${data.ValorGasto | currency}",
                       "title": "Valor Gasto",
@@ -677,15 +655,20 @@
                       "template": "${data.ValorConcedido | currency}",
                       "title": "Valor Concedido",
                       "type": "number"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "Data",
+                      "template": "${data.Data | utcDate:'dd/MM/yyyy'}",
+                      "title": "Data",
+                      "type": "string"
                     }
                   ],
-                  "count": "${getItensReembolsosDespesasCount}",
-                  "data": "${getItensReembolsosDespesasResult}",
-                  "emptyText": "No records to display.",
+                  "count": "${getItensReembolsosDespesasListsCount}",
+                  "data": "${getItensReembolsosDespesasListsResult}",
                   "events": {
                     "add": [
                       {
-                        "height": -2,
                         "parameters": [
                           {
                             "name": "ReembolsoDespesa",
@@ -695,18 +678,19 @@
                         "path": "add-itens-reembolsos-despesa",
                         "then": [
                           {
-                            "name": "pnld.getReembolsosDespesaByReembolsoDespesa",
+                            "name": "pnld.getItensReembolsosDespesasLists",
                             "parameters": [
                               {
                                 "name": "ReembolsoDespesa",
-                                "value": "${reembolsosdespesa.ReembolsoDespesa}"
+                                "value": "ReembolsoDespesa eq ${event.ReembolsoDespesa}"
                               }
                             ],
                             "then": [
                               {
-                                "name": "reembolsosdespesa",
+                                "condition": "",
+                                "name": "getItensReembolsosDespesasListsResult",
                                 "type": "set",
-                                "value": "${result}"
+                                "value": "${result.value}"
                               }
                             ],
                             "type": "invoke"
@@ -720,7 +704,7 @@
                       {
                         "error": [
                           {
-                            "detail": "Erro ao excluir registro!",
+                            "detail": "Erro ao excluir!",
                             "severity": "error",
                             "summary": "Alerta",
                             "type": "notify"
@@ -735,24 +719,24 @@
                         ],
                         "then": [
                           {
-                            "name": "pnld.getReembolsosDespesaByReembolsoDespesa",
+                            "name": "pnld.getItensReembolsosDespesasLists",
                             "parameters": [
                               {
                                 "name": "ReembolsoDespesa",
-                                "value": "${reembolsosdespesa.ReembolsoDespesa}"
+                                "value": "ReembolsoDespesa eq ${event.ReembolsoDespesa}"
                               }
                             ],
                             "then": [
                               {
-                                "name": "reembolsosdespesa",
+                                "name": "getItensReembolsosDespesasListsResult",
                                 "type": "set",
-                                "value": "${result}"
+                                "value": "${result.value}"
                               }
                             ],
                             "type": "invoke"
                           },
                           {
-                            "detail": "Registro excluido com sucesso!",
+                            "detail": "Registro excluido!",
                             "severity": "success",
                             "summary": "Alerta",
                             "type": "notify"
@@ -763,7 +747,7 @@
                     ],
                     "loadData": [
                       {
-                        "name": "pnld.getItensReembolsosDespesas",
+                        "name": "pnld.getItensReembolsosDespesasLists",
                         "parameters": [
                           {
                             "name": "$top",
@@ -783,7 +767,7 @@
                           },
                           {
                             "name": "$filter",
-                            "value": "${event.filter} && ReembolsoDespesa eq ${parameters.ReembolsoDespesa}"
+                            "value": "${event.filter == '' ? '' : event.filter + ' and '} ReembolsoDespesa eq ${parameters.ReembolsoDespesa}"
                           },
                           {
                             "name": "$orderby",
@@ -792,12 +776,12 @@
                         ],
                         "then": [
                           {
-                            "name": "getItensReembolsosDespesasResult",
+                            "name": "getItensReembolsosDespesasListsResult",
                             "type": "set",
                             "value": "${result.value}"
                           },
                           {
-                            "name": "getItensReembolsosDespesasCount",
+                            "name": "getItensReembolsosDespesasListsCount",
                             "type": "set",
                             "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                           }
@@ -816,18 +800,18 @@
                         "path": "edit-itens-reembolsos-despesa",
                         "then": [
                           {
-                            "name": "pnld.getReembolsosDespesaByReembolsoDespesa",
+                            "name": "pnld.getItensReembolsosDespesasLists",
                             "parameters": [
                               {
                                 "name": "ReembolsoDespesa",
-                                "value": "${event.ReembolsoDespesa}"
+                                "value": "ReembolsoDespesa eq ${parameters.ReembolsoDespesa}"
                               }
                             ],
                             "then": [
                               {
-                                "name": "reembolsosdespesa",
+                                "name": "getItensReembolsosDespesasListsResult",
                                 "type": "set",
-                                "value": "${result}"
+                                "value": "${result.value}"
                               }
                             ],
                             "type": "invoke"
@@ -838,19 +822,18 @@
                       }
                     ]
                   },
-                  "name": "grid0",
+                  "name": "grid1",
                   "pageSize": 10,
-                  "pageSizeOptions": [],
-                  "template": "",
-                  "type": "grid",
-                  "value": ""
+                  "type": "grid"
                 }
               ],
-              "selected": false,
+              "icon": "",
+              "selected": true,
               "text": "Itens do Reembolso"
             }
           ],
           "name": "tabs0",
+          "selectedIndex": "",
           "type": "tabs"
         }
       ],
@@ -1007,23 +990,19 @@
         "type": "invoke"
       },
       {
-        "name": "pnld.getItensReembolsosDespesas",
+        "name": "pnld.getItensReembolsosDespesasLists",
         "parameters": [
           {
             "name": "$top",
-            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+            "value": "this.grid1.allowPaging ? this.grid1.pageSize : null"
           },
           {
             "name": "$skip",
-            "value": "this.grid0.allowPaging ? 0 : null"
+            "value": "this.grid1.allowPaging ? 0 : null"
           },
           {
             "name": "$count",
-            "value": "this.grid0.allowPaging"
-          },
-          {
-            "name": "$expand",
-            "value": "TiposItensReembolsosDespesa"
+            "value": "this.grid1.allowPaging"
           },
           {
             "name": "$filter",
@@ -1032,14 +1011,14 @@
         ],
         "then": [
           {
-            "name": "getItensReembolsosDespesasResult",
+            "name": "getItensReembolsosDespesasListsResult",
             "type": "set",
             "value": "${result.value}"
           },
           {
-            "name": "getItensReembolsosDespesasCount",
+            "name": "getItensReembolsosDespesasListsCount",
             "type": "set",
-            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+            "value": "this.grid1.allowPaging ? result['@odata.count'] : ${result.value.length}"
           },
           {
             "name": "TotalGasto",

@@ -532,8 +532,7 @@
                         ],
                         "then": [
                           {
-                            "path": "edit-reembolsos-despesa",
-                            "type": "navigate"
+                            "type": "back"
                           }
                         ],
                         "type": "invoke"

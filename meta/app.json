@@ -16,7 +16,8 @@
     "Add Passagem",
     "Reembolsos Despesas",
     "Itens Reembolsos Despesas",
-    "Comprovantes"
+    "Comprovantes",
+    "Home"
   ],
   "pages": [
     "Acesso",
@@ -44,7 +45,8 @@
     "Add Comprovante",
     "Edit Comprovante",
     "Edit Pendencias",
-    "Relatorio Reembolso"
+    "Relatorio Reembolso",
+    "Home"
   ],
   "security": {
     "autoGeneratePages": true,
@@ -64,6 +66,6 @@
   "serverLang": "cs",
   "serverProject": true,
   "serverVersion": "2",
-  "startPage": "Reembolsos Despesas",
+  "startPage": "Home",
   "theme": "default"
 }

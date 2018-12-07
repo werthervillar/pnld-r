@@ -98,13 +98,31 @@ namespace Pnld.Data
       set;
     }
 
+    public DbSet<Pnld.Models.Pnld.HistoricosStatusReembolsosDespesasList> HistoricosStatusReembolsosDespesasLists
+    {
+      get;
+      set;
+    }
+
     public DbSet<Pnld.Models.Pnld.ItensReembolsosDespesa> ItensReembolsosDespesas
     {
       get;
       set;
     }
 
+    public DbSet<Pnld.Models.Pnld.ItensReembolsosDespesasList> ItensReembolsosDespesasLists
+    {
+      get;
+      set;
+    }
+
     public DbSet<Pnld.Models.Pnld.Participante> Participantes
+    {
+      get;
+      set;
+    }
+
+    public DbSet<Pnld.Models.Pnld.ReembolsosChartList> ReembolsosChartLists
     {
       get;
       set;

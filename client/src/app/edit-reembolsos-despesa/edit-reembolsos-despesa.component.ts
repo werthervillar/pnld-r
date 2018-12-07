@@ -1,6 +1,8 @@
 import { Component, Injector } from '@angular/core';
 import { EditReembolsosDespesaGenerated } from './edit-reembolsos-despesa-generated.component';
 import { StatusService } from '../status.service';
+import { EditItensReembolsosDespesaComponent } from '../edit-itens-reembolsos-despesa/edit-itens-reembolsos-despesa.component';
+import { AddItensReembolsosDespesaComponent } from '../add-itens-reembolsos-despesa/add-itens-reembolsos-despesa.component';
 
 @Component({
   selector: 'page-edit-reembolsos-despesa',
@@ -63,11 +65,11 @@ export class EditReembolsosDespesaComponent extends EditReembolsosDespesaGenerat
 
             });
 
-        this.pnld.getItensReembolsosDespesas(`ReembolsoDespesa eq ${this.parameters.ReembolsoDespesa}`, this.grid0.allowPaging ? this.grid0.pageSize : null, this.grid0.allowPaging ? 0 : null, null, this.grid0.allowPaging, `TiposItensReembolsosDespesa`, null, null)
+        this.pnld.getItensReembolsosDespesasLists(`ReembolsoDespesa eq ${this.parameters.ReembolsoDespesa}`, this.grid1.allowPaging ? this.grid1.pageSize : null, this.grid1.allowPaging ? 0 : null, null, this.grid1.allowPaging, null, null, null)
             .subscribe((result: any) => {
-                this.getItensReembolsosDespesasResult = result.value;
+                this.getItensReembolsosDespesasListsResult = result.value;
 
-                this.getItensReembolsosDespesasCount = this.grid0.allowPaging ? result['@odata.count'] : result.value.length;
+                this.getItensReembolsosDespesasListsCount = this.grid1.allowPaging ? result['@odata.count'] : result.value.length;
 
                 this.TotalGasto = result.value.map(p => p.ValorGasto).reduce((a, b) => a + b);
 
@@ -75,7 +77,59 @@ export class EditReembolsosDespesaComponent extends EditReembolsosDespesaGenerat
             }, (result: any) => {
 
             });
+
+   
     }
 
-    
+    grid1RowSelect(event: any) {
+        this.dialogService.open(EditItensReembolsosDespesaComponent, { parameters: { ItemReembolsoDespesa: event.ItemReembolsoDespesa }, title: 'Item de Reembolso' })
+            .afterClosed().subscribe(result => {
+                this.pnld.getItensReembolsosDespesasLists(`ReembolsoDespesa eq ${event.ReembolsoDespesa}`, null, null, null, null, null, null, null)
+                    .subscribe((result: any) => {
+                        this.getItensReembolsosDespesasListsResult = result.value;
+
+                        this.TotalGasto = result.value.map(p => p.ValorGasto).reduce((a, b) => a + b);
+
+                        this.TotalConcedido = result.value.map(p => p.ValorConcedido).reduce((a, b) => a + b);
+                    }, (result: any) => {
+
+                    });
+            });
+    }
+
+    grid1Add(event: any) {
+        this.dialogService.open(AddItensReembolsosDespesaComponent, { parameters: { ReembolsoDespesa: this.parameters.ReembolsoDespesa }, title: 'Cadastrar Item de Reembolso' })
+            .afterClosed().subscribe(result => {
+                this.pnld.getItensReembolsosDespesasLists(`ReembolsoDespesa eq ${this.parameters.ReembolsoDespesa}`, null, null, null, null, null, null, null)
+                    .subscribe((result: any) => {
+                        this.getItensReembolsosDespesasListsResult = result.value;
+
+                        this.TotalGasto = result.value.map(p => p.ValorGasto).reduce((a, b) => a + b);
+
+                        this.TotalConcedido = result.value.map(p => p.ValorConcedido).reduce((a, b) => a + b);
+                    }, (result: any) => {
+
+                    });
+            });
+    }
+
+    grid1Delete(event: any) {
+        this.pnld.deleteItensReembolsosDespesa(event.ItemReembolsoDespesa)
+            .subscribe((result: any) => {
+                this.pnld.getItensReembolsosDespesasLists(`ReembolsoDespesa eq ${event.ReembolsoDespesa}`, null, null, null, null, null, null, null)
+                    .subscribe((result: any) => {
+                        this.getItensReembolsosDespesasListsResult = result.value;
+
+                        this.TotalGasto = result.value.map(p => p.ValorGasto).reduce((a, b) => a + b);
+
+                        this.TotalConcedido = result.value.map(p => p.ValorConcedido).reduce((a, b) => a + b);
+                    }, (result: any) => {
+
+                    });
+
+                this.notificationService.notify({ severity: "success", summary: `Alerta`, detail: `Registro excluido!` });
+            }, (result: any) => {
+                this.notificationService.notify({ severity: "error", summary: `Alerta`, detail: `Erro ao excluir!` });
+            });
+    }
 }

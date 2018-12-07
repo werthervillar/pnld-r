@@ -32,6 +32,8 @@
 </rz-body>
 <rz-sidebar #sidebar0>
   <rz-panelmenu #panelmenu0 [style]="{'height':'100%'}">
+    <rz-panelmenu-item path="home" text="Home" *ngIf="security?.isInRole(['Authenticated', 'Administrador', 'Colaborador', 'Controlador', 'Super'])">
+    </rz-panelmenu-item>
     <rz-panelmenu-item path="reunioes" text="Reuniões" *ngIf="security?.isInRole(['Administrador', 'Super'])">
     </rz-panelmenu-item>
     <rz-panelmenu-item path="participantes" text="Participantes" *ngIf="security?.isInRole(['Administrador', 'Super'])">

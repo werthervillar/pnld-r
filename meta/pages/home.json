@@ -1,0 +1,123 @@
+{
+  "access": [
+    "Authenticated",
+    "Administrador",
+    "Colaborador",
+    "Controlador",
+    "Super"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Home",
+          "type": "heading"
+        },
+        {
+          "addText": "Add",
+          "allowPaging": true,
+          "allowSorting": true,
+          "columns": [
+            {
+              "property": "Reembolsos",
+              "title": "Reembolsos",
+              "type": "integer"
+            },
+            {
+              "property": "Status",
+              "title": "Status",
+              "type": "string"
+            },
+            {
+              "format": "decimal",
+              "property": "ValorGasto",
+              "title": "Valor Gasto",
+              "type": "number"
+            },
+            {
+              "format": "decimal",
+              "property": "ValorConcedido",
+              "title": "Valor Concedido",
+              "type": "number"
+            }
+          ],
+          "data": "${getReembolsosChartListsResult}",
+          "emptyText": "No records to display.",
+          "events": {
+            "loadData": [
+              {
+                "name": "pnld.getReembolsosChartLists",
+                "parameters": [
+                  {
+                    "name": "$filter",
+                    "value": "${event.filter == '' ? '' : event.filter + ' and '} ColaboradorEmail eq '${security.user.name}'"
+                  },
+                  {
+                    "name": "$top",
+                    "value": "event.top"
+                  },
+                  {
+                    "name": "$skip",
+                    "value": "event.skip"
+                  },
+                  {
+                    "name": "$expand"
+                  },
+                  {
+                    "name": "$count",
+                    "value": "event.top != null && event.skip != null"
+                  },
+                  {
+                    "name": "$orderby",
+                    "value": "${event.orderby}"
+                  }
+                ],
+                "then": [
+                  {
+                    "condition": "",
+                    "name": "getReembolsosChartListsResult",
+                    "type": "set",
+                    "value": "${result.value}"
+                  }
+                ],
+                "type": "invoke"
+              }
+            ],
+            "rowDoubleClick": [],
+            "rowSelect": []
+          },
+          "name": "grid0",
+          "type": "grid",
+          "value": ""
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "pnld.getReembolsosChartLists",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "ColaboradorEmail eq '${security.user.name}'"
+          }
+        ],
+        "then": [
+          {
+            "name": "getReembolsosChartListsResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Home"
+}

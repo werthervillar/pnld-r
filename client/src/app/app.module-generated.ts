@@ -70,6 +70,7 @@ import { AddComprovanteComponent } from './add-comprovante/add-comprovante.compo
 import { EditComprovanteComponent } from './edit-comprovante/edit-comprovante.component';
 import { EditPendenciasComponent } from './edit-pendencias/edit-pendencias.component';
 import { RelatorioReembolsoComponent } from './relatorio-reembolso/relatorio-reembolso.component';
+import { HomeComponent } from './home/home.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -105,6 +106,7 @@ export const PageDeclarations = [
   EditComprovanteComponent,
   EditPendenciasComponent,
   RelatorioReembolsoComponent,
+  HomeComponent,
 ];
 
 export const LayoutDeclarations = [

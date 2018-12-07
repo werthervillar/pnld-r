@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dist/dialog';
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
-import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
 import { TemplateFormComponent } from '@radzen/angular/dist/template-form';
 import { LabelComponent } from '@radzen/angular/dist/label';
@@ -33,7 +32,6 @@ import { SecurityService } from '../security.service';
 export class EditReembolsosDespesaGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('pageTitle') pageTitle: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('form0') form0: TemplateFormComponent;
   @ViewChild('label1') label1: LabelComponent;
@@ -63,10 +61,10 @@ export class EditReembolsosDespesaGenerated implements AfterViewInit, OnInit, On
   @ViewChild('label6') label6: LabelComponent;
   @ViewChild('Conta') conta: TextBoxComponent;
   @ViewChild('SaveButton') saveButton: ButtonComponent;
-  @ViewChild('CancelButton') cancelButton: ButtonComponent;
   @ViewChild('button0') button0: ButtonComponent;
   @ViewChild('button1') button1: ButtonComponent;
-  @ViewChild('grid0') grid0: GridComponent;
+  @ViewChild('CancelButton') cancelButton: ButtonComponent;
+  @ViewChild('grid1') grid1: GridComponent;
 
   router: Router;
 
@@ -112,9 +110,9 @@ export class EditReembolsosDespesaGenerated implements AfterViewInit, OnInit, On
 
   getUsersResult: any;
 
-  getItensReembolsosDespesasResult: any;
+  getItensReembolsosDespesasListsResult: any;
 
-  getItensReembolsosDespesasCount: any;
+  getItensReembolsosDespesasListsCount: any;
 
   TotalGasto: any;
 
@@ -211,11 +209,11 @@ export class EditReembolsosDespesaGenerated implements AfterViewInit, OnInit, On
 
     });
 
-    this.pnld.getItensReembolsosDespesas(`ReembolsoDespesa eq ${this.parameters.ReembolsoDespesa}`, this.grid0.allowPaging ? this.grid0.pageSize : null, this.grid0.allowPaging ? 0 : null, null, this.grid0.allowPaging, `TiposItensReembolsosDespesa`, null, null)
+    this.pnld.getItensReembolsosDespesasLists(`ReembolsoDespesa eq ${this.parameters.ReembolsoDespesa}`, this.grid1.allowPaging ? this.grid1.pageSize : null, this.grid1.allowPaging ? 0 : null, null, this.grid1.allowPaging, null, null, null)
     .subscribe((result: any) => {
-      this.getItensReembolsosDespesasResult = result.value;
+      this.getItensReembolsosDespesasListsResult = result.value;
 
-      this.getItensReembolsosDespesasCount = this.grid0.allowPaging ? result['@odata.count'] : result.value.length;
+      this.getItensReembolsosDespesasListsCount = this.grid1.allowPaging ? result['@odata.count'] : result.value.length;
 
       this.TotalGasto = result.value.map(p => p.ValorGasto).reduce((a, b) => a + b);
 
@@ -262,14 +260,6 @@ export class EditReembolsosDespesaGenerated implements AfterViewInit, OnInit, On
     });
   }
 
-  CancelButtonClick(event: any) {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    } else {
-      this._location.back();
-    }
-  }
-
   button0Click(event: any) {
     this.dialogService.open(EditPendenciasComponent, { parameters: {ReembolsoDespesa: this.reembolsosdespesa.ReembolsoDespesa}, width: 800, title: 'Edit Pendencias' });
   }
@@ -278,51 +268,59 @@ export class EditReembolsosDespesaGenerated implements AfterViewInit, OnInit, On
     this.dialogService.open(RelatorioReembolsoComponent, { parameters: {Reuniao: this.reembolsosdespesa.Reuniao, ReembolsoDespesa: this.reembolsosdespesa.ReembolsoDespesa}, width: 800, title: 'Relatório de Reembolso' });
   }
 
-  grid0Add(event: any) {
-    this.dialogService.open(AddItensReembolsosDespesaComponent, { parameters: {ReembolsoDespesa: this.parameters.ReembolsoDespesa}, height: -2, title: 'Cadastrar Item de Reembolso' })
+  CancelButtonClick(event: any) {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    } else {
+      this._location.back();
+    }
+  }
+
+  grid1Add(event: any) {
+    this.dialogService.open(AddItensReembolsosDespesaComponent, { parameters: {ReembolsoDespesa: this.parameters.ReembolsoDespesa}, title: 'Cadastrar Item de Reembolso' })
         .afterClosed().subscribe(result => {
-              this.pnld.getReembolsosDespesaByReembolsoDespesa(this.reembolsosdespesa.ReembolsoDespesa)
+              this.pnld.getItensReembolsosDespesasLists(null, null, null, null, null, null, null, null)
       .subscribe((result: any) => {
-        this.reembolsosdespesa = result;
+        this.getItensReembolsosDespesasListsResult = result.value;
       }, (result: any) => {
 
       });
     });
   }
 
-  grid0Delete(event: any) {
+  grid1Delete(event: any) {
     this.pnld.deleteItensReembolsosDespesa(event.ItemReembolsoDespesa)
     .subscribe((result: any) => {
-      this.pnld.getReembolsosDespesaByReembolsoDespesa(this.reembolsosdespesa.ReembolsoDespesa)
+      this.pnld.getItensReembolsosDespesasLists(null, null, null, null, null, null, null, null)
       .subscribe((result: any) => {
-        this.reembolsosdespesa = result;
+        this.getItensReembolsosDespesasListsResult = result.value;
       }, (result: any) => {
 
       });
 
-      this.notificationService.notify({ severity: "success", summary: `Alerta`, detail: `Registro excluido com sucesso!` });
+      this.notificationService.notify({ severity: "success", summary: `Alerta`, detail: `Registro excluido!` });
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Alerta`, detail: `Erro ao excluir registro!` });
+      this.notificationService.notify({ severity: "error", summary: `Alerta`, detail: `Erro ao excluir!` });
     });
   }
 
-  grid0LoadData(event: any) {
-    this.pnld.getItensReembolsosDespesas(`${event.filter} && ReembolsoDespesa eq ${this.parameters.ReembolsoDespesa}`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, ``, null, null)
+  grid1LoadData(event: any) {
+    this.pnld.getItensReembolsosDespesasLists(`${event.filter == '' ? '' : event.filter + ' and '} ReembolsoDespesa eq ${this.parameters.ReembolsoDespesa}`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, ``, null, null)
     .subscribe((result: any) => {
-      this.getItensReembolsosDespesasResult = result.value;
+      this.getItensReembolsosDespesasListsResult = result.value;
 
-      this.getItensReembolsosDespesasCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+      this.getItensReembolsosDespesasListsCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
     }, (result: any) => {
 
     });
   }
 
-  grid0RowSelect(event: any) {
+  grid1RowSelect(event: any) {
     this.dialogService.open(EditItensReembolsosDespesaComponent, { parameters: {ItemReembolsoDespesa: event.ItemReembolsoDespesa}, title: 'Item de Reembolso' })
         .afterClosed().subscribe(result => {
-              this.pnld.getReembolsosDespesaByReembolsoDespesa(event.ReembolsoDespesa)
+              this.pnld.getItensReembolsosDespesasLists(null, null, null, null, null, null, null, null)
       .subscribe((result: any) => {
-        this.reembolsosdespesa = result;
+        this.getItensReembolsosDespesasListsResult = result.value;
       }, (result: any) => {
 
       });

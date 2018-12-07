@@ -13,6 +13,7 @@ import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { GridComponent } from '@radzen/angular/dist/grid';
 import { ButtonComponent } from '@radzen/angular/dist/button';
+import { EditReembolsosDespesaComponent } from '../edit-reembolsos-despesa/edit-reembolsos-despesa.component';
 import { RelatorioReembolsoComponent } from '../relatorio-reembolso/relatorio-reembolso.component';
 import { EditPendenciasComponent } from '../edit-pendencias/edit-pendencias.component';
 
@@ -164,10 +165,7 @@ export class ReembolsosDespesasGenerated implements AfterViewInit, OnInit, OnDes
   }
 
   grid0RowSelect(event: any) {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    }
-    this.router.navigate(['edit-reembolsos-despesa', event.ReembolsoDespesa]);
+    this.dialogService.open(EditReembolsosDespesaComponent, { parameters: {ReembolsoDespesa: event.ReembolsoDespesa}, width: 900, title: 'Reembolso de Despesa' });
   }
 
   button0Click(event: any, data: any) {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace project.Services
+namespace Pnld.Services
 {
     public interface IUserService
     {

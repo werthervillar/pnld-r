@@ -6739,12 +6739,13 @@ p-radiobutton {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
 
-.fc-event {
+a.fc-event {
   font-size: 0.6875rem;
   background-color: #68d5c8;
   border: none; }
-  .fc-event .fc-content {
-    color: #ffffff;
+  a.fc-event:not([href]):not([tabindex]) {
+    color: #ffffff; }
+  a.fc-event .fc-content {
     padding: 0.25rem; }
 
 .fc-prev-button,

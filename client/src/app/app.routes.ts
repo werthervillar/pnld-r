@@ -29,11 +29,12 @@ import { AddComprovanteComponent } from './add-comprovante/add-comprovante.compo
 import { EditComprovanteComponent } from './edit-comprovante/edit-comprovante.component';
 import { EditPendenciasComponent } from './edit-pendencias/edit-pendencias.component';
 import { RelatorioReembolsoComponent } from './relatorio-reembolso/relatorio-reembolso.component';
+import { HomeComponent } from './home/home.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
 export const routes: Routes = [
-  { path: '', redirectTo: '/reembolsos-despesas', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: '',
     component: LoginLayoutComponent,
@@ -249,6 +250,14 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: RelatorioReembolsoComponent
+      },
+      {
+        path: 'home',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated', 'Administrador', 'Colaborador', 'Controlador', 'Super'],
+        },
+        component: HomeComponent
       },
     ]
   },

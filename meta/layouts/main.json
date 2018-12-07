@@ -93,6 +93,10 @@
         {
           "items": [
             {
+              "path": "home",
+              "text": "Home"
+            },
+            {
               "path": "reunioes",
               "text": "Reuniões"
             },

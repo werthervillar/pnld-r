@@ -1,0 +1,14 @@
+<rz-content #content1 container="main">
+  <rz-heading #pageTitle size="H1" text="Home">
+  </rz-heading>
+  <rz-grid #grid0 addText="Add" [allowPaging]="true" [allowSorting]="true" [data]="getReembolsosChartListsResult" emptyText="No records to display." (loadData)="grid0LoadData($event)">
+    <rz-grid-column property="Reembolsos" title="Reembolsos" type="integer">
+    </rz-grid-column>
+    <rz-grid-column property="Status" title="Status" type="string">
+    </rz-grid-column>
+    <rz-grid-column format="decimal" property="ValorGasto" title="Valor Gasto" type="number">
+    </rz-grid-column>
+    <rz-grid-column format="decimal" property="ValorConcedido" title="Valor Concedido" type="number">
+    </rz-grid-column>
+  </rz-grid>
+</rz-content>

@@ -12,6 +12,14 @@ export interface HistoricosStatusReembolsosDespesa {
   Data: string;
 }
 
+export interface HistoricosStatusReembolsosDespesasList {
+  HistoricoStatusReembolsoDespesas: number;
+  ReembolsoDespesa: number;
+  StatusReembolsoDespesa: number;
+  StatusReembolsoDespesaNome: string;
+  Data: string;
+}
+
 export interface ItensReembolsosDespesa {
   ItemReembolsoDespesa: number;
   ReembolsoDespesa: number;
@@ -28,6 +36,22 @@ export interface ItensReembolsosDespesa {
   Comprovantes: Array<Comprovante>;
 }
 
+export interface ItensReembolsosDespesasList {
+  ItemReembolsoDespesa: number;
+  ReembolsoDespesa: number;
+  Tipo: number;
+  TipoNome: string;
+  Data: string;
+  Origem: string;
+  Destino: string;
+  Entrada: string;
+  Saida: string;
+  Empresa: string;
+  Referencia: string;
+  ValorGasto: number;
+  ValorConcedido: number;
+}
+
 export interface Participante {
   Participante1: number;
   Nome: string;
@@ -38,6 +62,14 @@ export interface Participante {
   Email: string;
   Usuario: string;
   ReembolsosDespesas: Array<ReembolsosDespesa>;
+}
+
+export interface ReembolsosChartList {
+  Reembolsos: number;
+  ColaboradorEmail: string;
+  Status: string;
+  ValorGasto: number;
+  ValorConcedido: number;
 }
 
 export interface ReembolsosDespesa {

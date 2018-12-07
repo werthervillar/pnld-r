@@ -262,7 +262,9 @@
                           }
                         ],
                         "path": "edit-reembolsos-despesa",
-                        "type": "navigate"
+                        "title": "Reembolso de Despesa",
+                        "type": "popup",
+                        "width": 900
                       }
                     ]
                   },

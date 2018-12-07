@@ -159,8 +159,9 @@ export class AddItensReembolsosDespesaGenerated implements AfterViewInit, OnInit
     .subscribe((result: any) => {
       if (this.dialogRef) {
         this.dialogRef.close();
+      } else {
+        this._location.back();
       }
-      this.router.navigate(['edit-reembolsos-despesa']);
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Unable to create new ItensReembolsosDespesa!` });
     });

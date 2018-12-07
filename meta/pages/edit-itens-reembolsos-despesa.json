@@ -121,7 +121,7 @@
                           "components": [
                             {
                               "component": "Tipo",
-                              "name": "label1",
+                              "name": "label12",
                               "style": {
                                 "width": "100%"
                               },
@@ -639,8 +639,25 @@
                         ],
                         "then": [
                           {
-                            "path": "edit-reembolsos-despesa",
-                            "type": "navigate"
+                            "condition": "",
+                            "type": "back"
+                          },
+                          {
+                            "name": "pnld.getReembolsosDespesaByReembolsoDespesa",
+                            "parameters": [
+                              {
+                                "name": "ReembolsoDespesa",
+                                "value": "${itensreembolsosdespesa.ReembolsoDespesa}"
+                              }
+                            ],
+                            "then": [
+                              {
+                                "name": "reembolsosdespesa",
+                                "type": "set",
+                                "value": "${result}"
+                              }
+                            ],
+                            "type": "invoke"
                           }
                         ],
                         "type": "invoke"

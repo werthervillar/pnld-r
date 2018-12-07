@@ -91,6 +91,42 @@
         }
       }
     },
+    "HistoricosStatusReembolsosDespesasList": {
+      "x-view": true,
+      "x-table": "dbo.HistoricosStatusReembolsosDespesasList",
+      "resource": "HistoricosStatusReembolsosDespesasLists",
+      "required": [
+        "HistoricoStatusReembolsoDespesas",
+        "ReembolsoDespesa",
+        "StatusReembolsoDespesa",
+        "StatusReembolsoDespesaNome",
+        "Data"
+      ],
+      "properties": {
+        "HistoricoStatusReembolsoDespesas": {
+          "x-key": true,
+          "type": "integer"
+        },
+        "ReembolsoDespesa": {
+          "x-key": false,
+          "type": "integer"
+        },
+        "StatusReembolsoDespesa": {
+          "x-key": false,
+          "type": "integer"
+        },
+        "StatusReembolsoDespesaNome": {
+          "x-key": false,
+          "type": "string",
+          "length": 50
+        },
+        "Data": {
+          "x-key": false,
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
     "ItensReembolsosDespesa": {
       "x-table": "dbo.ItensReembolsosDespesas",
       "resource": "ItensReembolsosDespesas",
@@ -193,6 +229,84 @@
         }
       }
     },
+    "ItensReembolsosDespesasList": {
+      "x-view": true,
+      "x-table": "dbo.ItensReembolsosDespesasList",
+      "resource": "ItensReembolsosDespesasLists",
+      "required": [
+        "ItemReembolsoDespesa",
+        "ReembolsoDespesa",
+        "Tipo",
+        "TipoNome",
+        "Data",
+        "ValorGasto",
+        "ValorConcedido"
+      ],
+      "properties": {
+        "ItemReembolsoDespesa": {
+          "x-key": true,
+          "type": "integer"
+        },
+        "ReembolsoDespesa": {
+          "x-key": false,
+          "type": "integer"
+        },
+        "Tipo": {
+          "x-key": false,
+          "type": "integer"
+        },
+        "TipoNome": {
+          "x-key": false,
+          "type": "string",
+          "length": 50
+        },
+        "Data": {
+          "x-key": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "Origem": {
+          "x-key": false,
+          "type": "string",
+          "length": 50
+        },
+        "Destino": {
+          "x-key": false,
+          "type": "string",
+          "length": 50
+        },
+        "Entrada": {
+          "x-key": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "Saida": {
+          "x-key": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "Empresa": {
+          "x-key": false,
+          "type": "string",
+          "length": 80
+        },
+        "Referencia": {
+          "x-key": false,
+          "type": "string",
+          "length": 80
+        },
+        "ValorGasto": {
+          "x-key": false,
+          "type": "number",
+          "format": "decimal"
+        },
+        "ValorConcedido": {
+          "x-key": false,
+          "type": "number",
+          "format": "decimal"
+        }
+      }
+    },
     "Participante": {
       "x-table": "dbo.Participantes",
       "resource": "Participantes",
@@ -254,6 +368,40 @@
           "items": {
             "$ref": "#/definitions/ReembolsosDespesa"
           }
+        }
+      }
+    },
+    "ReembolsosChartList": {
+      "x-view": true,
+      "x-table": "dbo.ReembolsosChartList",
+      "resource": "ReembolsosChartLists",
+      "required": [
+        "Status"
+      ],
+      "properties": {
+        "Reembolsos": {
+          "x-key": false,
+          "type": "integer"
+        },
+        "ColaboradorEmail": {
+          "x-key": false,
+          "type": "string",
+          "length": 150
+        },
+        "Status": {
+          "x-key": true,
+          "type": "string",
+          "length": 50
+        },
+        "ValorGasto": {
+          "x-key": false,
+          "type": "number",
+          "format": "decimal"
+        },
+        "ValorConcedido": {
+          "x-key": false,
+          "type": "number",
+          "format": "decimal"
         }
       }
     },
@@ -739,6 +887,73 @@
         }
       }
     },
+    "/HistoricosStatusReembolsosDespesasLists": {
+      "get": {
+        "operationId": "getHistoricosStatusReembolsosDespesasLists",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/HistoricosStatusReembolsosDespesasList"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
     "/ItensReembolsosDespesas": {
       "get": {
         "operationId": "getItensReembolsosDespesas",
@@ -830,6 +1045,73 @@
         }
       }
     },
+    "/ItensReembolsosDespesasLists": {
+      "get": {
+        "operationId": "getItensReembolsosDespesasLists",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ItensReembolsosDespesasList"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
     "/Participantes": {
       "get": {
         "operationId": "getParticipantes",
@@ -911,6 +1193,73 @@
           "201": {
             "schema": {
               "$ref": "#/definitions/Participante"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ReembolsosChartLists": {
+      "get": {
+        "operationId": "getReembolsosChartLists",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ReembolsosChartList"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
             }
           },
           "default": {

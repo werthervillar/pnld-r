@@ -30,10 +30,10 @@ export class EditItensReembolsosDespesaGenerated implements AfterViewInit, OnIni
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('form0') form0: TemplateFormComponent;
-  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('label1') label1: LabelComponent;
   @ViewChild('ReembolsoDespesa') reembolsoDespesa: DropDownDataGridComponent;
   @ViewChild('ReembolsoDespesaRequiredValidator') reembolsoDespesaRequiredValidator: RequiredValidatorComponent;
-  @ViewChild('label1') label1: LabelComponent;
+  @ViewChild('label12') label12: LabelComponent;
   @ViewChild('Tipo') tipo: DropDownDataGridComponent;
   @ViewChild('TipoRequiredValidator') tipoRequiredValidator: RequiredValidatorComponent;
   @ViewChild('label2') label2: LabelComponent;
@@ -100,6 +100,8 @@ export class EditItensReembolsosDespesaGenerated implements AfterViewInit, OnIni
   getComprovantesCount: any;
 
   parameters: any;
+
+  reembolsosdespesa: any;
 
   constructor(private injector: Injector) {
   }
@@ -187,8 +189,16 @@ export class EditItensReembolsosDespesaGenerated implements AfterViewInit, OnIni
     .subscribe((result: any) => {
       if (this.dialogRef) {
         this.dialogRef.close();
+      } else {
+        this._location.back();
       }
-      this.router.navigate(['edit-reembolsos-despesa']);
+
+      this.pnld.getReembolsosDespesaByReembolsoDespesa(this.itensreembolsosdespesa.ReembolsoDespesa)
+      .subscribe((result: any) => {
+        this.reembolsosdespesa = result;
+      }, (result: any) => {
+
+      });
     }, (result: any) => {
       this.canEdit = !(result.status == 400);
 

@@ -8,32 +8,30 @@
         {
           "components": [
             {
-              "class": "col-md-4",
+              "class": "col-md-5",
               "components": [
                 {
                   "addText": "Add",
-                  "allowFiltering": false,
+                  "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
                   "columns": [
                     {
-                      "filterProperty": "StatusReembolsosDespesa.Nome",
-                      "property": "StatusReembolsoDespesa",
-                      "sortProperty": "StatusReembolsosDespesa.Nome",
-                      "template": "${data.StatusReembolsosDespesa?.Nome}",
-                      "title": "Status",
+                      "property": "StatusReembolsoDespesaNome",
+                      "template": "",
+                      "title": "Status ",
                       "type": "string"
                     },
                     {
                       "format": "date-time",
                       "property": "Data",
-                      "template": "${data.Data | date:\"dd/MM/yyyy HH:mm\"}",
+                      "template": "${data.Data | utcDate | date:\"dd/MM/yyyy HH:mm\"}",
                       "title": "Data",
                       "type": "string"
                     }
                   ],
-                  "count": "${getHistoricosStatusReembolsosDespesasCount}",
-                  "data": "${getHistoricosStatusReembolsosDespesasResult}",
+                  "count": "${getHistoricosStatusReembolsosDespesasListsCount}",
+                  "data": "${getHistoricosStatusReembolsosDespesasListsResult}",
                   "emptyText": "No records to display.",
                   "events": {
                     "loadData": [
@@ -78,6 +76,48 @@
                           }
                         ],
                         "type": "invoke"
+                      },
+                      {
+                        "name": "pnld.getHistoricosStatusReembolsosDespesasLists",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "event.top"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "event.skip"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": ""
+                          },
+                          {
+                            "name": "$count",
+                            "value": "event.top != null && event.skip != null"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter} and ReembolsoDespesa eq ${parameters.ReembolsoDespesa}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getHistoricosStatusReembolsosDespesasListsResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getHistoricosStatusReembolsosDespesasListsCount",
+                            "type": "set",
+                            "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                          }
+                        ],
+                        "type": "invoke"
                       }
                     ]
                   },
@@ -93,7 +133,7 @@
               "type": "col"
             },
             {
-              "class": "col-md-8",
+              "class": "col-md-6",
               "components": [
                 {
                   "components": [
@@ -117,7 +157,7 @@
                               "rows": 5,
                               "style": {
                                 "height": "149px",
-                                "width": "100%"
+                                "width": "380.984375px"
                               },
                               "type": "textarea",
                               "value": "${reembolsosdespesas.Observacoes}",
@@ -156,7 +196,7 @@
                               "name": "Respostas",
                               "rows": 5,
                               "style": {
-                                "width": "100%"
+                                "width": "380.484375px"
                               },
                               "type": "textarea",
                               "value": "${reembolsosdespesas.Respostas}",
@@ -320,6 +360,40 @@
           },
           {
             "name": "getHistoricosStatusReembolsosDespesasCount",
+            "type": "set",
+            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "pnld.getHistoricosStatusReembolsosDespesasLists",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+          },
+          {
+            "name": "$skip",
+            "value": "this.grid0.allowPaging ? 0 : null"
+          },
+          {
+            "name": "$count",
+            "value": "this.grid0.allowPaging"
+          },
+          {
+            "name": "$filter",
+            "value": "ReembolsoDespesa eq ${parameters.ReembolsoDespesa}"
+          }
+        ],
+        "then": [
+          {
+            "name": "getHistoricosStatusReembolsosDespesasListsResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getHistoricosStatusReembolsosDespesasListsCount",
             "type": "set",
             "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
           }

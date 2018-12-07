@@ -61,6 +61,10 @@ export class EditPendenciasGenerated implements AfterViewInit, OnInit, OnDestroy
 
   getHistoricosStatusReembolsosDespesasCount: any;
 
+  getHistoricosStatusReembolsosDespesasListsResult: any;
+
+  getHistoricosStatusReembolsosDespesasListsCount: any;
+
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -127,6 +131,15 @@ export class EditPendenciasGenerated implements AfterViewInit, OnInit, OnDestroy
     }, (result: any) => {
 
     });
+
+    this.pnld.getHistoricosStatusReembolsosDespesasLists(`ReembolsoDespesa eq ${this.parameters.ReembolsoDespesa}`, this.grid0.allowPaging ? this.grid0.pageSize : null, this.grid0.allowPaging ? 0 : null, null, this.grid0.allowPaging, null, null, null)
+    .subscribe((result: any) => {
+      this.getHistoricosStatusReembolsosDespesasListsResult = result.value;
+
+      this.getHistoricosStatusReembolsosDespesasListsCount = this.grid0.allowPaging ? result['@odata.count'] : result.value.length;
+    }, (result: any) => {
+
+    });
   }
 
   grid0LoadData(event: any) {
@@ -135,6 +148,15 @@ export class EditPendenciasGenerated implements AfterViewInit, OnInit, OnDestroy
       this.getHistoricosStatusReembolsosDespesasResult = result.value;
 
       this.getHistoricosStatusReembolsosDespesasCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+    }, (result: any) => {
+
+    });
+
+    this.pnld.getHistoricosStatusReembolsosDespesasLists(`${event.filter} and ReembolsoDespesa eq ${this.parameters.ReembolsoDespesa}`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, ``, null, null)
+    .subscribe((result: any) => {
+      this.getHistoricosStatusReembolsosDespesasListsResult = result.value;
+
+      this.getHistoricosStatusReembolsosDespesasListsCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
     }, (result: any) => {
 
     });

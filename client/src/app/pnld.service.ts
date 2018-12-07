@@ -56,6 +56,10 @@ export class PnldService {
     return this.odata.patch(`/HistoricosStatusReembolsosDespesas(${historicoStatusReembolsoDespesas})`, historicosStatusReembolsosDespesa, item => item.HistoricoStatusReembolsoDespesas == historicoStatusReembolsoDespesas);
   }
 
+  getHistoricosStatusReembolsosDespesasLists(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) {
+    return this.odata.get(`/HistoricosStatusReembolsosDespesasLists`, { filter, top, skip, orderby, count, expand, format, select });
+  }
+
   getItensReembolsosDespesas(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) {
     return this.odata.get(`/ItensReembolsosDespesas`, { filter, top, skip, orderby, count, expand, format, select });
   }
@@ -76,6 +80,10 @@ export class PnldService {
     return this.odata.patch(`/ItensReembolsosDespesas(${itemReembolsoDespesa})`, itensReembolsosDespesa, item => item.ItemReembolsoDespesa == itemReembolsoDespesa);
   }
 
+  getItensReembolsosDespesasLists(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) {
+    return this.odata.get(`/ItensReembolsosDespesasLists`, { filter, top, skip, orderby, count, expand, format, select });
+  }
+
   getParticipantes(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) {
     return this.odata.get(`/Participantes`, { filter, top, skip, orderby, count, expand, format, select });
   }
@@ -94,6 +102,10 @@ export class PnldService {
 
   updateParticipante(participante1: number | null, participante: models.Participante | null) {
     return this.odata.patch(`/Participantes(${participante1})`, participante, item => item.Participante1 == participante1);
+  }
+
+  getReembolsosChartLists(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) {
+    return this.odata.get(`/ReembolsosChartLists`, { filter, top, skip, orderby, count, expand, format, select });
   }
 
   getReembolsosDespesas(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) {
