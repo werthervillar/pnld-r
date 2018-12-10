@@ -10,9 +10,9 @@
       <rz-profilemenu #profilemenu0 *ngIf="security?.isAuthenticated()" (click)="profilemenu0Click($event)">
         <rz-profilemenu-item icon="settings" path="profile" text="Minha Conta" *ngIf="security?.isInRole(['Authenticated'])">
         </rz-profilemenu-item>
-        <rz-profilemenu-item icon="person" path="application-users" text="Usuários" *ngIf="security?.isInRole(['Authenticated'])">
+        <rz-profilemenu-item icon="person" path="application-users" text="Usuários" *ngIf="security?.user?.isInRole('Colaborador') == false && security?.user?.isInRole('Controlador') == false">
         </rz-profilemenu-item>
-        <rz-profilemenu-item icon="security" path="application-roles" text="Perfis" *ngIf="security?.isInRole(['Authenticated'])">
+        <rz-profilemenu-item icon="security" path="application-roles" text="Perfis" *ngIf="security?.user?.isInRole('Colaborador') == false && security?.user?.isInRole('Controlador') == false">
         </rz-profilemenu-item>
         <rz-profilemenu-item icon="power_settings_new" path="acesso" text="Sair" *ngIf="security?.isInRole(['Everybody'])">
         </rz-profilemenu-item>

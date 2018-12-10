@@ -232,6 +232,7 @@
                           "components": [
                             {
                               "dateFormat": "dd/mm/yy",
+                              "disabled": "${this.dataEnabled == false}",
                               "name": "Data",
                               "style": {
                                 "display": "block",
@@ -270,7 +271,8 @@
                                 "width": "100%"
                               },
                               "text": "Origem",
-                              "type": "label"
+                              "type": "label",
+                              "visible": "${this.origemVisible}"
                             }
                           ],
                           "type": "col"
@@ -279,13 +281,15 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "disabled": "${this.origemEnabled == false}",
                               "maxLength": 50,
                               "name": "Origem",
                               "style": {
                                 "width": "100%"
                               },
                               "type": "textbox",
-                              "value": "${itensreembolsosdespesa.Origem}"
+                              "value": "${itensreembolsosdespesa.Origem}",
+                              "visible": "${this.origemVisible}"
                             }
                           ],
                           "type": "col"
@@ -308,7 +312,8 @@
                                 "width": "100%"
                               },
                               "text": "Destino",
-                              "type": "label"
+                              "type": "label",
+                              "visible": "${this.destinoVisible}"
                             }
                           ],
                           "type": "col"
@@ -317,13 +322,15 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "disabled": "${this.destinoEnabled == false}",
                               "maxLength": 50,
                               "name": "Destino",
                               "style": {
                                 "width": "100%"
                               },
                               "type": "textbox",
-                              "value": "${itensreembolsosdespesa.Destino}"
+                              "value": "${itensreembolsosdespesa.Destino}",
+                              "visible": "${this.destinoVisible}"
                             }
                           ],
                           "type": "col"
@@ -346,7 +353,8 @@
                                 "width": "100%"
                               },
                               "text": "Entrada",
-                              "type": "label"
+                              "type": "label",
+                              "visible": "${this.entradaVisible}"
                             }
                           ],
                           "type": "col"
@@ -355,12 +363,14 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "disabled": "${this.entradaEnabled == false}",
                               "name": "Entrada",
                               "style": {
                                 "width": "100%"
                               },
                               "type": "datepicker",
-                              "value": "${itensreembolsosdespesa.Entrada}"
+                              "value": "${itensreembolsosdespesa.Entrada}",
+                              "visible": "${this.entradaVisible}"
                             }
                           ],
                           "type": "col"
@@ -383,7 +393,8 @@
                                 "width": "100%"
                               },
                               "text": "Saida",
-                              "type": "label"
+                              "type": "label",
+                              "visible": "${this.saidaVisible}"
                             }
                           ],
                           "type": "col"
@@ -392,12 +403,14 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "disabled": "${this.saidaEnabled == false}",
                               "name": "Saida",
                               "style": {
                                 "width": "100%"
                               },
                               "type": "datepicker",
-                              "value": "${itensreembolsosdespesa.Saida}"
+                              "value": "${itensreembolsosdespesa.Saida}",
+                              "visible": "${this.saidaVisible}"
                             }
                           ],
                           "type": "col"
@@ -420,7 +433,8 @@
                                 "width": "100%"
                               },
                               "text": "Referência",
-                              "type": "label"
+                              "type": "label",
+                              "visible": "${this.referenciaVisible}"
                             }
                           ],
                           "type": "col"
@@ -429,13 +443,15 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "disabled": "${this.referenciaEnabled == false}",
                               "maxLength": 80,
                               "name": "Referencia",
                               "style": {
                                 "width": "100%"
                               },
                               "type": "textbox",
-                              "value": "${itensreembolsosdespesa.Referencia}"
+                              "value": "${itensreembolsosdespesa.Referencia}",
+                              "visible": "${this.referenciaVisible}"
                             }
                           ],
                           "type": "col"
@@ -467,6 +483,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "disabled": "${this.empresaEnabled == false}",
                               "maxLength": 80,
                               "name": "Empresa",
                               "style": {
@@ -510,6 +527,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "disabled": "${this.valorGastoEnabled == false}",
                               "maxText": "cannot be more than",
                               "minText": "cannot be less than",
                               "name": "ValorGasto",
@@ -556,6 +574,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "disabled": "${this.valorConcedidoEnabled == false}",
                               "maxText": "cannot be more than",
                               "minText": "cannot be less than",
                               "name": "ValorConcedido",

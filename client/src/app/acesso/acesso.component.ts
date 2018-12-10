@@ -6,7 +6,7 @@ import { AcessoGenerated } from './acesso-generated.component';
   templateUrl: './acesso.component.html'
 })
 export class AcessoComponent extends AcessoGenerated {
-  constructor(injector: Injector) {
+    constructor(injector: Injector) {
     super(injector);
-  }
+  }   
 }

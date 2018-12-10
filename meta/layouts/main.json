@@ -34,12 +34,14 @@
                     {
                       "icon": "person",
                       "path": "application-users",
-                      "text": "Usuários"
+                      "text": "Usuários",
+                      "visible": "${security.user.isInRole(\"Colaborador\") == false && security.user.isInRole(\"Controlador\") == false}"
                     },
                     {
                       "icon": "security",
                       "path": "application-roles",
-                      "text": "Perfis"
+                      "text": "Perfis",
+                      "visible": "${security.user.isInRole(\"Colaborador\") == false && security.user.isInRole(\"Controlador\") == false}"
                     },
                     {
                       "icon": "power_settings_new",

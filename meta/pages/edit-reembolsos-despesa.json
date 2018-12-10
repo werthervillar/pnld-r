@@ -513,6 +513,7 @@
                                       }
                                     ],
                                     "path": "edit-pendencias",
+                                    "title": "Histórico e Pendências",
                                     "type": "popup",
                                     "width": 800
                                   }
@@ -620,15 +621,15 @@
                   "type": "template-form"
                 }
               ],
-              "selected": false,
+              "selected": true,
               "text": "Dados do Reembolso"
             },
             {
               "components": [
                 {
                   "addText": "Novo",
-                  "allowAdd": true,
-                  "allowDelete": true,
+                  "allowAdd": "${this.addItemVisible}",
+                  "allowDelete": "${this.deleteItemVisible}",
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
@@ -824,11 +825,12 @@
                   },
                   "name": "grid1",
                   "pageSize": 10,
-                  "type": "grid"
+                  "type": "grid",
+                  "value": ""
                 }
               ],
               "icon": "",
-              "selected": true,
+              "selected": false,
               "text": "Itens do Reembolso"
             }
           ],

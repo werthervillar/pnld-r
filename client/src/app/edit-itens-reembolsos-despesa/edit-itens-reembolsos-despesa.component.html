@@ -32,7 +32,7 @@
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-datepicker #data dateFormat="dd/mm/yy" [style]="{'display':'block','width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Data" name="Data">
+            <rz-datepicker #data dateFormat="dd/mm/yy" [disabled]="dataEnabled == false" [style]="{'display':'block','width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Data" name="Data">
             </rz-datepicker>
             <rz-required-validator #dataRequiredValidator [component]="data" [style]="{'position':'absolute'}" text="Data is required">
             </rz-required-validator>
@@ -40,51 +40,51 @@
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label3 component="Origem" [style]="{'width':'100%'}" text="Origem">
+            <rz-label #label3 component="Origem" [style]="{'width':'100%'}" text="Origem" *ngIf="origemVisible">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-textbox #origem [maxLength]="50" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Origem" name="Origem">
+            <rz-textbox #origem [disabled]="origemEnabled == false" [maxLength]="50" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Origem" *ngIf="origemVisible" name="Origem">
             </rz-textbox>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label4 component="Destino" [style]="{'width':'100%'}" text="Destino">
+            <rz-label #label4 component="Destino" [style]="{'width':'100%'}" text="Destino" *ngIf="destinoVisible">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-textbox #destino [maxLength]="50" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Destino" name="Destino">
+            <rz-textbox #destino [disabled]="destinoEnabled == false" [maxLength]="50" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Destino" *ngIf="destinoVisible" name="Destino">
             </rz-textbox>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label5 component="Entrada" [style]="{'width':'100%'}" text="Entrada">
+            <rz-label #label5 component="Entrada" [style]="{'width':'100%'}" text="Entrada" *ngIf="entradaVisible">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-datepicker #entrada [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Entrada" name="Entrada">
+            <rz-datepicker #entrada [disabled]="entradaEnabled == false" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Entrada" *ngIf="entradaVisible" name="Entrada">
             </rz-datepicker>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label6 component="Saida" [style]="{'width':'100%'}" text="Saida">
+            <rz-label #label6 component="Saida" [style]="{'width':'100%'}" text="Saida" *ngIf="saidaVisible">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-datepicker #saida [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Saida" name="Saida">
+            <rz-datepicker #saida [disabled]="saidaEnabled == false" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Saida" *ngIf="saidaVisible" name="Saida">
             </rz-datepicker>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom':'1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #label7 component="Referencia" [style]="{'width':'100%'}" text="Referência">
+            <rz-label #label7 component="Referencia" [style]="{'width':'100%'}" text="Referência" *ngIf="referenciaVisible">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-textbox #referencia [maxLength]="80" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Referencia" name="Referencia">
+            <rz-textbox #referencia [disabled]="referenciaEnabled == false" [maxLength]="80" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Referencia" *ngIf="referenciaVisible" name="Referencia">
             </rz-textbox>
           </div>
         </div>
@@ -94,7 +94,7 @@
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-textbox #empresa [maxLength]="80" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Empresa" name="Empresa">
+            <rz-textbox #empresa [disabled]="empresaEnabled == false" [maxLength]="80" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.Empresa" name="Empresa">
             </rz-textbox>
           </div>
         </div>
@@ -104,7 +104,7 @@
             </rz-label>
           </div>
           <div class="col-md-9" [ngStyle]="{'height':'35px','paddingLeft':'15px','paddingRight':'15px'}">
-            <rz-numeric #valorGasto maxText="cannot be more than" minText="cannot be less than" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.ValorGasto" name="ValorGasto">
+            <rz-numeric #valorGasto [disabled]="valorGastoEnabled == false" maxText="cannot be more than" minText="cannot be less than" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.ValorGasto" name="ValorGasto">
             </rz-numeric>
           </div>
         </div>
@@ -114,7 +114,7 @@
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-numeric #valorConcedido maxText="cannot be more than" minText="cannot be less than" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.ValorConcedido" name="ValorConcedido">
+            <rz-numeric #valorConcedido [disabled]="valorConcedidoEnabled == false" maxText="cannot be more than" minText="cannot be less than" [style]="{'width':'100%'}" [(ngModel)]="itensreembolsosdespesa && itensreembolsosdespesa.ValorConcedido" name="ValorConcedido">
             </rz-numeric>
           </div>
         </div>

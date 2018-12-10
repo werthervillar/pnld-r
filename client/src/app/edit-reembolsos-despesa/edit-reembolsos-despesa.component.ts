@@ -3,18 +3,24 @@ import { EditReembolsosDespesaGenerated } from './edit-reembolsos-despesa-genera
 import { StatusService } from '../status.service';
 import { EditItensReembolsosDespesaComponent } from '../edit-itens-reembolsos-despesa/edit-itens-reembolsos-despesa.component';
 import { AddItensReembolsosDespesaComponent } from '../add-itens-reembolsos-despesa/add-itens-reembolsos-despesa.component';
+import { RolesService } from '../roles.service';
 
 @Component({
   selector: 'page-edit-reembolsos-despesa',
   templateUrl: './edit-reembolsos-despesa.component.html'
 })
 export class EditReembolsosDespesaComponent extends EditReembolsosDespesaGenerated {
-    constructor(injector: Injector, private statusService: StatusService) {
+    addItemVisible: boolean = true;
+    deleteItemVisible: boolean = true;
+
+    constructor(injector: Injector, private statusService: StatusService, private roleService: RolesService) {
     super(injector);
   }
 
     load() {
         this.canEdit = true;
+
+        this.fieldsRender();
 
         this.pnld.getReembolsosDespesaByReembolsoDespesa(this.parameters.ReembolsoDespesa)
             .subscribe((result: any) => {
@@ -131,5 +137,12 @@ export class EditReembolsosDespesaComponent extends EditReembolsosDespesaGenerat
             }, (result: any) => {
                 this.notificationService.notify({ severity: "error", summary: `Alerta`, detail: `Erro ao excluir!` });
             });
+    }
+
+    fieldsRender() {
+        if (this.security.user.isInRole(this.roleService.ROLE_CONTROLADOR)) {
+           this.addItemVisible = false;
+            this.deleteItemVisible = false;
+        }
     }
 }
