@@ -54,17 +54,15 @@ export const routes: Routes = [
     children: [
       {
         path: 'application-roles',
-        canActivate: [AuthGuard],
         data: {
-          roles: ['Authenticated'],
+          roles: ['Everybody'],
         },
         component: ApplicationRolesComponent
       },
       {
         path: 'cadastrar-usuário',
-        canActivate: [AuthGuard],
         data: {
-          roles: ['Authenticated'],
+          roles: ['Everybody'],
         },
         component: CadastrarUsuarioComponent
       },

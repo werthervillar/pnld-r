@@ -7,7 +7,7 @@ import { StatusService } from './status.service';
 
 @NgModule({
   declarations: [
-    ...AppDeclarations
+      ...AppDeclarations
   ],
   imports: [
     environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : [],

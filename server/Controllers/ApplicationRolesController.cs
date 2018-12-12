@@ -10,7 +10,6 @@ using Microsoft.AspNet.OData.Routing;
 
 namespace Pnld.Controllers
 {
-    [Authorize(AuthenticationSchemes="Bearer")]
     [ODataRoutePrefix("auth/ApplicationRoles")]
     public partial class ApplicationRolesController : ODataController
     {
