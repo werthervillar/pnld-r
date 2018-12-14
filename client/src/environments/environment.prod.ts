@@ -1,6 +1,6 @@
 export const environment = {
-  pnld: 'http://notecv3/pnld-server/odata/pnld',
+  pnld: 'https://samples.casavillar.com.br/pnld-server/odata/pnld',
 
-    securityUrl: 'http://notecv3/pnld-server/auth',
+    securityUrl: 'https://samples.casavillar.com.br/pnld-server/auth',
   production: true
 };
