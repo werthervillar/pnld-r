@@ -64,6 +64,13 @@ export interface Participante {
   ReembolsosDespesas: Array<ReembolsosDespesa>;
 }
 
+export interface ParticipantesSemReembolsoByReuniao {
+  Participante: number;
+  Nome: string;
+  CPF: string;
+  Email: string;
+}
+
 export interface ReembolsosChartList {
   Reembolsos: number;
   ColaboradorEmail: string;

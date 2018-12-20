@@ -9,10 +9,68 @@
     {
       "components": [
         {
-          "name": "pageTitle",
-          "size": "H1",
-          "text": "Reembolsos Despesas",
-          "type": "heading"
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "name": "pageTitle",
+                  "size": "H1",
+                  "text": "Reembolsos de Despesa",
+                  "type": "heading"
+                }
+              ],
+              "name": "col1",
+              "type": "col"
+            }
+          ],
+          "name": "row1",
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-reembolsos-despesa",
+                        "type": "navigate"
+                      }
+                    ]
+                  },
+                  "icon": "note_add",
+                  "name": "button3",
+                  "text": "Novo",
+                  "type": "button",
+                  "visible": "${security.user.isInRole(\"Colaborador\") == false}"
+                },
+                {
+                  "buttonStyle": "secondary",
+                  "events": {
+                    "click": [
+                      {
+                        "path": "generate-reembolsos",
+                        "title": "Gerar Reembolsos",
+                        "type": "popup",
+                        "width": 900
+                      }
+                    ]
+                  },
+                  "icon": "check_box",
+                  "name": "button2",
+                  "text": "Gerar Reembolsos",
+                  "type": "button"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "type": "row"
         },
         {
           "components": [
@@ -21,7 +79,7 @@
               "components": [
                 {
                   "addText": "Novo",
-                  "allowAdd": "${security.user.isInRole(\"Colaborador\") == false}",
+                  "allowAdd": false,
                   "allowDelete": "${security.user.isInRole(\"Colaborador\") == false}",
                   "allowFiltering": true,
                   "allowMultiSorting": false,

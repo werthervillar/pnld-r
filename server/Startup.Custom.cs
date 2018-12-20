@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Pnld.Service;
 using Pnld.Services;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Pnld
         partial void OnConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IHistoricoService, HistoricoService>();
+            services.AddScoped<IReembolsoDespesaService, ReembolsoDespesaService>();
         }
     }
 }

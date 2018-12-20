@@ -36,6 +36,7 @@ import { TextBoxModule } from '@radzen/angular/dist/textbox';
 import { TextAreaModule } from '@radzen/angular/dist/textarea';
 import { SSRSViewerModule } from '@radzen/angular/dist/ssrsviewer';
 import { ChartModule } from '@radzen/angular/dist/chart';
+import { CheckBoxModule } from '@radzen/angular/dist/checkbox';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
 import { DialogModule } from '@radzen/angular/dist/dialog';
@@ -72,6 +73,7 @@ import { EditComprovanteComponent } from './edit-comprovante/edit-comprovante.co
 import { EditPendenciasComponent } from './edit-pendencias/edit-pendencias.component';
 import { RelatorioReembolsoComponent } from './relatorio-reembolso/relatorio-reembolso.component';
 import { HomeComponent } from './home/home.component';
+import { GenerateReembolsosComponent } from './generate-reembolsos/generate-reembolsos.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -108,6 +110,7 @@ export const PageDeclarations = [
   EditPendenciasComponent,
   RelatorioReembolsoComponent,
   HomeComponent,
+  GenerateReembolsosComponent,
 ];
 
 export const LayoutDeclarations = [
@@ -179,6 +182,7 @@ export const AppImports = [
   TextAreaModule,
   SSRSViewerModule,
   ChartModule,
+  CheckBoxModule,
   SharedModule,
   NotificationModule,
   DialogModule,

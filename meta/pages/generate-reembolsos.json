@@ -1,0 +1,340 @@
+{
+  "access": [
+    "Administrador"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-11",
+              "components": [
+                {
+                  "name": "label0",
+                  "text": "Reunião",
+                  "type": "label"
+                },
+                {
+                  "allowFiltering": true,
+                  "data": "${getReuniosResult}",
+                  "events": {
+                    "change": [
+                      {
+                        "name": "pnld.getParticipantesSemReembolsoByReuniaos",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "this.grid0.allowPaging ? 0 : null"
+                          },
+                          {
+                            "name": "$count",
+                            "value": "this.grid0.allowPaging"
+                          },
+                          {
+                            "name": "Reuniao",
+                            "value": "${event.Reuniao}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "condition": "",
+                            "name": "getParticipantesSemReembolsoByReuniaosResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getParticipantesSemReembolsoByReuniaosCount",
+                            "type": "set",
+                            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "name": "dropdown0",
+                  "placeholder": "Selecione",
+                  "style": {
+                    "marginLeft": "7px",
+                    "marginRight": "9px"
+                  },
+                  "textProperty": "Nome",
+                  "type": "dropdown",
+                  "valueProperty": "Reuniao"
+                },
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "code": "",
+                        "condition": "",
+                        "type": "execute"
+                      }
+                    ]
+                  },
+                  "icon": "",
+                  "name": "button0",
+                  "text": "Gerar",
+                  "type": "button"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "style": {
+            "paddingBottom": "10px",
+            "width": "882px"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-11",
+              "components": [
+                {
+                  "addText": "Add",
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "columns": [
+                    {
+                      "filterable": false,
+                      "format": "",
+                      "property": "Participante",
+                      "sortable": false,
+                      "template": [
+                        {
+                          "events": {
+                            "change": [
+                              {
+                                "code": "",
+                                "type": "execute"
+                              }
+                            ]
+                          },
+                          "name": "checkbox0",
+                          "type": "checkbox",
+                          "value": ""
+                        }
+                      ],
+                      "title": "",
+                      "type": "integer",
+                      "width": "50px"
+                    },
+                    {
+                      "property": "Nome",
+                      "title": "Nome",
+                      "type": "string"
+                    },
+                    {
+                      "property": "CPF",
+                      "title": "CPF",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Email",
+                      "title": "Email",
+                      "type": "string"
+                    }
+                  ],
+                  "count": "${getParticipantesSemReembolsoByReuniaosCount}",
+                  "data": "${getParticipantesSemReembolsoByReuniaosResult}",
+                  "emptyText": "No records to display.",
+                  "events": {
+                    "loadData": [
+                      {
+                        "name": "pnld.getParticipantes",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "event.top"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "event.skip"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": ""
+                          },
+                          {
+                            "name": "$count",
+                            "value": "event.top != null && event.skip != null"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getParticipantesResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getParticipantesCount",
+                            "type": "set",
+                            "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                          }
+                        ],
+                        "type": "invoke"
+                      },
+                      {
+                        "name": "pnld.getParticipantesSemReembolsoByReuniaos",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "event.top"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "event.skip"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": ""
+                          },
+                          {
+                            "name": "$count",
+                            "value": "event.top != null && event.skip != null"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getParticipantesSemReembolsoByReuniaosResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getParticipantesSemReembolsoByReuniaosCount",
+                            "type": "set",
+                            "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "name": "grid0",
+                  "pageSize": 10,
+                  "style": {
+                    "width": "800px"
+                  },
+                  "type": "grid"
+                }
+              ],
+              "name": "col1",
+              "type": "col"
+            }
+          ],
+          "name": "row1",
+          "style": {
+            "width": "878px"
+          },
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "pnld.getParticipantes",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+          },
+          {
+            "name": "$skip",
+            "value": "this.grid0.allowPaging ? 0 : null"
+          },
+          {
+            "name": "$count",
+            "value": "this.grid0.allowPaging"
+          }
+        ],
+        "then": [
+          {
+            "name": "getParticipantesResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getParticipantesCount",
+            "type": "set",
+            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "pnld.getReunios",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getReuniosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "pnld.getParticipantesSemReembolsoByReuniaos",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+          },
+          {
+            "name": "$skip",
+            "value": "this.grid0.allowPaging ? 0 : null"
+          },
+          {
+            "name": "$count",
+            "value": "this.grid0.allowPaging"
+          }
+        ],
+        "then": [
+          {
+            "name": "getParticipantesSemReembolsoByReuniaosResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getParticipantesSemReembolsoByReuniaosCount",
+            "type": "set",
+            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Generate Reembolsos"
+}

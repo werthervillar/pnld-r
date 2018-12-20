@@ -371,6 +371,43 @@
         }
       }
     },
+    "ParticipantesSemReembolsoByReuniao": {
+      "x-view": "sp",
+      "x-table": "dbo.ParticipantesSemReembolsoByReuniao",
+      "x-parameters": [
+        {
+          "name": "Reuniao",
+          "type": "integer"
+        }
+      ],
+      "resource": "ParticipantesSemReembolsoByReuniaos",
+      "required": [
+        "Participante",
+        "Nome",
+        "CPF"
+      ],
+      "properties": {
+        "Participante": {
+          "x-key": true,
+          "type": "integer"
+        },
+        "Nome": {
+          "x-key": false,
+          "type": "string",
+          "length": 100
+        },
+        "CPF": {
+          "x-key": false,
+          "type": "string",
+          "length": 40
+        },
+        "Email": {
+          "x-key": false,
+          "type": "string",
+          "length": 150
+        }
+      }
+    },
     "ReembolsosChartList": {
       "x-view": true,
       "x-table": "dbo.ReembolsosChartList",
@@ -1193,6 +1230,78 @@
           "201": {
             "schema": {
               "$ref": "#/definitions/Participante"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ParticipantesSemReembolsoByReuniaosFunc(Reuniao={Reuniao})": {
+      "get": {
+        "operationId": "getParticipantesSemReembolsoByReuniaos",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Reuniao",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ParticipantesSemReembolsoByReuniao"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
             }
           },
           "default": {

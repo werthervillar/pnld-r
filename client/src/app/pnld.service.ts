@@ -104,6 +104,10 @@ export class PnldService {
     return this.odata.patch(`/Participantes(${participante1})`, participante, item => item.Participante1 == participante1);
   }
 
+  getParticipantesSemReembolsoByReuniaos(reuniao: number | null, filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) {
+    return this.odata.get(`/ParticipantesSemReembolsoByReuniaosFunc(Reuniao=${reuniao})`, { filter, top, skip, orderby, count, expand, format, select });
+  }
+
   getReembolsosChartLists(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) {
     return this.odata.get(`/ReembolsosChartLists`, { filter, top, skip, orderby, count, expand, format, select });
   }

@@ -11,12 +11,13 @@ import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dis
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
-import { GridComponent } from '@radzen/angular/dist/grid';
 import { ButtonComponent } from '@radzen/angular/dist/button';
-import { AddReembolsosDespesaComponent } from '../add-reembolsos-despesa/add-reembolsos-despesa.component';
-import { EditReembolsosDespesaComponent } from '../edit-reembolsos-despesa/edit-reembolsos-despesa.component';
+import { GridComponent } from '@radzen/angular/dist/grid';
 import { RelatorioReembolsoComponent } from '../relatorio-reembolso/relatorio-reembolso.component';
 import { EditPendenciasComponent } from '../edit-pendencias/edit-pendencias.component';
+import { GenerateReembolsosComponent } from '../generate-reembolsos/generate-reembolsos.component';
+import { AddReembolsosDespesaComponent } from '../add-reembolsos-despesa/add-reembolsos-despesa.component';
+import { EditReembolsosDespesaComponent } from '../edit-reembolsos-despesa/edit-reembolsos-despesa.component';
 
 import { PnldService } from '../pnld.service';
 import { SecurityService } from '../security.service';
@@ -25,6 +26,8 @@ export class ReembolsosDespesasGenerated implements AfterViewInit, OnInit, OnDes
   // Components
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('pageTitle') pageTitle: HeadingComponent;
+  @ViewChild('button3') button3: ButtonComponent;
+  @ViewChild('button2') button2: ButtonComponent;
   @ViewChild('grid0') grid0: GridComponent;
 
   router: Router;
@@ -127,6 +130,17 @@ export class ReembolsosDespesasGenerated implements AfterViewInit, OnInit, OnDes
     
       });
     }
+  }
+
+  button3Click(event: any) {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+    this.router.navigate(['add-reembolsos-despesa']);
+  }
+
+  button2Click(event: any) {
+    this.dialogService.open(GenerateReembolsosComponent, { parameters: {}, width: 900, title: 'Gerar Reembolsos' });
   }
 
   grid0Add(event: any) {

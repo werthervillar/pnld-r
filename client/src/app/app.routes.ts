@@ -30,6 +30,7 @@ import { EditComprovanteComponent } from './edit-comprovante/edit-comprovante.co
 import { EditPendenciasComponent } from './edit-pendencias/edit-pendencias.component';
 import { RelatorioReembolsoComponent } from './relatorio-reembolso/relatorio-reembolso.component';
 import { HomeComponent } from './home/home.component';
+import { GenerateReembolsosComponent } from './generate-reembolsos/generate-reembolsos.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -256,6 +257,14 @@ export const routes: Routes = [
           roles: ['Authenticated', 'Administrador', 'Colaborador', 'Controlador', 'Super'],
         },
         component: HomeComponent
+      },
+      {
+        path: 'generate-reembolsos',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Administrador'],
+        },
+        component: GenerateReembolsosComponent
       },
     ]
   },

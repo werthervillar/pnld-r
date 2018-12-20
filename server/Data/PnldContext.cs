@@ -122,6 +122,12 @@ namespace Pnld.Data
       set;
     }
 
+    public DbSet<Pnld.Models.Pnld.ParticipantesSemReembolsoByReuniao> ParticipantesSemReembolsoByReuniaos
+    {
+      get;
+      set;
+    }
+
     public DbSet<Pnld.Models.Pnld.ReembolsosChartList> ReembolsosChartLists
     {
       get;

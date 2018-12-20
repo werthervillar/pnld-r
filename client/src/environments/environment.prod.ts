@@ -1,6 +1,6 @@
 export const environment = {
-  pnld: 'https://samples.casavillar.com.br/pnld-server/odata/pnld',
+  pnld: 'http://localhost:5000/odata/pnld',
 
-    securityUrl: 'https://samples.casavillar.com.br/pnld-server/auth',
+  securityUrl: 'http://localhost:5000/auth',
   production: true
 };

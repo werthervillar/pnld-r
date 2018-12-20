@@ -17,7 +17,8 @@
     "Reembolsos Despesas",
     "Itens Reembolsos Despesas",
     "Comprovantes",
-    "Home"
+    "Home",
+    "Generate Reembolsos"
   ],
   "pages": [
     "Acesso",
@@ -46,7 +47,8 @@
     "Edit Comprovante",
     "Edit Pendencias",
     "Relatorio Reembolso",
-    "Home"
+    "Home",
+    "Generate Reembolsos"
   ],
   "security": {
     "autoGeneratePages": true,

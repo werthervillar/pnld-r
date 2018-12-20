@@ -4881,7 +4881,7 @@ input {
     left: 0;
     right: 0; }
 
-.sidebar {
+.rz-sidebar {
   background-color: #3a474d;
   border-right: 1px solid #eaeef0;
   position: fixed;

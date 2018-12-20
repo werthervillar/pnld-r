@@ -2,3 +2,15 @@
     background-image: url('assets/images/266397-full-size-background-2400x1800.jpg') !important;
     background-size: cover;
 }
+
+.sidebar {
+    background-color: #3a474d;
+    border-right: 1px solid #eaeef0;
+    position: fixed;
+    overflow: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 250px;
+}

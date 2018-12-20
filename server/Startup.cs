@@ -161,6 +161,10 @@ namespace Pnld
           oDataBuilder.EntitySet<Pnld.Models.Pnld.ItensReembolsosDespesa>("ItensReembolsosDespesas");
           oDataBuilder.EntitySet<Pnld.Models.Pnld.ItensReembolsosDespesasList>("ItensReembolsosDespesasLists");
           oDataBuilder.EntitySet<Pnld.Models.Pnld.Participante>("Participantes");
+
+          var participantesSemReembolsoByReuniaos = oDataBuilder.Function("ParticipantesSemReembolsoByReuniaosFunc");
+          participantesSemReembolsoByReuniaos.Parameter<int?>("Reuniao");
+          participantesSemReembolsoByReuniaos.ReturnsCollectionFromEntitySet<Pnld.Models.Pnld.ParticipantesSemReembolsoByReuniao>("ParticipantesSemReembolsoByReuniaos");
           oDataBuilder.EntitySet<Pnld.Models.Pnld.ReembolsosChartList>("ReembolsosChartLists");
           oDataBuilder.EntitySet<Pnld.Models.Pnld.ReembolsosDespesa>("ReembolsosDespesas");
           oDataBuilder.EntitySet<Pnld.Models.Pnld.ReembolsosDespesasList>("ReembolsosDespesasLists");

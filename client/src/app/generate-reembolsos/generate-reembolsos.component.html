@@ -1,0 +1,30 @@
+<rz-content #content1 container="main">
+  <div [ngStyle]="{'paddingBottom':'10px','width':'882px'}" class="row">
+    <div class="col-md-11">
+      <rz-label #label0 text="Reunião">
+      </rz-label>
+      <rz-dropdown #dropdown0 [allowFiltering]="true" [data]="getReuniosResult" placeholder="Selecione" [style]="{'marginLeft':'7px','marginRight':'9px'}" textProperty="Nome" valueProperty="Reuniao" name="dropdown0" (change)="dropdown0Change($event)">
+      </rz-dropdown>
+      <rz-button #button0 text="Gerar" (click)="button0Click($event)">
+      </rz-button>
+    </div>
+  </div>
+  <div [ngStyle]="{'width':'878px'}" class="row">
+    <div class="col-md-11">
+      <rz-grid #grid0 addText="Add" [allowFiltering]="true" [allowPaging]="true" [allowSorting]="true" [count]="getParticipantesSemReembolsoByReuniaosCount" [data]="getParticipantesSemReembolsoByReuniaosResult" emptyText="No records to display." [pageSize]="10" [style]="{'width':'800px'}" (loadData)="grid0LoadData($event)">
+        <rz-grid-column [filterable]="false" property="Participante" [sortable]="false" width="50px" type="integer">
+          <ng-template let-data gridColumnTemplate>
+            <rz-checkbox #checkbox0 name="checkbox0" (change)="checkbox0Change($event, data)">
+            </rz-checkbox>
+          </ng-template>
+        </rz-grid-column>
+        <rz-grid-column property="Nome" title="Nome" type="string">
+        </rz-grid-column>
+        <rz-grid-column property="CPF" title="CPF" type="string">
+        </rz-grid-column>
+        <rz-grid-column property="Email" title="Email" type="string">
+        </rz-grid-column>
+      </rz-grid>
+    </div>
+  </div>
+</rz-content>
